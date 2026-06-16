@@ -88,6 +88,10 @@
   /* ── Diagrams ── */
   #diagrams-section { padding: 0; }
   .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; padding: 16px 20px; max-width: 1200px; margin: 0 auto; }
+  .related-diags-section { padding: 12px 20px 0; max-width: 1200px; margin: 0 auto; }
+  .related-diags-label { font-size: 11px; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .related-diags-label::after { content:''; flex:1; height:1px; background:#e9d5ff; }
+  .related-diags-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; }
 
   .diag-card {
     background: #fff; border: 1px solid #e2e5ea; border-radius: 12px;
@@ -261,7 +265,7 @@
   <div class="diag-grid">
 
     <!-- 1. Consumer Funnel Flow -->
-    <div class="diag-card full-width">
+    <div id="diag-1" class="diag-card full-width">
       <div class="diag-header">
         <span class="diag-icon">🔽</span>
         <div>
@@ -361,7 +365,7 @@
     </div>
 
     <!-- 2. Rec Score & Rate Table Ranking -->
-    <div class="diag-card">
+    <div id="diag-2" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">🏆</span>
         <div>
@@ -416,7 +420,7 @@
     </div>
 
     <!-- 3. EESO Mechanics -->
-    <div class="diag-card">
+    <div id="diag-3" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">🎚️</span>
         <div>
@@ -458,7 +462,7 @@
     </div>
 
     <!-- 4. Supply / Demand Ecosystem -->
-    <div class="diag-card">
+    <div id="diag-4" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">🌐</span>
         <div>
@@ -502,7 +506,7 @@
     </div>
 
     <!-- 5. Contract Types -->
-    <div class="diag-card">
+    <div id="diag-5" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">📋</span>
         <div>
@@ -551,7 +555,7 @@
     </div>
 
     <!-- 6. Credit Quality Ladder -->
-    <div class="diag-card">
+    <div id="diag-6" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">📊</span>
         <div>
@@ -604,7 +608,7 @@
     </div>
 
     <!-- 7. PS Org Structure -->
-    <div class="diag-card">
+    <div id="diag-7" class="diag-card">
       <div class="diag-header">
         <span class="diag-icon">🏢</span>
         <div>
@@ -667,7 +671,7 @@
   </div>
 
   <!-- 8. Partner Setup Hierarchy -->
-  <div class="diag-card" style="grid-column:1/-1;">
+  <div id="diag-8" class="diag-card" style="grid-column:1/-1;">
     <div class="diag-header">
       <span class="diag-icon">🏗️</span>
       <div>
@@ -834,7 +838,7 @@
   </div>
 
   <!-- 9. Double Opt-In -->
-  <div class="diag-card" style="grid-column:1/-1;">
+  <div id="diag-9" class="diag-card" style="grid-column:1/-1;">
     <div class="diag-header">
       <span class="diag-icon">🤝</span>
       <div>
@@ -911,6 +915,309 @@
     </div>
   </div>
 
+  <!-- 10. Integration Types Comparison -->
+  <div id="diag-10" class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">🔌</span>
+      <div>
+        <div class="diag-title">Integration Types: Side-by-Side Comparison</div>
+        <div class="diag-subtitle">API · Embed · Partner Pages · Affiliate Link — how each works and when to use it</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;">
+
+        <div style="background:#eff6ff;border-left:4px solid #3b82f6;border-radius:8px;padding:12px;">
+          <div style="font-weight:700;font-size:13px;color:#1d4ed8;margin-bottom:6px;">🖥️ API Integration</div>
+          <div style="font-size:11px;color:#1e3a5f;margin-bottom:8px;">Partner sends consumer data to Engine via server-to-server calls. Partner builds their own UI to display offers.</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin-bottom:4px;">HOW IT WORKS</div>
+          <div style="font-size:11px;">Partner backend → POST /ratetables → Engine returns offers → Partner renders UI → Consumer clicks → POST /clicks</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">LEAD CREATION</div>
+          <div style="font-size:11px;">Lead created + application submitted simultaneously</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">BEST FOR</div>
+          <div style="font-size:11px;">Partners with engineering resources who want full UI control</div>
+        </div>
+
+        <div style="background:#f0fdf4;border-left:4px solid #10b981;border-radius:8px;padding:12px;">
+          <div style="font-weight:700;font-size:13px;color:#065f46;margin-bottom:6px;">📦 Embed</div>
+          <div style="font-size:11px;color:#064e3b;margin-bottom:8px;">Engine's offer UI is embedded as a widget within an existing partner page. Engine handles the display; partner provides the placement.</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin-bottom:4px;">HOW IT WORKS</div>
+          <div style="font-size:11px;">Partner places Engine script tag → Consumer loads page → Lead created on page load → Engine widget renders offers</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">LEAD CREATION</div>
+          <div style="font-size:11px;">Lead created on page load of the search/application flow page</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">BEST FOR</div>
+          <div style="font-size:11px;">Publishers and content partners with limited engineering capacity</div>
+        </div>
+
+        <div style="background:#fdf4ff;border-left:4px solid #a855f7;border-radius:8px;padding:12px;">
+          <div style="font-weight:700;font-size:13px;color:#6b21a8;margin-bottom:6px;">📄 Partner Pages</div>
+          <div style="font-size:11px;color:#581c87;margin-bottom:8px;">Engine hosts a co-branded or white-labeled page on behalf of the supply partner (e.g., fiona.com, a partner subdomain).</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin-bottom:4px;">HOW IT WORKS</div>
+          <div style="font-size:11px;">Partner drives traffic to Engine-hosted URL → Engine handles entire consumer experience → Offers served by Engine UI</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">LEAD CREATION</div>
+          <div style="font-size:11px;">Lead created when consumer completes Engine-hosted application form</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">BEST FOR</div>
+          <div style="font-size:11px;">Partners who want zero engineering lift; O&amp;O properties like Fiona</div>
+        </div>
+
+        <div style="background:#fff7ed;border-left:4px solid #f59e0b;border-radius:8px;padding:12px;">
+          <div style="font-weight:700;font-size:13px;color:#92400e;margin-bottom:6px;">🔗 Affiliate Link</div>
+          <div style="font-size:11px;color:#78350f;margin-bottom:8px;">Partner places a tracked URL. Each click on the link generates a new lead in Engine. No consumer form — just a click-through.</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin-bottom:4px;">HOW IT WORKS</div>
+          <div style="font-size:11px;">Partner places Engine URL with tracking params → Consumer clicks → New lead generated per click → Fingerprint service deduplicates</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">LEAD CREATION</div>
+          <div style="font-size:11px;">New lead created on every link click (no cookie-based dedup possible)</div>
+          <div style="font-size:10px;font-weight:700;color:#6b7280;margin:8px 0 4px;">BEST FOR</div>
+          <div style="font-size:11px;">Performance marketers, content sites, simple traffic monetization</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Partner Onboarding Flow -->
+  <div id="diag-11" class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">🚀</span>
+      <div>
+        <div class="diag-title">Partner Onboarding Flow</div>
+        <div class="diag-subtitle">From contract signed to full go-live — key stages and owners</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <div style="display:flex;gap:0;flex-wrap:wrap;position:relative;">
+
+        <style>
+          .ob-step { flex:1;min-width:140px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 8px; }
+          .ob-step::after { content:'→';position:absolute;right:-10px;top:24px;font-size:18px;color:#d1d5db;font-weight:300; }
+          .ob-step:last-child::after { display:none; }
+          .ob-circle { width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:8px;flex-shrink:0; }
+          .ob-title { font-size:12px;font-weight:700;margin-bottom:4px; }
+          .ob-detail { font-size:10px;color:#6b7280;line-height:1.4; }
+          .ob-owner { font-size:9px;font-weight:700;margin-top:6px;padding:2px 8px;border-radius:10px; }
+        </style>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#dbeafe;">📝</div>
+          <div class="ob-title">Contract Signed</div>
+          <div class="ob-detail">IO / MSA executed. Commercial terms agreed (contract type, payout rate, verticals).</div>
+          <div class="ob-owner" style="background:#dbeafe;color:#1d4ed8;">Commercial</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#ede9fe;">🔍</div>
+          <div class="ob-title">Technical Discovery</div>
+          <div class="ob-detail">SE scopes integration type, tech stack, data fields, timeline, and any custom requirements.</div>
+          <div class="ob-owner" style="background:#ede9fe;color:#6d28d9;">SE</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#d1fae5;">⚙️</div>
+          <div class="ob-title">Control Center Setup</div>
+          <div class="ob-detail">Account created. SSA/DSA configured. API token generated. Supply enablements set. Users provisioned.</div>
+          <div class="ob-owner" style="background:#d1fae5;color:#065f46;">SE / PS Ops</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#fef9c3;">🧪</div>
+          <div class="ob-title">Sandbox Testing</div>
+          <div class="ob-detail">Partner tests API calls in non-production environment. SE validates request/response format and offer rendering.</div>
+          <div class="ob-owner" style="background:#fef9c3;color:#92400e;">SE + Partner Eng</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#ffe4e6;">✅</div>
+          <div class="ob-title">UAT</div>
+          <div class="ob-detail">Partner validates end-to-end flow in staging. Offer display, click tracking, and data passthrough confirmed.</div>
+          <div class="ob-owner" style="background:#ffe4e6;color:#9f1239;">Partner</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#f3f4f6;">🌱</div>
+          <div class="ob-title">Soft Launch</div>
+          <div class="ob-detail">Limited live traffic to validate production performance. Monitor metrics, error rates, and offer fill.</div>
+          <div class="ob-owner" style="background:#f3f4f6;color:#374151;">SE + PS</div>
+        </div>
+
+        <div class="ob-step">
+          <div class="ob-circle" style="background:#bbf7d0;">🎉</div>
+          <div class="ob-title">Full Go-Live</div>
+          <div class="ob-detail">Full traffic volume. Handoff to partner success. QBR cadence established.</div>
+          <div class="ob-owner" style="background:#bbf7d0;color:#065f46;">PS / Success</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. API Request/Response Flow -->
+  <div id="diag-12" class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">⚡</span>
+      <div>
+        <div class="diag-title">Originator API: Request / Response Flow</div>
+        <div class="diag-subtitle">A single supply partner API integration end-to-end — auth to click</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <style>
+          .api-row { display:flex;align-items:stretch;gap:8px; }
+          .api-actor { width:110px;flex-shrink:0;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center; }
+          .api-arrow { flex-shrink:0;display:flex;align-items:center;color:#9ca3af;font-size:14px;padding:0 4px; }
+          .api-call { flex:1;border-radius:8px;padding:8px 12px;font-size:11px; }
+          .api-code { display:inline-block;font-family:monospace;font-size:10px;background:#e5e7eb;padding:1px 6px;border-radius:4px; }
+          .api-note { font-size:10px;color:#6b7280;margin-top:2px; }
+        </style>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#dbeafe;color:#1e40af;">Partner Backend</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#eff6ff;">
+            <strong>1. Authenticate</strong> — Include Bearer Token in every request header<br/>
+            <span class="api-code">Authorization: Bearer 49add4e7-d6a3-46de-8740-d8340fe9537e</span>
+            <div class="api-note">Token is scoped to the SSA. Generated in Control Center.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:#d1d5db;font-size:16px;">↓</div>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#dbeafe;color:#1e40af;">Partner Backend</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#eff6ff;">
+            <strong>2. Submit Lead</strong> — POST consumer data to Originator<br/>
+            <span class="api-code">POST /ratetables</span> or <span class="api-code">POST /ratetables/async</span>
+            <div class="api-note">Required fields: name, email, address, DOB, income, loan purpose, requested amount. Optional fields improve match quality.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:#d1d5db;font-size:16px;">↓</div>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#d1fae5;color:#065f46;">Engine (Originator)</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#f0fdf4;">
+            <strong>3. Generate Rate Table</strong> — Engine scores the lead, applies SSA/DSA enablements, runs rec score formula<br/>
+            <div class="api-note">Demand partners are queried. Offers ranked by rec_score = pred_converted × payout × EES. Returns offer list with lender details, rates, and terms.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:#d1d5db;font-size:16px;">↓</div>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#dbeafe;color:#1e40af;">Partner Frontend</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#eff6ff;">
+            <strong>4. Display Offers</strong> — Partner renders rate table in their own UI (API integration) or Engine renders (Embed/Partner Pages)<br/>
+            <div class="api-note">Consumer sees ranked offers with APR, loan amount, term. Higher rec_score = higher position = more clicks.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:#d1d5db;font-size:16px;">↓</div>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#dbeafe;color:#1e40af;">Partner Backend</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#eff6ff;">
+            <strong>5. Record Click</strong> — Consumer selects an offer; partner records the click<br/>
+            <span class="api-code">GET /offerSearches/:uuid</span>
+            <div class="api-note">Click triggers revenue calculation. For CPC: flat fee. For RevShare/CPA: EDE from demand partner required later.</div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:#d1d5db;font-size:16px;">↓</div>
+
+        <div class="api-row">
+          <div class="api-actor" style="background:#fef9c3;color:#92400e;">Demand Partner</div>
+          <div class="api-arrow">→</div>
+          <div class="api-call" style="background:#fffbeb;">
+            <strong>6. Report EDE</strong> (for RevShare / CPA / Funded contracts) — Demand partner sends External Demand Event file confirming loan funding<br/>
+            <div class="api-note">EDE stored in external_demand_events. Triggers LFLI revenue calculation. Can lag days to weeks after click.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. Revenue & Payout Flow -->
+  <div id="diag-13" class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">💰</span>
+      <div>
+        <div class="diag-title">Revenue &amp; Payout Flow</div>
+        <div class="diag-subtitle">How money moves from consumer → demand partner → Engine → supply partner</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <style>
+          .rev-lane { flex:1;min-width:160px;display:flex;flex-direction:column;gap:6px; }
+          .rev-box { border-radius:8px;padding:10px 12px;font-size:11px; }
+          .rev-label { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px; }
+          .rev-arr { text-align:center;color:#9ca3af;font-size:14px;margin:2px 0; }
+        </style>
+
+        <!-- CPC Lane -->
+        <div class="rev-lane">
+          <div class="rev-label" style="color:#3b82f6;">CPC Contract</div>
+          <div class="rev-box" style="background:#eff6ff;border-left:3px solid #3b82f6;">Consumer clicks offer</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#eff6ff;border-left:3px solid #3b82f6;">Engine charges demand partner flat fee per click</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#eff6ff;border-left:3px solid #3b82f6;">Engine pays supply partner: <strong>rec_score ÷ 100</strong> (RTP)</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#dbeafe;border-left:3px solid #3b82f6;font-size:10px;">No EDE needed. Revenue recognized at click. Fastest settlement.</div>
+        </div>
+
+        <!-- RevShare Lane -->
+        <div class="rev-lane">
+          <div class="rev-label" style="color:#10b981;">RevShare Contract</div>
+          <div class="rev-box" style="background:#f0fdf4;border-left:3px solid #10b981;">Consumer clicks → applies → loan funded</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#f0fdf4;border-left:3px solid #10b981;">Demand partner sends EDE file with funded loan amount</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#f0fdf4;border-left:3px solid #10b981;">Engine earns % of funded amount (e.g., 60% × loan amt)</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#f0fdf4;border-left:3px solid #10b981;">Engine pays supply partner their agreed rev share cut</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#d1fae5;border-left:3px solid #10b981;font-size:10px;">LFLI Calculator writes to lead_financial_line_items. BBH used for invoicing. Can lag days–weeks.</div>
+        </div>
+
+        <!-- CPA Lane -->
+        <div class="rev-lane">
+          <div class="rev-label" style="color:#f59e0b;">CPA Contract</div>
+          <div class="rev-box" style="background:#fffbeb;border-left:3px solid #f59e0b;">Consumer clicks → completes lender-defined action (approval, account open, card activation)</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#fffbeb;border-left:3px solid #f59e0b;">Demand partner sends EDE confirming the action occurred</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#fffbeb;border-left:3px solid #f59e0b;">Engine earns flat fee per action. Common for credit cards &amp; savings.</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#fef3c7;border-left:3px solid #f59e0b;font-size:10px;">EDE required. Revenue lags by days–weeks. LFLI + BBH for reconciliation.</div>
+        </div>
+
+        <!-- Funded Lane -->
+        <div class="rev-lane">
+          <div class="rev-label" style="color:#ef4444;">Funded Contract</div>
+          <div class="rev-box" style="background:#fff1f2;border-left:3px solid #ef4444;">Consumer clicks → applies → loan fully funded by lender</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#fff1f2;border-left:3px solid #ef4444;">Demand partner confirms funding via EDE with actual funded amount</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#fff1f2;border-left:3px solid #ef4444;">Engine earns fee based on funded loan amount. Highest revenue potential per event.</div>
+          <div class="rev-arr">↓</div>
+          <div class="rev-box" style="background:#ffe4e6;border-left:3px solid #ef4444;font-size:10px;">Longest lag (funding can take weeks). CTF % (Click-to-Fund) is the key conversion metric.</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom summary row -->
+      <div style="margin-top:14px;padding:10px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;font-size:11px;">
+        <strong>Reconciliation:</strong> LFLI (lead_financial_line_items) is the analytics source of truth. BBH (Booked by Hour) is the Finance invoicing source of truth. Attributed revenue = recognized at click time. Booked revenue = recognized at funding/EDE time.
+      </div>
+    </div>
+  </div>
+
   </div>
 </div>
 
@@ -927,10 +1234,12 @@ const TERMS = [
   { cat:"Orgs", sub:"PS Org Structure", term:"GBR Supply & Demand", def:"PS org label for GoBankingRates / ConsumerTrack-related supply and demand relationships and properties." },
   { cat:"Orgs", sub:"PS Org Structure", term:"Media / Trade Desk", def:"PS org label for paid-media buying, trading, and optimization functions for partner traffic." },
   { cat:"Orgs", sub:"PS Org Structure", term:"GBR", full:"GoBankingRates", def:"The GoBankingRates / ConsumerTrack side of the business. GBR teams support Banking and Credit operations alongside Engine." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"Pro-serv", full:"Professional Services", def:"A PS Org pod focused on 1-to-many partner management. Less hands-on than larger strategic partnerships — relationships are grown through playbooks at scale rather than dedicated attention. Most lower-revenue or less-strategic partnerships sit here." },
   { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"ELT", full:"Executive Leadership Team", def:"The senior leadership group spanning the organization." },
   { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"PLC", full:"Product Leadership Council", def:"Cross-functional product leadership body." },
   { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"IC", full:"Individual Contributor", def:"A non-management employee contributing directly to work output." },
   { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"DS", full:"Data Science", def:"Data science function." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"BIDS", full:"Business Insights & Data Science", def:"The Business Insights and Data Science org — the team responsible for analytics, reporting, and data science across Engine and broader business functions." },
   { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"CX", full:"Customer Experience", def:"Customer experience team or function." },
   { cat:"Orgs", sub:"Demand Org Verticals", term:"Prime Loans", def:"Personal-loan traffic for higher-credit borrowers. VantageScore Prime begins at 661; a separate rule treats 720+ as prime-rate eligible." },
   { cat:"Orgs", sub:"Demand Org Verticals", term:"Subprime Loans", def:"Personal-loan traffic for lower-credit borrowers, roughly in the 500–600 score range. Separate rule flags below 640 as subprime risk." },
@@ -1097,7 +1406,21 @@ const TERMS = [
   { cat:"Process", sub:"Analytics & Reporting", term:"PFM", full:"Personal Finance Management", def:"A sector of supply-partner business; also a category of consumer financial tools." },
   { cat:"Process", sub:"Analytics & Reporting", term:"NPS", full:"Net Promoter Score", def:"A measure of customer loyalty and likelihood to recommend." },
   { cat:"Process", sub:"Analytics & Reporting", term:"ICP", full:"Ideal Customer Profile", def:"A description of the ideal target customer." },
+  { cat:"Process", sub:"Partner Operations", term:"QBR", full:"Quarterly Business Review", def:"A structured meeting with a partner held every quarter to review performance metrics, discuss roadmap alignment, address issues, and plan growth initiatives." },
+  { cat:"Process", sub:"Partner Operations", term:"MBR", full:"Monthly Business Review", def:"A lighter-weight version of the QBR held monthly, focused on near-term performance metrics and operational issues." },
+  { cat:"Process", sub:"Partner Operations", term:"SLA", full:"Service Level Agreement", def:"A formal commitment to a minimum standard of service, such as API uptime percentage or support response times. Often included in MSAs or partner contracts." },
+  { cat:"Process", sub:"Partner Operations", term:"Partner Health", def:"A composite assessment of a partner's performance across metrics like revenue, integration stability, traffic quality, and relationship engagement. Used to prioritize PS attention and flag at-risk partnerships." },
+  { cat:"Process", sub:"Partner Operations", term:"Onboarding Checklist", def:"A structured list of steps required to bring a new partner from contract signing to go-live: Control Center setup, SSA/DSA creation, API token generation, integration testing, UAT, and soft launch." },
+  { cat:"Process", sub:"Engineering & Product", term:"JWT", full:"JSON Web Token", def:"A compact, self-contained token used to securely transmit information between parties (e.g., a supply partner and Engine's Originator API). When a partner authenticates with Engine, a JWT is issued and included in subsequent API requests to prove identity. You may hear this when engineers discuss authentication, API security, or token expiry." },
   { cat:"Process", sub:"Engineering & Product", term:"CLI", full:"Command Line Interface", def:"A text-based way of interacting with software by typing commands, as opposed to clicking through a graphical interface (GUI). Instead of buttons and menus, you type instructions directly. Engineers use CLIs to run scripts, deploy code, query databases, and interact with internal tools. You may hear this when someone says 'run it from the command line' or references a tool's CLI." },
+  { cat:"Process", sub:"Sales Engineering", term:"POC", full:"Proof of Concept", def:"A limited, time-boxed integration or demo built to validate that Engine can meet a partner's technical and commercial requirements before full commitment. SEs typically build and run POCs during the pre-sales process." },
+  { cat:"Process", sub:"Sales Engineering", term:"Technical Discovery", def:"The SE-led process of understanding a prospect's existing tech stack, integration capabilities, data sources, and business requirements before recommending an integration approach." },
+  { cat:"Process", sub:"Sales Engineering", term:"RFP", full:"Request for Proposal", def:"A formal document from a prospective partner outlining their requirements and asking vendors to submit proposals. SEs typically lead the technical response section." },
+  { cat:"Process", sub:"Sales Engineering", term:"Champion", def:"The internal stakeholder at a partner organization who advocates for the Engine integration within their own company. A strong champion accelerates deal cycles and onboarding." },
+  { cat:"Process", sub:"Sales Engineering", term:"Handoff", def:"The formal transition of a partner relationship from the sales/SE team to the post-sales or partner success team after a deal is signed or integration is complete." },
+  { cat:"Process", sub:"Sales Engineering", term:"Go-Live", def:"The moment a partner integration is fully deployed, tested, and accepting real consumer traffic in production." },
+  { cat:"Process", sub:"Sales Engineering", term:"UAT", full:"User Acceptance Testing", def:"The final testing phase before go-live where the partner validates that the integration works as expected in a staging or pre-production environment." },
+  { cat:"Process", sub:"Sales Engineering", term:"Rate Card", def:"The pricing document presented to a prospective or current supply partner showing available payout rates by vertical, integration type, and commercial model." },
   { cat:"Process", sub:"Partner Operations", term:"Double Opt-In", def:"Engine's model requiring both the supply partner and the demand partner to independently agree to a match before offers are shown to a consumer. The demand partner opts in by configuring an Offer Catalog on their DSA (defining which products, rates, and eligibility rules they're willing to show). The supply partner opts in by creating a Supply Enablement linking their SSA to that DSA (choosing whose offers appear on their traffic). A consumer only sees an offer if both sides have opted in — neither partner is forced into a match." },
   { cat:"Process", sub:"Engineering & Product", term:"RFC", full:"Request for Change / Request for Comments", def:"Can mean Request for Change (formal change control) or Request for Comments (design discussion)." },
   { cat:"Process", sub:"Engineering & Product", term:"BDD", full:"Behavior Driven Design / Development", def:"Can mean Behavior Driven Design or Behavior Driven Development." },
@@ -1109,6 +1432,24 @@ const TERMS = [
   { cat:"Process", sub:"Engineering & Product", term:"MTW", full:"Merchandise the Work", def:"Practice of making completed work visible and recognized across the org." },
   { cat:"Process", sub:"Engineering & Product", term:"Icebox", def:"Initiatives or ideas intentionally put on hold for roughly the next three months." },
   { cat:"Process", sub:"Engineering & Product", term:"Dead", def:"Iceboxed items that are no longer relevant or will never be done." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Jornaya", def:"A third-party lead certification service (owned by Verisk) that issues a LeadiD token to certify the source and TCPA consent status of a consumer lead. Engine captures the Jornaya LeadiD token during the personal loan application flow and passes it to demand partners as part of lead metadata, enabling regulatory compliance and audit trails across the lending marketplace." },
+  { cat:"Process", sub:"Integration Mechanics", term:"LeadiD", def:"The unique token issued by Jornaya that certifies a lead's source and consent status. Captured during the consumer application flow and stored alongside lead metadata for TCPA compliance and downstream partner passthrough." },
+  { cat:"Process", sub:"Integration Mechanics", term:"TCPA", full:"Telephone Consumer Protection Act", def:"U.S. federal law regulating telemarketing calls, auto-dialers, and consent requirements for contacting consumers. In the Engine context, TCPA compliance requires capturing and storing consumer consent language at the time of lead generation — which is what Jornaya/LeadiD helps certify." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Second Party Prefill", def:"A data-sharing arrangement where a supply partner passes their own first-party consumer data (data they've directly collected) to Engine to pre-populate the loan application form. Because the data comes from the partner themselves rather than a third-party data broker, it's called 'second party.' Reduces form friction for the consumer and typically improves match rates and conversion." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Webhook", def:"A push-based mechanism where Engine sends real-time event notifications to a partner's endpoint (e.g., notifying a supply partner of a click or conversion event), as opposed to the partner polling Engine's API." },
+  { cat:"Process", sub:"Integration Mechanics", term:"SDK", full:"Software Development Kit", def:"A pre-built package of code, libraries, and documentation that partners integrate into their app or website to embed Engine functionality without building a full API integration from scratch." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Sandbox / Staging Environment", def:"A non-production environment used for testing integrations before go-live. Allows partners and Engine teams to validate API calls, rate table responses, and offer rendering without affecting real consumer data or revenue." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Rate Limiting", def:"A constraint on the number of API calls a partner can make within a given time window. Partners who exceed rate limits receive a 429 error response. Prevents system overload and ensures fair usage." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Timeout", def:"The maximum time Engine waits for a response before treating a request as failed. Relevant for synchronous offer pulling — if a lender's response takes too long, their offers may not appear in the rate table." },
+  { cat:"Process", sub:"Integration Mechanics", term:"IP Allowlisting", def:"A security control that restricts API access to a predefined list of trusted IP addresses. Engine may require supply partners to allowlist Engine's IPs, or partners may restrict their endpoints to Engine's known IPs only." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Field Mapping", def:"The process of aligning a partner's data fields to Engine's required API fields (e.g., mapping a partner's 'annual_income' field to Engine's 'income' field). Documented during technical discovery and configured during integration setup." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Required vs Optional Fields", def:"Engine's Originator API distinguishes between fields that must be present for a lead to be processed (required) and fields that improve match quality if provided (optional). More optional fields generally result in better offer matching." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Error Codes", def:"Standardized HTTP response codes returned by Engine's Originator API. Common ones: 400 (bad request / missing required fields), 401 (unauthorized / invalid token), 429 (rate limit exceeded), 500 (server error)." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Postman", def:"A popular API development and testing tool. SEs and integration engineers use Postman to manually test Originator API calls, inspect responses, and share pre-configured request collections with partners during onboarding." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Partner Pages", def:"A supply integration type where Engine's offer experience is hosted on a dedicated co-branded page (e.g., fiona.com, or a partner-branded URL). Distinct from Embeds (Engine embedded within an existing partner page) and API (partner builds their own UI)." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Fingerprint Service", def:"Engine's internal deduplication service that identifies returning consumers across sessions using device and browser signals. Used specifically for CPC contracts to prevent a supply partner from being charged multiple times for the same consumer." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Zones", def:"A grouping mechanism in Control Center that organizes supply sub-accounts for routing and configuration purposes. Zones determine which consumer traffic is directed to which set of demand offers." },
+  { cat:"Process", sub:"Integration Mechanics", term:"CNF", full:"Channel & Network Filters", def:"Configuration layer within Control Center used to filter and route traffic between supply and demand sub-accounts. CNF channels are assigned during SSA setup and control which demand offers a supply partner's traffic is eligible to see." },
   { cat:"Process", sub:"Integration Mechanics", term:"DAF", full:"Demand API Filter", def:"A manually adjusted percentage controlling how often a lender appears on approval rate tables." },
   { cat:"Process", sub:"Integration Mechanics", term:"Asynchronous Offer Pulling", def:"Show all lender offers after about 10 seconds; some offers may be missed if polling windows are too short." },
   { cat:"Process", sub:"Integration Mechanics", term:"Synchronous Offer Pulling", def:"Poll repeatedly (~every 10 seconds) to retrieve lender offers." },
@@ -1116,6 +1457,9 @@ const TERMS = [
   { cat:"Process", sub:"Integration Mechanics", term:"Embeds", def:"An embedded widget experience rendered on a partner site (Engine UI embedded in partner surface). Lead is created on page load of the search/application flow page." },
   { cat:"Process", sub:"Integration Mechanics", term:"API (Integration)", def:"A direct integration where the partner sends consumer data to Engine via backend calls (server-to-server). Lead creation and application submission happen simultaneously." },
   { cat:"Process", sub:"Integration Mechanics", term:"Affiliate Links", def:"Every click on an affiliate link generates a new lead (no cookie-based deduplication possible). Engine deduplicates via Fingerprint service for CPC contracts." },
+  { cat:"Process", sub:"Commercial & Legal", term:"PII", full:"Personally Identifiable Information", def:"Any data that can be used to identify a specific individual, such as name, email, SSN, date of birth, or phone number. Consumer lead data submitted to Engine contains PII, which must be handled in accordance with applicable privacy laws and partner data agreements." },
+  { cat:"Process", sub:"Commercial & Legal", term:"Data Retention", def:"The policy governing how long Engine and its partners store consumer data before deleting or anonymizing it. Relevant for compliance with TCPA, CCPA, and other regulations." },
+  { cat:"Process", sub:"Commercial & Legal", term:"Consent Language", def:"The specific text shown to consumers at the point of lead submission that discloses how their data will be used and obtains their agreement. Required for TCPA compliance. Captured and stored alongside the lead, often certified via Jornaya/LeadiD." },
   { cat:"Process", sub:"Commercial & Legal", term:"IO", full:"Insertion Order", def:"The contract committing an advertiser to run a campaign with a publisher or partner." },
   { cat:"Process", sub:"Commercial & Legal", term:"MSA", full:"Master Services Agreement", def:"The master contract governing the relationship between two parties." },
   { cat:"Process", sub:"Commercial & Legal", term:"POC", full:"Proof of Concept / Point of Contact", def:"Either a temporary commercial/free trial period that can convert to a longer-term agreement, or a designated point of contact." },
@@ -1182,6 +1526,28 @@ function renderSubcatBar() {
   });
 }
 
+const DIAGRAM_INDEX = [
+  { id:'diag-1', keywords:['funnel','consumer funnel','bp1','bp2','bp3','bp4','bp5','lead generation','offer decisioning','reconciliation','business process','rate table request','click','funding','epc','rpc','application'] },
+  { id:'diag-2', keywords:['rec score','recommendation score','rate table','rate table ordering','payout','pred_converted','ranking','rank','calibrat','lender rank','anchor'] },
+  { id:'diag-3', keywords:['eeso','expected earning share','neutral point','override','boost','suppress','0.6','earning share','price ceiling','price floor'] },
+  { id:'diag-4', keywords:['supply','demand','ecosystem','ssa','dsa','supply enablement','double opt','partner','supply partner','demand partner'] },
+  { id:'diag-5', keywords:['cpc','cpl','cpa','revshare','funded','contract','monetization','revenue share','cost per','contract type'] },
+  { id:'diag-6', keywords:['credit','prime','subprime','near prime','super prime','credit bucket','credit quality','vantage','score','ladder','excellent','good','fair','poor'] },
+  { id:'diag-7', keywords:['ps org','supply org','demand org','o&o','gbr','ml supply','gen supply','media','trade desk','org structure','partner solutions'] },
+  { id:'diag-8', keywords:['account','sub-account','ssa','dsa','api token','bearer token','control center','lead uuid','supply enablement','offer catalog','user','hierarchy','partner setup','pro-serv','internaluser','externaluser'] },
+  { id:'diag-9', keywords:['double opt','opt-in','supply enablement','offer catalog','match','both sides'] },
+  { id:'diag-10', keywords:['integration','api integration','embed','partner pages','affiliate','affiliate link','integration type','server-to-server','widget','sdk','postman'] },
+  { id:'diag-11', keywords:['onboarding','partner onboarding','go-live','uat','soft launch','discovery','sandbox','technical discovery','checklist','handoff'] },
+  { id:'diag-12', keywords:['api','originator','request','response','ratetable','bearer token','click','ede','rate table','api flow','integration','postman','authentication'] },
+  { id:'diag-13', keywords:['revenue','payout','cpc','cpa','revshare','funded','ede','lfli','bbh','money','flow','reconciliation','settlement','booked','attributed'] },
+];
+
+function matchedDiagrams(q) {
+  if (!q) return [];
+  const lower = q.toLowerCase();
+  return DIAGRAM_INDEX.filter(d => d.keywords.some(kw => kw.includes(lower) || lower.includes(kw)));
+}
+
 function renderMain() {
   const main = document.getElementById('main');
   const diagrams = document.getElementById('diagrams-section');
@@ -1189,7 +1555,7 @@ function renderMain() {
   if (activeCategory === 'Diagrams') {
     main.innerHTML = '';
     diagrams.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '7 diagrams';
+    document.getElementById('resultCount').textContent = '13 diagrams';
     return;
   }
 
@@ -1230,6 +1596,30 @@ function renderMain() {
     html += `</div></div>`;
   });
   main.innerHTML = html;
+
+  // Inject related diagrams at top if searching
+  if (searchQuery) {
+    const matched = matchedDiagrams(searchQuery);
+    if (matched.length > 0) {
+      const section = document.createElement('div');
+      section.className = 'related-diags-section';
+      section.innerHTML = `<div class="related-diags-label">📊 Related Diagrams</div>`;
+      const grid = document.createElement('div');
+      grid.className = 'related-diags-grid';
+      matched.forEach(d => {
+        const orig = document.getElementById(d.id);
+        if (orig) {
+          const clone = orig.cloneNode(true);
+          clone.id = d.id + '-clone';
+          // ensure full-width clones span the grid properly
+          clone.style.gridColumn = '';
+          grid.appendChild(clone);
+        }
+      });
+      section.appendChild(grid);
+      main.prepend(section);
+    }
+  }
 }
 
 function render() { renderSubcatBar(); renderMain(); }
