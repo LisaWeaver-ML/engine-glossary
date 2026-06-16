@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engine Glossary</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f6f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+  }
+
+  header {
+    background: #fff;
+    border-bottom: 1px solid #e2e5ea;
+    padding: 16px 20px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 { font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 10px; }
+
+  .search-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+  #searchInput {
+    flex: 1; min-width: 180px; padding: 7px 12px;
+    border: 1px solid #d0d4db; border-radius: 8px; font-size: 14px;
+    background: #f9fafb; outline: none; transition: border-color 0.15s;
+  }
+  #searchInput:focus { border-color: #5b6ef5; background: #fff; }
+  #resultCount { font-size: 12px; color: #7a8194; white-space: nowrap; }
+
+  .cat-tabs { display: flex; gap: 4px; margin-top: 10px; flex-wrap: wrap; }
+  .cat-tab {
+    padding: 5px 14px; border-radius: 20px; border: 1px solid #d0d4db;
+    font-size: 13px; font-weight: 500; cursor: pointer; background: #fff;
+    color: #4a5568; transition: all 0.15s;
+  }
+  .cat-tab:hover { border-color: #5b6ef5; color: #5b6ef5; }
+  .cat-tab.active { background: #5b6ef5; color: #fff; border-color: #5b6ef5; }
+  .cat-tab[data-cat="Orgs"].active   { background: #10b981; border-color: #10b981; }
+  .cat-tab[data-cat="Process"].active { background: #f59e0b; border-color: #f59e0b; }
+  .cat-tab[data-cat="Products"].active { background: #ef4444; border-color: #ef4444; }
+  .cat-tab[data-cat="Diagrams"].active { background: #8b5cf6; border-color: #8b5cf6; }
+
+  .subcats {
+    display: flex; gap: 4px; padding: 8px 20px; background: #fff;
+    border-bottom: 1px solid #e2e5ea; overflow-x: auto; flex-wrap: wrap;
+  }
+  .subcat-chip {
+    padding: 3px 10px; border-radius: 12px; border: 1px solid #e2e5ea;
+    font-size: 12px; cursor: pointer; background: #f5f6f8; color: #4a5568;
+    white-space: nowrap; transition: all 0.15s;
+  }
+  .subcat-chip:hover { border-color: #9ca3af; }
+  .subcat-chip.active { background: #eef0fd; color: #5b6ef5; border-color: #5b6ef5; font-weight: 600; }
+
+  main { padding: 16px 20px; max-width: 960px; margin: 0 auto; }
+
+  .section-group { margin-bottom: 24px; }
+  .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #7a8194; }
+
+  .cat-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .cat-Orgs { background: #d1fae5; color: #065f46; }
+  .cat-Process { background: #fef3c7; color: #92400e; }
+  .cat-Products { background: #fee2e2; color: #991b1b; }
+
+  .term-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px; }
+  .term-card {
+    background: #fff; border: 1px solid #e2e5ea; border-radius: 10px;
+    padding: 12px 14px; transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .term-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-color: #c5c9d4; }
+  .term-name { font-size: 14px; font-weight: 700; color: #1a1a2e; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px; flex-wrap: wrap; }
+  .acronym-tag { font-size: 11px; font-weight: 600; color: #5b6ef5; background: #eef0fd; padding: 1px 6px; border-radius: 6px; flex-shrink: 0; }
+  .term-def { font-size: 13px; color: #4a5568; line-height: 1.5; }
+  .no-results { text-align: center; padding: 60px 20px; color: #7a8194; font-size: 15px; }
+  mark { background: #fef9c3; border-radius: 2px; padding: 0 1px; }
+  .hidden { display: none !important; }
+
+  /* ── Diagrams ── */
+  #diagrams-section { padding: 0; }
+  .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; padding: 16px 20px; max-width: 1200px; margin: 0 auto; }
+
+  .diag-card {
+    background: #fff; border: 1px solid #e2e5ea; border-radius: 12px;
+    overflow: hidden; transition: box-shadow 0.15s;
+  }
+  .diag-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .diag-card.full-width { grid-column: 1 / -1; }
+
+  .diag-header {
+    padding: 12px 16px 10px;
+    border-bottom: 1px solid #f0f1f3;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .diag-icon { font-size: 18px; }
+  .diag-title { font-size: 14px; font-weight: 700; color: #1a1a2e; }
+  .diag-subtitle { font-size: 11px; color: #7a8194; margin-top: 1px; }
+  .diag-body { padding: 16px; }
+
+  /* Funnel */
+  .funnel-steps { display: flex; flex-direction: column; gap: 0; }
+  .funnel-step { display: flex; align-items: flex-start; gap: 12px; position: relative; }
+  .funnel-step:not(:last-child)::after {
+    content: ''; position: absolute; left: 16px; top: 36px;
+    width: 2px; height: calc(100% - 8px); background: #e2e5ea;
+  }
+  .funnel-dot {
+    width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;
+    border: 2px solid transparent; z-index: 1; margin-top: 2px;
+  }
+  .funnel-content { padding-bottom: 20px; flex: 1; }
+  .funnel-label { font-size: 13px; font-weight: 700; color: #1a1a2e; margin-bottom: 2px; }
+  .funnel-desc { font-size: 12px; color: #6b7280; line-height: 1.4; }
+  .funnel-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 8px; margin-top: 3px; }
+  .bp-tag { background: #ede9fe; color: #5b21b6; }
+
+  /* Rec Score */
+  .formula-box {
+    background: #f8f7ff; border: 1.5px solid #c4b5fd; border-radius: 10px;
+    padding: 12px 16px; text-align: center; margin-bottom: 14px;
+  }
+  .formula-main { font-size: 16px; font-weight: 700; color: #4f46e5; letter-spacing: 0.02em; font-family: 'Courier New', monospace; }
+  .formula-sub { font-size: 11px; color: #6b7280; margin-top: 4px; }
+  .formula-parts { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .formula-part {
+    flex: 1; min-width: 90px; background: #fff; border: 1px solid #e2e5ea;
+    border-radius: 8px; padding: 8px 10px; text-align: center;
+  }
+  .formula-part-name { font-size: 11px; font-weight: 700; color: #4f46e5; margin-bottom: 2px; }
+  .formula-part-desc { font-size: 11px; color: #6b7280; line-height: 1.3; }
+
+  .steps-list { display: flex; flex-direction: column; gap: 6px; }
+  .step-row { display: flex; align-items: flex-start; gap: 8px; }
+  .step-num {
+    width: 20px; height: 20px; border-radius: 50%; background: #4f46e5;
+    color: #fff; font-size: 10px; font-weight: 700; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .step-text { font-size: 12px; color: #374151; line-height: 1.4; }
+  .step-code { font-family: 'Courier New', monospace; background: #f3f4f6; padding: 1px 4px; border-radius: 3px; font-size: 11px; }
+
+  /* Ecosystem */
+  .ecosystem { display: flex; align-items: stretch; gap: 0; }
+  .eco-col { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .eco-center { flex: 0 0 auto; width: 110px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 0 4px; }
+  .eco-box {
+    background: #f9fafb; border: 1px solid #e2e5ea; border-radius: 8px;
+    padding: 8px 10px; font-size: 11px; font-weight: 600; color: #374151;
+    text-align: center;
+  }
+  .eco-box.supply { background: #ecfdf5; border-color: #6ee7b7; color: #065f46; }
+  .eco-box.demand { background: #eff6ff; border-color: #93c5fd; color: #1e40af; }
+  .eco-engine {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed); border-radius: 12px;
+    color: #fff; padding: 14px 10px; text-align: center; width: 100%;
+  }
+  .eco-engine-name { font-size: 13px; font-weight: 800; }
+  .eco-engine-sub { font-size: 10px; opacity: 0.85; margin-top: 2px; }
+  .eco-arrow { font-size: 18px; color: #9ca3af; text-align: center; }
+  .eco-flow-label { font-size: 10px; color: #9ca3af; text-align: center; }
+  .eco-col-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #7a8194; text-align: center; margin-bottom: 4px; }
+
+  /* EESO */
+  .eeso-bar { position: relative; height: 28px; border-radius: 6px; overflow: visible; margin: 16px 0 10px; }
+  .eeso-track { height: 28px; background: linear-gradient(to right, #fee2e2, #fef3c7 40%, #d1fae5 60%, #d1fae5); border-radius: 6px; position: relative; }
+  .eeso-marker { position: absolute; top: 50%; transform: translateX(-50%) translateY(-50%); width: 3px; height: 36px; background: #374151; border-radius: 2px; }
+  .eeso-labels { display: flex; justify-content: space-between; font-size: 11px; color: #6b7280; margin-bottom: 12px; }
+  .eeso-label-mid { text-align: center; font-weight: 700; color: #374151; font-size: 11px; }
+  .eeso-effects { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .eeso-effect { text-align: center; padding: 8px; border-radius: 8px; }
+  .eeso-effect .val { font-size: 16px; font-weight: 800; }
+  .eeso-effect .lbl { font-size: 11px; color: #6b7280; margin-top: 2px; }
+  .eeso-below { background: #fee2e2; }
+  .eeso-neutral { background: #f3f4f6; }
+  .eeso-above { background: #d1fae5; }
+
+  /* Credit Quality */
+  .credit-ladder { display: flex; flex-direction: column; gap: 4px; }
+  .credit-tier { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 8px; }
+  .credit-tier-name { font-size: 13px; font-weight: 700; width: 90px; }
+  .credit-tier-range { font-size: 12px; color: #374151; flex: 1; font-family: 'Courier New', monospace; }
+  .credit-tier-bar { flex: 2; height: 8px; border-radius: 4px; }
+  .tier-superp { background: #dcfce7; }
+  .tier-pp { background: #d1fae5; }
+  .tier-prime { background: #dbeafe; }
+  .tier-np { background: #fef9c3; }
+  .tier-subp { background: #fee2e2; }
+  .bar-superp { background: #16a34a; width: 100%; }
+  .bar-pp { background: #22c55e; width: 85%; }
+  .bar-prime { background: #3b82f6; width: 70%; }
+  .bar-np { background: #f59e0b; width: 55%; }
+  .bar-subp { background: #ef4444; width: 38%; }
+
+  /* Contract Types */
+  .contracts-grid { display: flex; flex-direction: column; gap: 6px; }
+  .contract-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: #f9fafb; border-radius: 8px; border: 1px solid #e2e5ea; }
+  .contract-type { font-size: 12px; font-weight: 800; width: 72px; flex-shrink: 0; color: #4f46e5; }
+  .contract-trigger { font-size: 11px; color: #374151; flex: 1; }
+  .contract-formula { font-size: 11px; color: #6b7280; flex: 1; font-style: italic; }
+  .contract-header { display: flex; gap: 10px; padding: 4px 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #9ca3af; }
+  .contract-header-type { width: 72px; }
+
+  /* PS Org */
+  .org-chart { display: flex; flex-direction: column; gap: 10px; }
+  .org-row { display: flex; gap: 8px; justify-content: center; }
+  .org-box { border-radius: 8px; padding: 8px 12px; text-align: center; font-size: 12px; font-weight: 600; }
+  .org-top { background: #1e1b4b; color: #fff; width: 100%; font-size: 13px; padding: 10px 12px; }
+  .org-mid { flex: 1; }
+  .org-demand { background: #dbeafe; color: #1e40af; }
+  .org-supply { background: #ecfdf5; color: #065f46; }
+  .org-other { background: #f3e8ff; color: #5b21b6; }
+  .org-sub { flex: 1; font-size: 10px; font-weight: 500; }
+  .org-sub-demand { background: #eff6ff; color: #3b82f6; }
+  .org-sub-supply { background: #f0fdf4; color: #16a34a; }
+  .org-sub-other { background: #faf5ff; color: #8b5cf6; }
+  .org-connector { display: flex; justify-content: center; gap: 60px; }
+  .org-line { width: 2px; height: 12px; background: #d1d5db; margin: 0 auto; }
+  .org-h-line { height: 2px; background: #d1d5db; flex: 1; margin-top: 6px; }
+
+  /* Source tag */
+  .source-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; color: #9ca3af; margin-top: 10px;
+    padding: 2px 8px; border-radius: 8px; border: 1px solid #e5e7eb;
+    background: #f9fafb;
+  }
+  .source-tag a { color: #6b7280; text-decoration: none; }
+  .source-tag a:hover { color: #4f46e5; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Engine Glossary</h1>
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="Search terms, acronyms, or definitions…" autocomplete="off" />
+    <span id="resultCount"></span>
+  </div>
+  <div class="cat-tabs">
+    <button class="cat-tab active" data-cat="All">All</button>
+    <button class="cat-tab" data-cat="Orgs">Orgs</button>
+    <button class="cat-tab" data-cat="Process">Process</button>
+    <button class="cat-tab" data-cat="Products">Products</button>
+    <button class="cat-tab" data-cat="Diagrams">📊 Diagrams</button>
+  </div>
+</header>
+
+<div class="subcats" id="subcatBar"></div>
+
+<div id="diagrams-section" class="hidden">
+  <div class="diag-grid">
+
+    <!-- 1. Consumer Funnel Flow -->
+    <div class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">🔽</span>
+        <div>
+          <div class="diag-title">Engine Consumer Funnel — End-to-End Flow</div>
+          <div class="diag-subtitle">5 core business processes from lead entry to revenue recognition · Source: Confluence MABI</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div class="funnel-steps">
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#f0f9ff;border-color:#60a5fa;color:#1d4ed8;">1</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Consumer Arrives (Entry)</div>
+                <div class="funnel-desc">Consumer enters via a supply integration: partner page, embedded widget, API/SDK, or affiliate link. Engine checks for an existing cookie (valid 12 months for partner pages).</div>
+                <span class="funnel-tag bp-tag">BP1: Lead Generation</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#faf5ff;border-color:#a78bfa;color:#5b21b6;">2</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Lead Created — Lead UUID Assigned</div>
+                <div class="funnel-desc">A unique Lead UUID is generated and becomes the system-wide join key for all downstream events. The lead is tied permanently to the originating supply subaccount. Same person + different partner = different Lead UUID.</div>
+                <span class="funnel-tag bp-tag">BP1: Lead Generation</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#fff7ed;border-color:#fb923c;color:#c2410c;">3</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Application Submitted → Rate Table Created</div>
+                <div class="funnel-desc">"Submitted application" is a derived concept — proxied by rate table creation. Consumer has filled in required fields. One lead can generate multiple rate tables if they re-submit with changed inputs.</div>
+                <span class="funnel-tag bp-tag">BP2: Offer Decisioning</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#fefce8;border-color:#facc15;color:#854d0e;">4</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Offer Decisioning — Demand API Calls</div>
+                <div class="funnel-desc">Engine calls dynamic lenders' APIs and applies the Demand API Filter (DAF). Offers are scored using <strong>rec_score = pred_converted × payout × EES</strong>. Lenders are ranked by their best offer (anchor); within a lender, offers are sorted by borrower fit (gap to requested amount).</div>
+                <span class="funnel-tag bp-tag">BP2: Offer Decisioning</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#f0fdf4;border-color:#4ade80;color:#15803d;">5</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Rate Table Displayed to Consumer</div>
+                <div class="funnel-desc">Consumer sees pre-approved offers sorted by rec score (highest = top position). Static/special offers may also be shown. 2LM consumers only see a special offer if declined.</div>
+                <span class="funnel-tag bp-tag">BP2: Offer Decisioning</span>
+              </div>
+            </div>
+          </div>
+          <div class="funnel-steps">
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#ecfdf5;border-color:#34d399;color:#065f46;">6</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Offer Click</div>
+                <div class="funnel-desc">Consumer clicks one or more offers. Every click is recorded — including duplicates. For CPC contracts, revenue is calculated at click time (no EDE required). Click ID joins to LFLI for CPC contracts.</div>
+                <span class="funnel-tag bp-tag">BP3: Offer Clicks</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#f0f9ff;border-color:#38bdf8;color:#0369a1;">7</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Lender Decision (Off-Platform)</div>
+                <div class="funnel-desc">Consumer is on the lender's site. Engine does not track what happens here. Lenders perform their own underwriting. If approved and funded, the lender later reports a conversion event back to Engine via an EDE file.</div>
+                <span class="funnel-tag bp-tag">BP4: Funding Approval & EDE</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#fdf4ff;border-color:#e879f9;color:#86198f;">8</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Conversion Event Received</div>
+                <div class="funnel-desc">Engine receives an External Demand Event (EDE) file from the lender (or captures the CPC click). This is stored in <span class="step-code">external_demand_events</span>. 99.7% of monetizations have an associated click event.</div>
+                <span class="funnel-tag bp-tag">BP4: Funding Approval & EDE</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#fff1f2;border-color:#fb7185;color:#9f1239;">9</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Revenue &amp; Payout Calculated</div>
+                <div class="funnel-desc">LFLI Calculator applies the active demand contract (CPL, CPA, CPC, RevShare, or Funded) to compute Engine's revenue. Then applies the supply contract to compute what Engine owes the supply partner. Both written to <span class="step-code">lead_financial_line_items</span>.</div>
+                <span class="funnel-tag bp-tag">BP5: Financial Reconciliation</span>
+              </div>
+            </div>
+            <div class="funnel-step">
+              <div class="funnel-dot" style="background:#f8fafc;border-color:#94a3b8;color:#475569;">✓</div>
+              <div class="funnel-content">
+                <div class="funnel-label">Reporting: Attributed vs. Booked</div>
+                <div class="funnel-desc"><strong>Attributed</strong> = assigned at lead entry time. <strong>Booked</strong> = revenue recognized when loan funds (can lag days to weeks). Looker's Lead by Demand table reads from LFLI. BBH (Booked by Hour) is the Finance invoicing source of truth.</div>
+                <span class="funnel-tag bp-tag">BP5: Financial Reconciliation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="source-tag">📄 Source: <a href="https://moneylion.atlassian.net/wiki/spaces/MABI/pages/6563594647" target="_blank">Engine Business Process Flow Documentation</a> (Confluence MABI)</div>
+      </div>
+    </div>
+
+    <!-- 2. Rec Score & Rate Table Ranking -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">🏆</span>
+        <div>
+          <div class="diag-title">Rec Score Formula & Rate Table Ordering</div>
+          <div class="diag-subtitle">PS Override v3 · Source: Confluence Data Science</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div class="formula-box">
+          <div class="formula-main">rec_score = pred_converted × payout × EES</div>
+          <div class="formula-sub">Units: cents · Higher score = higher position on rate table</div>
+        </div>
+        <div class="formula-parts">
+          <div class="formula-part">
+            <div class="formula-part-name">pred_converted</div>
+            <div class="formula-part-desc">Model's predicted probability consumer will convert</div>
+          </div>
+          <div class="formula-part">
+            <div class="formula-part-name">payout</div>
+            <div class="formula-part-desc">What Engine earns if loan converts (in dollars)</div>
+          </div>
+          <div class="formula-part">
+            <div class="formula-part-name">EES</div>
+            <div class="formula-part-desc">Expected Earning Share. 0.6 = neutral baseline</div>
+          </div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:#374151;margin-bottom:8px;">PS Override v3 Ranking Steps</div>
+        <div class="steps-list">
+          <div class="step-row">
+            <div class="step-num">1</div>
+            <div class="step-text">Score every offer: <span class="step-code">rec_score = pred × payout × EES</span></div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">2</div>
+            <div class="step-text">Find each lender's <strong>anchor</strong>: <span class="step-code">max(rec_score)</span> across all of that lender's offers</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">3</div>
+            <div class="step-text">Order lenders by anchor (highest first). Within a lender, order offers by <strong>gap to requested amount</strong> (smallest gap = top)</div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">4</div>
+            <div class="step-text">Adjusted scores step down 1% per rank from the rank-1 rec_score: <span class="step-code">adj_k = rec₁ × (1 − (k−1) × 0.01)</span></div>
+          </div>
+          <div class="step-row">
+            <div class="step-num">5</div>
+            <div class="step-text">Back-calculate <span class="step-code">returned_pred = adj_score / (payout × EES)</span> so upstream multiplication recovers the intended order</div>
+          </div>
+        </div>
+        <div class="source-tag">📄 Source: <a href="https://moneylion.atlassian.net/wiki/spaces/DATA/pages/6729400558" target="_blank">PS Override — Rank-Calibration Mechanics</a> (Confluence Data Science)</div>
+      </div>
+    </div>
+
+    <!-- 3. EESO Mechanics -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">🎚️</span>
+        <div>
+          <div class="diag-title">EESO — Expected Earning Share Override</div>
+          <div class="diag-subtitle">How EESO shifts rec score and rate table position</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="font-size:12px;color:#6b7280;margin-bottom:10px;">EESO overrides the EES multiplier in the rec score formula. The neutral point (0.6) neither boosts nor suppresses. Values above 0.6 push offers up; below 0.6 push them down.</div>
+        <div style="position:relative;margin:16px 0 6px;">
+          <div class="eeso-track">
+            <div class="eeso-marker" style="left:40%;"></div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-bottom:14px;">
+          <span>0.0 — Suppress</span>
+          <span style="font-weight:700;color:#374151;">0.6 — Neutral</span>
+          <span>1.0+ — Boost</span>
+        </div>
+        <div class="eeso-effects">
+          <div class="eeso-effect eeso-below">
+            <div class="val" style="color:#dc2626;">↓</div>
+            <div class="lbl"><strong>Below 0.6</strong><br/>Rec score suppressed<br/>Offer ranks lower<br/>Payout adjusted down</div>
+          </div>
+          <div class="eeso-effect eeso-neutral">
+            <div class="val" style="color:#374151;">◆</div>
+            <div class="lbl"><strong>= 0.6</strong><br/>Neutral baseline<br/>No impact on rank<br/>Standard payout</div>
+          </div>
+          <div class="eeso-effect eeso-above">
+            <div class="val" style="color:#16a34a;">↑</div>
+            <div class="lbl"><strong>Above 0.6</strong><br/>Rec score boosted<br/>Offer ranks higher<br/>Payout adjusted up</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:10px;background:#f8f7ff;border-radius:8px;font-size:12px;color:#4f46e5;">
+          <strong>Price Ceiling</strong> — a cap applied alongside EESO to limit how high rec score economics can go.<br/>
+          <strong>RTP partners</strong> — supply payout = rec_score ÷ 100 per clicked offer.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Supply / Demand Ecosystem -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">🌐</span>
+        <div>
+          <div class="diag-title">Supply / Demand Partner Ecosystem</div>
+          <div class="diag-subtitle">How traffic and money flow through the Engine marketplace</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div class="ecosystem">
+          <div class="eco-col">
+            <div class="eco-col-header">Supply Partners</div>
+            <div class="eco-box supply">Publishers<br/><span style="font-size:10px;font-weight:400;">CNBC, Forbes</span></div>
+            <div class="eco-box supply">Perf Marketers<br/><span style="font-size:10px;font-weight:400;">Affiliates</span></div>
+            <div class="eco-box supply">Declines<br/><span style="font-size:10px;font-weight:400;">Banks / lenders</span></div>
+            <div class="eco-box supply">Marketplace<br/><span style="font-size:10px;font-weight:400;">Fintech cross-sell</span></div>
+            <div class="eco-box supply">O&amp;O<br/><span style="font-size:10px;font-weight:400;">Fiona, ML App</span></div>
+          </div>
+          <div class="eco-center">
+            <div class="eco-arrow">→</div>
+            <div class="eco-flow-label">Consumer traffic<br/>Lead UUID<br/>Revenue share<br/>payout ←</div>
+            <div class="eco-engine">
+              <div class="eco-engine-name">ENGINE</div>
+              <div class="eco-engine-sub">B2B Marketplace<br/>Rec Score Ranking<br/>DAF · EESO · RTP</div>
+            </div>
+            <div class="eco-flow-label">Offer requests →<br/>Approved offers<br/>← CPC/RevShare<br/>revenue</div>
+            <div class="eco-arrow">→</div>
+          </div>
+          <div class="eco-col">
+            <div class="eco-col-header">Demand Partners</div>
+            <div class="eco-box demand">Prime Lenders<br/><span style="font-size:10px;font-weight:400;">660+ score</span></div>
+            <div class="eco-box demand">Subprime Lenders<br/><span style="font-size:10px;font-weight:400;">&lt;660 score</span></div>
+            <div class="eco-box demand">Card Issuers<br/><span style="font-size:10px;font-weight:400;">Credit Cards</span></div>
+            <div class="eco-box demand">Mortgage<br/><span style="font-size:10px;font-weight:400;">Home loans</span></div>
+            <div class="eco-box demand">Insurance<br/><span style="font-size:10px;font-weight:400;">Life, Auto</span></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding:8px 10px;background:#f9fafb;border-radius:8px;font-size:11px;color:#6b7280;">
+          <strong>Supply-constrained:</strong> Engine usually has more demand than supply. Supply partners care about monetization &amp; experience. Demand partners want volume of high-quality users.
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Contract Types -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">📋</span>
+        <div>
+          <div class="diag-title">Contract Types — Revenue &amp; Payout Triggers</div>
+          <div class="diag-subtitle">How Engine earns revenue and pays supply partners · Source: Confluence MABI BP5</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div class="contract-header">
+          <span class="contract-header-type">Type</span>
+          <span style="flex:1">Trigger Event</span>
+          <span style="flex:1">Revenue Formula</span>
+        </div>
+        <div class="contracts-grid">
+          <div class="contract-row">
+            <span class="contract-type">CPC</span>
+            <span class="contract-trigger">Consumer <strong>clicks</strong> an offer on the rate table</span>
+            <span class="contract-formula">Flat fee per first click. Calculated at click time — no EDE needed.</span>
+          </div>
+          <div class="contract-row">
+            <span class="contract-type">CPL</span>
+            <span class="contract-trigger">Lead <strong>submitted</strong> / rate table created (qualified lead)</span>
+            <span class="contract-formula">Flat fee per qualified lead. Common as supply payout contract.</span>
+          </div>
+          <div class="contract-row">
+            <span class="contract-type">CPA</span>
+            <span class="contract-trigger">Lender-defined action (e.g., approval, account open)</span>
+            <span class="contract-formula">Flat fee per approved action. Common for credit cards &amp; savings.</span>
+          </div>
+          <div class="contract-row">
+            <span class="contract-type">RevShare</span>
+            <span class="contract-trigger">Loan <strong>funded</strong> — lender reports funded amount in EDE file</span>
+            <span class="contract-formula">% of funded amount (e.g., 60%). Most common for First Look loans. ~80% of supply partners on RevShare.</span>
+          </div>
+          <div class="contract-row">
+            <span class="contract-type">Funded</span>
+            <span class="contract-trigger">Loan or account confirmed <strong>funded</strong></span>
+            <span class="contract-formula">Flat fee per funded event. Similar to CPA but specifically tied to funding confirmation.</span>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:8px 10px;background:#fffbeb;border-radius:8px;font-size:11px;color:#92400e;border:1px solid #fde68a;">
+          ⚠️ Revenue in LFLI can change retroactively (up to 90 days) if contracts are backdated. Always use current LFLI figures — not historical snapshots.
+        </div>
+        <div class="source-tag">📄 Source: <a href="https://moneylion.atlassian.net/wiki/spaces/MABI/pages/6565265426" target="_blank">BP5: Financial Reconciliation</a> (Confluence MABI)</div>
+      </div>
+    </div>
+
+    <!-- 6. Credit Quality Ladder -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">📊</span>
+        <div>
+          <div class="diag-title">Engine Credit Quality Buckets</div>
+          <div class="diag-subtitle">VantageScore-based segmentation used for offer matching &amp; lender routing</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div class="credit-ladder">
+          <div class="credit-tier tier-superp">
+            <div class="credit-tier-name" style="color:#15803d;">🏅 Super Prime</div>
+            <div class="credit-tier-range">750+</div>
+            <div class="credit-tier-bar"><div class="bar-superp" style="width:100%;height:100%;border-radius:4px;"></div></div>
+          </div>
+          <div class="credit-tier tier-pp">
+            <div class="credit-tier-name" style="color:#15803d;">Prime Plus</div>
+            <div class="credit-tier-range">720 – 749</div>
+            <div class="credit-tier-bar"><div class="bar-pp" style="width:85%;height:100%;border-radius:4px;background:#22c55e;"></div></div>
+          </div>
+          <div class="credit-tier tier-prime">
+            <div class="credit-tier-name" style="color:#1d4ed8;">Prime</div>
+            <div class="credit-tier-range">660 – 719</div>
+            <div class="credit-tier-bar"><div class="bar-prime" style="width:70%;height:100%;border-radius:4px;background:#3b82f6;"></div></div>
+          </div>
+          <div class="credit-tier" style="background:#fefce8;">
+            <div class="credit-tier-name" style="color:#854d0e;">Near Prime</div>
+            <div class="credit-tier-range">620 – 659</div>
+            <div class="credit-tier-bar"><div style="width:55%;height:100%;border-radius:4px;background:#f59e0b;"></div></div>
+          </div>
+          <div class="credit-tier tier-subp">
+            <div class="credit-tier-name" style="color:#991b1b;">Subprime</div>
+            <div class="credit-tier-range">Below 620</div>
+            <div class="credit-tier-bar"><div style="width:38%;height:100%;border-radius:4px;background:#ef4444;"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;font-size:11px;color:#166534;">
+            <strong>Engine Buckets:</strong><br/>
+            Excellent: 720+<br/>
+            Good: 660–719<br/>
+            Fair: 620–659<br/>
+            Poor: &lt;620
+          </div>
+          <div style="padding:8px;background:#eff6ff;border-radius:8px;font-size:11px;color:#1e40af;">
+            <strong>Routing impact:</strong><br/>
+            Prime lenders typically set hard filters. DAF controls lender appearance rate. Subprime leads may route to 2LM or special offers if declined.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. PS Org Structure -->
+    <div class="diag-card">
+      <div class="diag-header">
+        <span class="diag-icon">🏢</span>
+        <div>
+          <div class="diag-title">Partner Solutions (PS) Org Structure</div>
+          <div class="diag-subtitle">How the PS org maps to supply, demand, and owned properties</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div class="org-chart">
+          <div class="org-row">
+            <div class="org-box org-top" style="border-radius:8px;font-weight:700;">Partner Solutions (PS)</div>
+          </div>
+          <div style="display:flex;justify-content:space-around;gap:2px;margin:2px 0;">
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:0 0 2px;margin-left:16%;"></div>
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:0 0 2px;"></div>
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:0 0 2px;margin-right:16%;"></div>
+          </div>
+          <div class="org-row" style="gap:6px;">
+            <div class="org-box org-mid org-demand">Demand Org<br/><span style="font-size:10px;font-weight:400;">Financial institutions, lenders, issuers</span></div>
+            <div class="org-box org-mid org-supply">Supply Org<br/><span style="font-size:10px;font-weight:400;">Channel partners, traffic sources</span></div>
+            <div class="org-box org-mid org-other">O&amp;O / Media<br/><span style="font-size:10px;font-weight:400;">Owned properties + Trade Desk</span></div>
+          </div>
+          <div style="display:flex;gap:6px;margin-top:2px;">
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:1;display:flex;justify-content:center;"><div style="width:2px;background:#d1d5db;height:14px;"></div></div>
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:1;display:flex;justify-content:center;"><div style="width:2px;background:#d1d5db;height:14px;"></div></div>
+            <div style="width:2px;height:14px;background:#d1d5db;margin:0 auto;flex:1;display:flex;justify-content:center;"><div style="width:2px;background:#d1d5db;height:14px;"></div></div>
+          </div>
+          <div class="org-row" style="gap:6px;flex-wrap:wrap;">
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Prime Loans</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Subprime Loans</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Credit Cards</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Banking &amp; Savings</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Mortgage</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Auto Insurance</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">2L &amp; Special Offers</div>
+              <div class="org-box org-sub org-sub-demand" style="font-size:10px;">Debt, CB, EWA</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Declines</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Marketplace</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Publishers</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Debt Relief</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Perf Marketers</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">ML Supply &amp; Demand</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">Gen Supply &amp; Demand</div>
+              <div class="org-box org-sub org-sub-supply" style="font-size:10px;">GBR Supply &amp; Demand</div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+              <div class="org-box org-sub org-sub-other" style="font-size:10px;">Fiona.com</div>
+              <div class="org-box org-sub org-sub-other" style="font-size:10px;">ML App (O&amp;O)</div>
+              <div class="org-box org-sub org-sub-other" style="font-size:10px;">Media / Trade Desk</div>
+              <div class="org-box org-sub org-sub-other" style="font-size:10px;">GBR (GoBankingRates)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 8. Partner Setup Hierarchy -->
+  <div class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">🏗️</span>
+      <div>
+        <div class="diag-title">Partner Setup: Core Object Hierarchy</div>
+        <div class="diag-subtitle">Accounts → Sub-Accounts (SSA &amp; DSA) → children — systems, identifiers, and relationships</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <style>
+        .h8-badge {
+          display:inline-block; font-size:10px; padding:1px 7px;
+          border-radius:10px; font-weight:600; margin-right:4px;
+        }
+        .h8-cc  { background:#e0e7ff; color:#4338ca; }
+        .h8-a2  { background:#fce7f3; color:#9d174d; }
+        .h8-orig{ background:#d1fae5; color:#065f46; }
+        .h8-box {
+          border-radius:8px; padding:10px 14px;
+          display:flex; flex-direction:column; gap:3px;
+          border-left:4px solid transparent; font-size:12px;
+        }
+        .h8-title { font-weight:700; font-size:13px; }
+        .h8-meta  { font-size:11px; color:#555; }
+        .h8-account { background:#e0e7ff; border-left-color:#5b6ef5; }
+        .h8-ssa     { background:#d1fae5; border-left-color:#10b981; }
+        .h8-dsa     { background:#fee2e2; border-left-color:#ef4444; }
+        .h8-child   { background:#f3f4f6; border-left-color:#9ca3af; }
+        .h8-user    { background:#fef9c3; border-left-color:#f59e0b; }
+        .h8-connector-line {
+          display:flex; align-items:flex-start; margin-left:24px; position:relative;
+        }
+        .h8-connector-line::before {
+          content:''; position:absolute; left:-12px; top:0; bottom:8px;
+          width:2px; background:#d1d5db;
+        }
+        code.h8c { font-size:10px; background:#e5e7eb; padding:1px 5px; border-radius:4px; font-family:monospace; }
+        .h8-enablement {
+          font-size:11px; color:#6b7280; font-style:italic;
+          padding:4px 8px 4px 12px; border-left:2px dashed #d1d5db;
+          margin:4px 0 4px 24px;
+        }
+      </style>
+
+      <!-- ACCOUNT -->
+      <div class="h8-box h8-account" style="margin-bottom:8px;">
+        <div class="h8-title">Account (Partner)</div>
+        <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span><span class="h8-badge h8-a2">Admin2 (legacy)</span></div>
+        <div class="h8-meta">Identifier: name string &nbsp;·&nbsp; Examples: <em>MoneyLion, SoFi, CNBC, SuperMoney</em></div>
+        <div class="h8-meta">Top-level business entity. One partner = one Account. A partner can have both SSAs and DSAs.</div>
+      </div>
+
+      <!-- SSA + DSA SIDE BY SIDE -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-left:24px; position:relative; margin-bottom:8px;">
+        <!-- vertical trunk line -->
+        <div style="position:absolute;left:-12px;top:-8px;bottom:0;width:2px;background:#d1d5db;"></div>
+
+        <!-- SSA column -->
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-size:10px;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:0.05em;">Supply Side</div>
+          <div class="h8-box h8-ssa">
+            <div class="h8-title">Supply Sub-Account (SSA)</div>
+            <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+            <div class="h8-meta">UUID: <code class="h8c">ee03a8e6-1428-416e-a6d3-d0b74e91e0d1</code></div>
+            <div class="h8-meta">URL: <code class="h8c">controls.engine.tech/supply-sub-accounts/{UUID}</code></div>
+            <div class="h8-meta">Name: <em>[Partner] – [Terms] – [Integration] – [Vertical]</em></div>
+            <div class="h8-meta">E.g. <em>"SuperMoney - SoFi - Rev Share - API - Loans"</em></div>
+            <div class="h8-meta" style="margin-top:2px;">One integration surface per vertical/commercial arrangement.</div>
+          </div>
+
+          <!-- SSA children -->
+          <div style="margin-left:20px;display:flex;flex-direction:column;gap:6px;position:relative;">
+            <div style="position:absolute;left:-8px;top:0;bottom:8px;width:2px;background:#d1d5db;"></div>
+
+            <div class="h8-box h8-child">
+              <div class="h8-title">API Token / Bearer Token</div>
+              <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+              <div class="h8-meta">UUID: <code class="h8c">49add4e7-d6a3-46de-8740-d8340fe9537e</code></div>
+              <div class="h8-meta">Scoped to one SSA. Included as Authorization header in Originator API calls.</div>
+            </div>
+
+            <div class="h8-box h8-child">
+              <div class="h8-title">Lead UUID <span style="font-weight:400;font-size:10px;color:#888;">(runtime)</span></div>
+              <div class="h8-meta"><span class="h8-badge h8-orig">Originator Service</span></div>
+              <div class="h8-meta">Generated at consumer entry. Tied to the SSA. Tracks the consumer through the funnel.</div>
+            </div>
+
+            <div class="h8-enablement" style="margin-left:0;">
+              ↔ Supply Enablement links this SSA to one or more DSAs, controlling which demand products are routed for this traffic
+            </div>
+          </div>
+        </div>
+
+        <!-- DSA column -->
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.05em;">Demand Side</div>
+          <div class="h8-box h8-dsa">
+            <div class="h8-title">Demand Sub-Account (DSA)</div>
+            <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+            <div class="h8-meta">Field: <code class="h8c">DEMAND_SUB_ACCOUNT_UUID</code></div>
+            <div class="h8-meta">Represents one product line (e.g., personal loans, credit cards, savings). Holds demand contracts, DAF settings, and lender configuration.</div>
+          </div>
+
+          <!-- DSA children -->
+          <div style="margin-left:20px;display:flex;flex-direction:column;gap:6px;position:relative;">
+            <div style="position:absolute;left:-8px;top:0;bottom:8px;width:2px;background:#d1d5db;"></div>
+
+            <div class="h8-box h8-child">
+              <div class="h8-title">Demand Contracts</div>
+              <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+              <div class="h8-meta">Defines commercial terms (CPC, CPL, CPA, RevShare, Funded) and payout rates for this product line.</div>
+            </div>
+
+            <div class="h8-box h8-child" style="border-left-color:#6366f1;">
+              <div class="h8-title">Offer Catalog</div>
+              <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+              <div class="h8-meta" style="margin-top:2px;">The set of offers a demand partner makes available to Engine for a given DSA. Defines which products can be served to matched consumers.</div>
+              <div class="h8-meta" style="margin-top:4px;font-weight:600;">What's configured:</div>
+              <div class="h8-meta">· <strong>Rate tables</strong> — APR ranges, loan amounts, terms (e.g. "9.99%–29.99% APR, $5k–$50k, 24–60 mo")</div>
+              <div class="h8-meta">· <strong>Eligibility rules</strong> — min credit score, income thresholds, state restrictions</div>
+              <div class="h8-meta">· <strong>Offer display</strong> — lender name, logo, CTA copy, disclosure text</div>
+              <div class="h8-meta">· <strong>Product type</strong> — personal loan, credit card, savings, HELOC, etc.</div>
+              <div class="h8-meta" style="margin-top:4px;font-weight:600;">Examples:</div>
+              <div class="h8-meta">· SoFi DSA: personal loan offers from $5k–$100k, prime-only (680+ score)</div>
+              <div class="h8-meta">· Upgrade DSA: personal &amp; credit-card offers, near-prime eligible (620+)</div>
+              <div class="h8-meta">· LendingTree CC DSA: credit card offers with $0 annual fee variants</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS -->
+      <div style="margin-top:14px;">
+        <div style="font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">Users (Control Center — scoped to Account)</div>
+        <div class="h8-box h8-user">
+          <div class="h8-title">Control Center User</div>
+          <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+            <div style="flex:1;min-width:140px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;">
+              <div style="font-size:11px;font-weight:700;color:#4338ca;margin-bottom:4px;">User Type</div>
+              <div style="font-size:11px;"><strong>InternalUser</strong> — EVEN employee</div>
+              <div style="font-size:11px;"><strong>ExternalUser</strong> — partner employee</div>
+              <div style="font-size:11px;"><strong>SelfService</strong> — self-service supply partner</div>
+            </div>
+            <div style="flex:1;min-width:120px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;">
+              <div style="font-size:11px;font-weight:700;color:#4338ca;margin-bottom:4px;">Partner Role</div>
+              <div style="font-size:11px;">Which Account(s) the user belongs to</div>
+            </div>
+            <div style="flex:1;min-width:120px;background:#fff;border:1px solid #e5e7eb;border-radius:6px;padding:8px;">
+              <div style="font-size:11px;font-weight:700;color:#4338ca;margin-bottom:4px;">Access Role</div>
+              <div style="font-size:11px;">Permissions within Control Center (read / write / admin)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div style="margin-top:14px;padding:10px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb;font-size:11px;display:flex;gap:16px;flex-wrap:wrap;">
+        <span><span class="h8-badge h8-cc">Control Center</span> controls.engine.tech — primary management UI</span>
+        <span><span class="h8-badge h8-a2">Admin2 (legacy)</span> admin2.evenfinancial.com — older setups</span>
+        <span><span class="h8-badge h8-orig">Originator</span> Engine's backend API — generates runtime objects</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 9. Double Opt-In -->
+  <div class="diag-card" style="grid-column:1/-1;">
+    <div class="diag-header">
+      <span class="diag-icon">🤝</span>
+      <div>
+        <div class="diag-title">Double Opt-In Model</div>
+        <div class="diag-subtitle">Both supply and demand partners must independently agree before a consumer sees an offer</div>
+      </div>
+    </div>
+    <div class="diag-body">
+      <style>
+        .doi-col { flex:1; min-width:220px; display:flex; flex-direction:column; gap:8px; }
+        .doi-step {
+          border-radius:8px; padding:10px 14px; font-size:12px;
+          display:flex; flex-direction:column; gap:3px;
+        }
+        .doi-step-title { font-weight:700; font-size:12px; }
+        .doi-step-body  { font-size:11px; color:#444; }
+        .doi-supply { background:#d1fae5; border-left:4px solid #10b981; }
+        .doi-demand { background:#fee2e2; border-left:4px solid #ef4444; }
+        .doi-engine { background:#e0e7ff; border-left:4px solid #5b6ef5; }
+        .doi-result { background:#fef9c3; border-left:4px solid #f59e0b; }
+        .doi-arrow  { text-align:center; font-size:18px; color:#9ca3af; line-height:1; }
+        .doi-mid    { display:flex; align-items:center; justify-content:center; font-size:22px; color:#9ca3af; padding:0 8px; align-self:center; }
+      </style>
+
+      <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:flex-start;">
+
+        <!-- Supply column -->
+        <div class="doi-col">
+          <div style="font-size:10px;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:0.05em;">Supply Partner Opts In</div>
+          <div class="doi-step doi-supply">
+            <div class="doi-step-title">1. Configure SSA</div>
+            <div class="doi-step-body">Supply partner sets up a Supply Sub-Account for their traffic source (vertical, integration type, commercial terms).</div>
+          </div>
+          <div class="doi-arrow">↓</div>
+          <div class="doi-step doi-supply">
+            <div class="doi-step-title">2. Create Supply Enablement</div>
+            <div class="doi-step-body">Supply partner (or Engine PS) links the SSA to specific DSAs — explicitly choosing whose offers appear on their traffic.<br/><br/><em>Example: SuperMoney enables SoFi's personal loan DSA but not LendingClub's.</em></div>
+          </div>
+        </div>
+
+        <!-- Middle divider -->
+        <div class="doi-mid">+</div>
+
+        <!-- Demand column -->
+        <div class="doi-col">
+          <div style="font-size:10px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.05em;">Demand Partner Opts In</div>
+          <div class="doi-step doi-demand">
+            <div class="doi-step-title">1. Configure DSA</div>
+            <div class="doi-step-body">Demand partner sets up a Demand Sub-Account for a product line (personal loans, credit cards, etc.).</div>
+          </div>
+          <div class="doi-arrow">↓</div>
+          <div class="doi-step doi-demand">
+            <div class="doi-step-title">2. Build Offer Catalog</div>
+            <div class="doi-step-body">Demand partner defines which products they're willing to show: rate tables, eligibility rules (min score, state restrictions), offer display, and contract terms.<br/><br/><em>Example: SoFi publishes personal loan offers for 680+ credit, $5k–$100k.</em></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Engine match row -->
+      <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+        <div style="text-align:center; font-size:18px; color:#9ca3af;">↓</div>
+        <div class="doi-step doi-engine" style="max-width:100%;">
+          <div class="doi-step-title">Engine Matches</div>
+          <div class="doi-step-body">When a consumer arrives via the SSA, Engine checks only the DSAs that SSA is enabled for. Within each enabled DSA, it checks whether the consumer meets the Offer Catalog eligibility rules. Offers are ranked by rec_score and returned.</div>
+        </div>
+        <div style="text-align:center; font-size:18px; color:#9ca3af;">↓</div>
+        <div class="doi-step doi-result" style="max-width:100%;">
+          <div class="doi-step-title">Consumer Sees Offer</div>
+          <div class="doi-step-body">A consumer only sees an offer when <strong>both</strong> conditions are met: the supply partner has enabled that DSA, <em>and</em> the demand partner's catalog includes an offer the consumer qualifies for. Neither side is forced into a match.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<main id="main"></main>
+
+<script>
+const TERMS = [
+  // ─── ORGS ──────────────────────────────────────────────────────────────
+  { cat:"Orgs", sub:"PS Org Structure", term:"Demand Org", def:"The PS side focused on financial institutions, lenders, issuers, and other product providers." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"Supply Org", def:"The PS side focused on channel partners and traffic sources." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"O&O", full:"Owned & Operated", def:"Owned and operated properties (e.g., MoneyLion app, MoneyLion web, Fiona.com) used to validate products, features, UX, and releases before broader rollout. Gen currently sits under O&O while its sector plan develops." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"ML Supply & Demand", def:"PS org label for MoneyLion-owned supply and demand relationships and properties." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"Gen Supply & Demand", def:"PS org label for Gen-owned supply and demand relationships and properties." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"GBR Supply & Demand", def:"PS org label for GoBankingRates / ConsumerTrack-related supply and demand relationships and properties." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"Media / Trade Desk", def:"PS org label for paid-media buying, trading, and optimization functions for partner traffic." },
+  { cat:"Orgs", sub:"PS Org Structure", term:"GBR", full:"GoBankingRates", def:"The GoBankingRates / ConsumerTrack side of the business. GBR teams support Banking and Credit operations alongside Engine." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"ELT", full:"Executive Leadership Team", def:"The senior leadership group spanning the organization." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"PLC", full:"Product Leadership Council", def:"Cross-functional product leadership body." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"IC", full:"Individual Contributor", def:"A non-management employee contributing directly to work output." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"DS", full:"Data Science", def:"Data science function." },
+  { cat:"Orgs", sub:"Cross-Org Roles & Teams", term:"CX", full:"Customer Experience", def:"Customer experience team or function." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Prime Loans", def:"Personal-loan traffic for higher-credit borrowers. VantageScore Prime begins at 661; a separate rule treats 720+ as prime-rate eligible." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Subprime Loans", def:"Personal-loan traffic for lower-credit borrowers, roughly in the 500–600 score range. Separate rule flags below 640 as subprime risk." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Banking & Savings", def:"Deposit-oriented products such as checking, savings, deposits, and investments." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Mortgage", def:"Home-loan and refinance products, including Home Loan / Refi within the demand-partner network." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Credit Cards", def:"Card offers managed as a dedicated vertical, covering both prime and sub-prime card strategy and operations." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Auto-Insurance", def:"Insurance offers for car owners; an adjacent vertical under PL & New Verticals." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"2L & Special Offers", def:"Second Look plus adjacent non-core offer categories. Treated as a distinct growth area rather than part of first-look loans." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Perf Marketer", full:"Performance Marketer", def:"High-volume, high-margin performance-marketing / affiliate partners that often send leads to multiple platforms to bid on." },
+  { cat:"Orgs", sub:"Demand Org Verticals", term:"Debt, CB, EWA", full:"Debt, Credit Building, Earned Wage Access", def:"Special-offer categories covering debt-related, credit-building, and earned-wage-access products. Revenue spans EWA, Credit Building, Debt Relief, Credit Repair, and Earn More." },
+  { cat:"Orgs", sub:"Supply Org Sectors", term:"Declines (Supply Sector)", def:"Banks and lenders that send rejected loan traffic into Engine to be monetized with alternative loan or special-offer matches." },
+  { cat:"Orgs", sub:"Supply Org Sectors", term:"Marketplace (Supply Sector)", def:"Fintech and financial partners that cross-sell users from one financial product into another. Described as one of the fastest-growing sectors." },
+  { cat:"Orgs", sub:"Supply Org Sectors", term:"Publishers", def:"Media and content partners (e.g., CNBC, Forbes) using partner pages and embeds; typically strong lead quality but lower volume." },
+  { cat:"Orgs", sub:"Supply Org Sectors", term:"Debt Relief", def:"Supply partners and traffic tied to debt-relief monetization, spanning debt declines, marketplaces, debt content performance marketers, aggregators, and early-exit use cases." },
+  { cat:"Orgs", sub:"Supply Org Sectors", term:"Channel Partners", def:"Umbrella category for external traffic-source partners on the supply side." },
+
+  // ─── PRODUCTS ──────────────────────────────────────────────────────────
+  { cat:"Products", sub:"Engine-Owned Properties", term:"Fiona", def:"An Engine-owned consumer product and supply partner used both commercially and for testing." },
+  { cat:"Products", sub:"Engine-Owned Properties", term:"Leaplife", def:"An Engine-owned consumer product and supply partner used both commercially and for testing." },
+  { cat:"Products", sub:"Engine-Owned Properties", term:"Birch", def:"An Engine-owned consumer product and supply partner used both commercially and for testing." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"PL", full:"Personal Loan", def:"Personal loan product." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"SLR", full:"Student Loan Refinancing", def:"Student loan refinancing product. (Note: SLR also stands for Statutory Liquidity Ratio in banking contexts.)" },
+  { cat:"Products", sub:"Financial Product Verticals", term:"SLR Network", full:"Student Loan Refinance Network", def:"The demand-partner network for student loan refinancing." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"ALR Network", full:"Auto Loan Refinance Network", def:"The demand-partner network for auto loan refinancing." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"LoC / LOC", full:"Line of Credit", def:"A revolving credit line product." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"HELOC", full:"Home Equity Line of Credit", def:"A revolving credit line secured by home equity." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"LI", full:"Life Insurance", def:"Life insurance product vertical." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"ADB", full:"Accidental Death Benefit", def:"A life insurance rider or product covering accidental death." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"IC / InstaCash", def:"MoneyLion's cash-advance product." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"FDR", full:"Freedom Debt Relief", def:"Debt-relief product or partner." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"FEB", full:"First Electronic Bank", def:"Credit Fresh partners with FEB to offer lines of credit in states where Credit Fresh is not licensed." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Rate Table", def:"The consumer-facing table of offers, typically sorted by recommendation score descending. Created when a consumer submits an application — this is the analytics proxy for 'submitted application.'" },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Special Offer / SO", full:"Special Offer / Static Offer", def:"An offer that does not go through a financial institution's decisioning APIs; often shown after a decline." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Static Offers", def:"Non-custom offers presented without lender decisioning." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Static Integrations", def:"Simpler partner integrations such as partner pages or embeds." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"White Label", def:"A product sold under a retailer or partner brand even though the underlying product/API is provided by a third party." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Partner Page / PP", def:"A partner-owned page or static integration surface used to show or route offers. Lead created on page load." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Second Look Marketplace / 2LM", def:"A flow where a user completes the loans form first and only sees a special offer if declined; not shown pre-approved offers." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"ITA", full:"Invitation to Apply", def:"An invitation sent to a consumer to apply for a loan or financial product." },
+  { cat:"Products", sub:"Offer Types & Structures", term:"Comparison Tool / Lender X", def:"Internal comparison and reporting tool." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"Originator", def:"Engine's core backend API/service — the primary integration endpoint for supply partners. Handles lead submission, rate table generation (POST /ratetables, POST /ratetables/async, GET /offerSearches/:uuid), offer serving, and click recording. CPC click events are recorded in offer_clicks by the Originator service. Partners receive API keys via #engine-originator-vertical-integration-support. Distinct from the business term 'Originations' (leads sourced from originator supply partners)." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"LPT", full:"Lender Pricing Tool", def:"Internal tool for managing and setting lender pricing." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"CNF", full:"Core Network Frontend", def:"Core products are migrating to CNF to improve performance, scalability, and efficiency." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"CD", full:"Compliance Dashboard", def:"Dashboard for tracking governance, risk, and compliance items." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"GRC", full:"Governance, Risk & Compliance", def:"Framework and platform covering governance, risk management, and regulatory compliance." },
+  { cat:"Products", sub:"Internal Tools & Platforms", term:"LEC", full:"Lender Enablements Case", def:"Primarily a Salesforce task type for lender-enablement work." },
+  { cat:"Products", sub:"API & Integration Environments", term:"Test (API Token)", def:"Test-tier API environment/token used for development and QA." },
+  { cat:"Products", sub:"API & Integration Environments", term:"Application (API Token)", def:"Application-tier API environment/token." },
+  { cat:"Products", sub:"API & Integration Environments", term:"Production (API Token)", def:"Production API environment/token for live traffic." },
+  { cat:"Products", sub:"Reporting & Data Tools", term:"Looker: Attributed Revenue", def:"Looker reporting view showing attributed revenue by demand and supply partner." },
+  { cat:"Products", sub:"Reporting & Data Tools", term:"Sheets: Guaranteed Rev Contract Terms", def:"Spreadsheet containing guaranteed-revenue contract terms." },
+  { cat:"Products", sub:"Reporting & Data Tools", term:"LBD", full:"Leads by Demand", def:"A Looker table showing lead volume by demand partner. Reads from LFLI; conversions = count distinct lead_uuid where revenue > 0." },
+  { cat:"Products", sub:"Reporting & Data Tools", term:"MCI", full:"Marketplace Comparison Insights", def:"Reporting tool or view for marketplace comparison." },
+  { cat:"Products", sub:"Client Tag Fields", term:"cnfEnvironment", def:"Client-tag field; likely environment-related." },
+  { cat:"Products", sub:"Client Tag Fields", term:"traffic_src", def:"Client-tag field; traffic-source identifier." },
+  { cat:"Products", sub:"Client Tag Fields", term:"debt_to_loan_overwrite", def:"Client-tag field used in PS-org reporting or engineering." },
+  { cat:"Products", sub:"Client Tag Fields", term:"initial_sub_account_id", def:"Client-tag field identifying the initial sub-account." },
+  { cat:"Products", sub:"Client Tag Fields", term:"initial_sub_account_name", def:"Client-tag field with the initial sub-account name." },
+  { cat:"Products", sub:"Client Tag Fields", term:"identity_uuid", def:"Client-tag field; consumer identity UUID." },
+  { cat:"Products", sub:"Client Tag Fields", term:"synthetic", def:"Client-tag field; likely flags synthetic/test traffic." },
+  { cat:"Products", sub:"Client Tag Fields", term:"score", def:"Client-tag field; consumer credit or propensity score." },
+  { cat:"Products", sub:"Client Tag Fields", term:"subId2", def:"Client-tag field; secondary sub-ID for tracking." },
+  { cat:"Products", sub:"Client Tag Fields", term:"logo", def:"Client-tag field; partner logo reference." },
+  { cat:"Products", sub:"Client Tag Fields", term:"click_id", def:"Client-tag field; unique identifier for a click event." },
+  { cat:"Products", sub:"Client Tag Fields", term:"sdkVersion", def:"Client-tag field; SDK version of the integration." },
+  { cat:"Products", sub:"Client Tag Fields", term:"prefilledLeadDataKeys", def:"Client-tag field; keys for pre-filled lead data." },
+  { cat:"Products", sub:"Client Tag Fields", term:"mlUserId", def:"Client-tag field; MoneyLion user identifier." },
+  { cat:"Products", sub:"Client Tag Fields", term:"applicationId", def:"Client-tag field; unique application identifier." },
+  { cat:"Products", sub:"Client Tag Fields", term:"recordSource", def:"Client-tag field; origin source of the record." },
+  { cat:"Products", sub:"Client Tag Fields", term:"clientSource", def:"Client-tag field; client/partner source identifier." },
+  { cat:"Products", sub:"Client Tag Fields", term:"returningUser", def:"Client-tag field; flags whether consumer is a returning user." },
+  { cat:"Products", sub:"Client Tag Fields", term:"afutm", def:"Client-tag field; affiliate UTM tracking parameter." },
+
+  // ─── PROCESS ───────────────────────────────────────────────────────────
+  { cat:"Process", sub:"Consumer Funnel", term:"Funnel Flow", def:"The end-to-end consumer journey from first entering the loan flow through monetization. Comprises 5 business processes: Lead Generation → Offer Decisioning → Offer Clicks → Funding/EDE → Financial Reconciliation." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Lead", def:"The system representation of a consumer who has entered Engine's marketplace via a supply integration (embed, partner page, API/SDK, or affiliate link). Created at entry; tied permanently to the originating supply subaccount. Not a person-level identifier." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Lead UUID", def:"The unique identifier assigned the moment a lead is created. System-wide join key to downstream objects (rate tables, offer events/clicks, LFLI). Not person-level — tied to the supply subaccount entry. Format: UUID string (36 chars with hyphens)." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Qualified Lead", def:"A consumer who provides all required valid data, submits the Engine application form, and clicks into an offer. For life insurance and mortgage, submits valid required info to initiate an application (unless already submitted within prior 60 days)." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Submitted Application", def:"A derived concept — no explicit 'application submitted' event exists in Engine's backend. Proxied by rate table creation. A consumer who has a rate table is considered to have submitted an application." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Request", def:"A consumer meets a lender's hard filters and their application is sent to the lender API for decisioning." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Approval", def:"The consumer is pre-approved by one or more lender APIs." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Offer Click", def:"The consumer sees pre-approved results and clicks into one or more offers. Every click is recorded including duplicates. For CPC contracts, revenue is calculated at click time." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Funded Loan", def:"The consumer funds the loan, generating revenue for Engine. Reported back to Engine by the lender via an EDE file." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Originations", def:"Leads sourced from originator supply partners." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Underwriting", def:"The lender process of verifying income, assets, debt, and property details before final approval. Happens off-platform on the lender's website after the consumer clicks through." },
+  { cat:"Process", sub:"Consumer Funnel", term:"Declines (Funnel)", def:"Users a demand partner declines for its own product, then monetizes by sending to Engine for matching with another lender." },
+  { cat:"Process", sub:"Consumer Funnel", term:"FFA", full:"Full Account Signup", def:"Means the consumer took out InstaCash." },
+  { cat:"Process", sub:"Consumer Funnel", term:"EDE", full:"External Demand Events", def:"Files submitted by lenders to report conversion events back to Engine. Stored in external_demand_events. The trigger for RevShare, CPA, and Funded revenue calculations. 99.7% of monetizations have an associated click event." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Recommendation Score / Rec Score", def:"The value used to determine lender offer order on the rate table. Formula: pred_converted × payout × EES. Higher scores appear higher and usually get more clicks. Units: cents." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Rec Score Formula", def:"Conversion probability × payout × EES (Expected Earning Share). Per PS Override v3, lenders are ranked by their max rec_score (anchor), then within a lender offers are sorted by gap to requested amount." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Recommendation Score Units", def:"Expressed in cents." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EES", full:"Expected Earning Share", def:"A multiplier in the rec score formula. 0.6 is treated as the neutral/default baseline. Captures expected share of revenue Engine will earn." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EESO", full:"Expected Earning Share Override", def:"Used to modify rec score, reorder the rate table, or adjust payout for RTP partners. Values above 0.6 boost rec score; below 0.6 suppress it." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EESO Neutral Point", def:"The baseline EES value (0.6) that neither boosts nor suppresses rec score." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EESO Above Neutral", def:"An EESO value above 0.6; pushes rec score and offer position up." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EESO Below Neutral", def:"An EESO value below 0.6; pushes rec score and offer position down." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Price Ceiling", def:"A pricing control used with EESO to cap how high rec score economics can go." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Price Floor", def:"A pricing control term (symmetric to price ceiling)." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Earning Share Adjustments", def:"Pricing adjustments that tune margins and offer ordering via EESO." },
+  { cat:"Process", sub:"Pricing & Economics", term:"RTP", full:"Real-Time Pricing", def:"The amount returned with an offer, paid out based on click value. Engine pays the supply partner rec_score ÷ 100 when a clicked offer occurs." },
+  { cat:"Process", sub:"Pricing & Economics", term:"CPC", full:"Cost per Click", def:"A monetization contract type where revenue is calculated at click time. A flat fee per first click — no EDE required. Also a supply payout model." },
+  { cat:"Process", sub:"Pricing & Economics", term:"CPL", full:"Cost per Lead", def:"Contract type: flat fee per qualified lead (rate table created). More common as supply payout than demand revenue contract." },
+  { cat:"Process", sub:"Pricing & Economics", term:"CPA", full:"Cost per Application/Action", def:"Contract type: flat fee per lender-defined action (e.g., approval, account open). Common for credit cards and savings." },
+  { cat:"Process", sub:"Pricing & Economics", term:"RevShare", full:"Revenue Share", def:"Contract type: Engine earns a % of the funded amount (e.g., 60%). Most common for First Look loans; ~80% of supply partners are on RevShare payout contracts." },
+  { cat:"Process", sub:"Pricing & Economics", term:"EPC", full:"Earnings per Click", def:"Revenue generated per click event." },
+  { cat:"Process", sub:"Pricing & Economics", term:"PPC", full:"Payout per Click", def:"Net revenue per click." },
+  { cat:"Process", sub:"Pricing & Economics", term:"RPC", full:"Revenue per Click", def:"Total revenue generated per click." },
+  { cat:"Process", sub:"Pricing & Economics", term:"RPD", full:"Revenue per Decline", def:"Revenue generated per declined consumer sent to Engine." },
+  { cat:"Process", sub:"Pricing & Economics", term:"CTF", full:"Click to Fund", def:"Conversion rate from offer click to funded loan." },
+  { cat:"Process", sub:"Pricing & Economics", term:"ATF", full:"Approval to Fund", def:"Conversion from approval to funded loan." },
+  { cat:"Process", sub:"Pricing & Economics", term:"ATF %", full:"Approval to Fund Percentage", def:"The percentage of approvals that result in a funded loan." },
+  { cat:"Process", sub:"Pricing & Economics", term:"ATC", full:"Approval to Click", def:"Conversion rate from approval to offer click." },
+  { cat:"Process", sub:"Pricing & Economics", term:"GOLA", full:"Gross Origination Loan Amount", def:"Total dollar value of loans originated." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Processing Fees", def:"Fees Engine incurs for lead processing, reporting, and related services; often deducted before revenue share payout." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Guaranteed Model", def:"A reporting/commercial model with guaranteed revenue terms." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Top of Funnel Pricing", def:"A higher-risk model where Engine pays a partner when a consumer loads a page, before downstream revenue is known. TPH (The Penny Hoarder) is an example." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Platform Fee Structure", def:"Supply-side fee model; can include click bundles or rev share. Platform fees are treated as 100% margin." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Margin", def:"Most margin sits on the supply side; platform fees are treated as 100% margin." },
+  { cat:"Process", sub:"Pricing & Economics", term:"BPS / bps / bips", full:"Basis Points", def:"Unit of measure for rates and percentages. 1 basis point = 0.01%." },
+  { cat:"Process", sub:"Pricing & Economics", term:"MoM (Max out Margin)", def:"In a pricing context, 'Max out Margin.'" },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Supply Partners", def:"Partners that have intentful users seeking financial products. They care about monetization, platform, reporting, network coverage, and consumer experience." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Demand Partners", def:"Partners that take as many high-quality users as they can get. Engine is usually supply-constrained." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Supply Constrained", def:"A market state where Engine has more demand than supply inventory." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Balance Sheet", def:"A partner's own capital used to fund loans and directly evaluate loan performance over time." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Neo Banks / Challenger Banks", def:"Fintech firms offering digital banking experiences, often focused on specific products and more nimble than large banks." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Marketplace (Model)", def:"A model where originated loans are sold onward to other loan providers, moving debt off the originator's books." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Cherry Pick", def:"When a supply partner decides whether to send a user into Engine's flow based on the payout versus alternative monetization options." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Custom Lead Attributes", def:"Partner-specific lead fields such as traffic source or lead identifier." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Sectors", def:"Areas of supply-partner business, such as Personal Finance Management or Lifestyle." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Vertices", def:"Areas of demand-partner business." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"SP's", full:"Supply Partners", def:"Abbreviation for supply partners." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"SOV", full:"Share of Voice", def:"A measure of a partner's or product's relative presence within a marketplace or channel." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"NBR", full:"National Business Review", def:"Noted as possibly partner-related." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Prime Levels", def:"Broad credit-quality segmentation used across the platform." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Subprime", def:"Lower-credit consumer segment, roughly VantageScore 500–600." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Near Prime", def:"Just below prime credit quality (620–659 on Engine's scale)." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Prime", def:"Strong credit quality (660–719 on Engine's scale; VantageScore Prime begins at 661)." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Prime Plus", def:"Stronger-than-prime credit segment (720–749 on Engine's scale)." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Super Prime", def:"Highest credit-quality segment (750+ on Engine's scale)." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Engine Credit Buckets", def:"Engine's credit-score banding: Excellent (720+), Good (660–719), Fair (620–659), Poor (<620). Based on VantageScore." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Secured Loan", def:"Debt backed by collateral." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"Unsecured Loan", def:"Debt without collateral." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"APR", full:"Annual Percentage Rate", def:"The annual rate charged for borrowing, expressed as a percentage." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"APY", full:"Annual Percentage Yield", def:"The effective annual rate of return, accounting for compounding." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"NMLS", full:"Nationwide Multi-state Licensing System", def:"The system used for licensing and compliance for mortgage loan originators and institutions." },
+  { cat:"Process", sub:"Credit Quality & Loan Types", term:"NMLS Number", def:"The unique identifier assigned to each mortgage loan originator and financial institution." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"Attributed", def:"Revenue or performance assigned at the time the lead first enters the funnel or first engages with Engine technology." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"Booked", def:"Revenue recognized when the loan is actually funded; timing can lag by a day to several weeks. BBH (Booked by Hour) is the Finance invoicing source of truth." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"Attributed/Booked by Hour", def:"A reporting view comparing attribution timing versus booking timing hourly." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"LFLI", full:"Lead Financial Line Items", def:"The analytics-ready financial ledger table (lead_financial_line_items). Central artifact for financial analytics in Looker. Contains calculated revenue and payout at the lead × demand sub-account grain. Written by the LFLI Calculator." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"SFLI", full:"Sub-Account Financial Line Items", def:"Sub-account-level financial line items for adjustments where conversions cannot be tied to individual leads. Used in BBH but excluded from standard Looker reporting." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"BBH", full:"Booked by Hour", def:"Finance billing table/view used for invoicing. Combines LFLI (lead-level) with SFLI (aggregate adjustments). BBH = invoicing source of truth; LFLI = analytics layer in Looker." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"MoM", full:"Month over Month", def:"Period-over-period comparison by month. (Also 'Max out Margin' in pricing context.)" },
+  { cat:"Process", sub:"Analytics & Reporting", term:"WoW", full:"Week over Week", def:"Period-over-period comparison by week." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"CAC", full:"Customer Acquisition Cost", def:"The cost to acquire a new customer." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"CAC Recovery", def:"The time required to recover the customer acquisition cost." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"LTV", full:"Lifetime Value", def:"The total revenue or value a customer generates over their relationship with the business." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"ARPU", full:"Average Revenue per Unit", def:"Revenue divided by the number of active users or units." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"AUM", full:"Assets under Management", def:"Total market value of assets managed on behalf of clients." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"EBITDA", full:"Earnings Before Interest, Taxes, Depreciation, and Amortization", def:"A measure of core business profitability." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"MAU", full:"Monthly Active Users", def:"The number of unique users who engage with a product in a given month." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"CTR", full:"Click Through Rate", def:"The ratio of clicks to impressions for an offer or ad." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"SEO", full:"Search Engine Optimization", def:"Practices to improve organic search visibility." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"PFM", full:"Personal Finance Management", def:"A sector of supply-partner business; also a category of consumer financial tools." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"NPS", full:"Net Promoter Score", def:"A measure of customer loyalty and likelihood to recommend." },
+  { cat:"Process", sub:"Analytics & Reporting", term:"ICP", full:"Ideal Customer Profile", def:"A description of the ideal target customer." },
+  { cat:"Process", sub:"Engineering & Product", term:"CLI", full:"Command Line Interface", def:"A text-based way of interacting with software by typing commands, as opposed to clicking through a graphical interface (GUI). Instead of buttons and menus, you type instructions directly. Engineers use CLIs to run scripts, deploy code, query databases, and interact with internal tools. You may hear this when someone says 'run it from the command line' or references a tool's CLI." },
+  { cat:"Process", sub:"Partner Operations", term:"Double Opt-In", def:"Engine's model requiring both the supply partner and the demand partner to independently agree to a match before offers are shown to a consumer. The demand partner opts in by configuring an Offer Catalog on their DSA (defining which products, rates, and eligibility rules they're willing to show). The supply partner opts in by creating a Supply Enablement linking their SSA to that DSA (choosing whose offers appear on their traffic). A consumer only sees an offer if both sides have opted in — neither partner is forced into a match." },
+  { cat:"Process", sub:"Engineering & Product", term:"RFC", full:"Request for Change / Request for Comments", def:"Can mean Request for Change (formal change control) or Request for Comments (design discussion)." },
+  { cat:"Process", sub:"Engineering & Product", term:"BDD", full:"Behavior Driven Design / Development", def:"Can mean Behavior Driven Design or Behavior Driven Development." },
+  { cat:"Process", sub:"Engineering & Product", term:"WIP", full:"Work in Progress", def:"Tasks or features currently being developed." },
+  { cat:"Process", sub:"Engineering & Product", term:"MVP", full:"Minimum Viable Product", def:"The smallest version of a product that delivers core value." },
+  { cat:"Process", sub:"Engineering & Product", term:"SOPP", full:"Standard of Professional Practice", def:"Internal standards framework." },
+  { cat:"Process", sub:"Engineering & Product", term:"SOPP MVP", def:"Standard of Professional Practice + Minimum Viable Product combined designation." },
+  { cat:"Process", sub:"Engineering & Product", term:"ACK", full:"Acknowledgement", def:"Confirmation or acknowledgement signal." },
+  { cat:"Process", sub:"Engineering & Product", term:"MTW", full:"Merchandise the Work", def:"Practice of making completed work visible and recognized across the org." },
+  { cat:"Process", sub:"Engineering & Product", term:"Icebox", def:"Initiatives or ideas intentionally put on hold for roughly the next three months." },
+  { cat:"Process", sub:"Engineering & Product", term:"Dead", def:"Iceboxed items that are no longer relevant or will never be done." },
+  { cat:"Process", sub:"Integration Mechanics", term:"DAF", full:"Demand API Filter", def:"A manually adjusted percentage controlling how often a lender appears on approval rate tables." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Asynchronous Offer Pulling", def:"Show all lender offers after about 10 seconds; some offers may be missed if polling windows are too short." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Synchronous Offer Pulling", def:"Poll repeatedly (~every 10 seconds) to retrieve lender offers." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Polling Time", def:"The time window used to wait for lender responses; if too short, some offers may never surface." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Embeds", def:"An embedded widget experience rendered on a partner site (Engine UI embedded in partner surface). Lead is created on page load of the search/application flow page." },
+  { cat:"Process", sub:"Integration Mechanics", term:"API (Integration)", def:"A direct integration where the partner sends consumer data to Engine via backend calls (server-to-server). Lead creation and application submission happen simultaneously." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Affiliate Links", def:"Every click on an affiliate link generates a new lead (no cookie-based deduplication possible). Engine deduplicates via Fingerprint service for CPC contracts." },
+  { cat:"Process", sub:"Commercial & Legal", term:"IO", full:"Insertion Order", def:"The contract committing an advertiser to run a campaign with a publisher or partner." },
+  { cat:"Process", sub:"Commercial & Legal", term:"MSA", full:"Master Services Agreement", def:"The master contract governing the relationship between two parties." },
+  { cat:"Process", sub:"Commercial & Legal", term:"POC", full:"Proof of Concept / Point of Contact", def:"Either a temporary commercial/free trial period that can convert to a longer-term agreement, or a designated point of contact." },
+  { cat:"Process", sub:"Commercial & Legal", term:"Platform Fee", def:"Fees paid for platform usage or traffic access, distinct from downstream revenue share. Treated as 100% margin." },
+  { cat:"Process", sub:"Commercial & Legal", term:"WRT", full:"With Reference To", def:"Used in communications to indicate context or subject." },
+  { cat:"Process", sub:"Consumer & Compliance", term:"SSN", full:"Social Security Number", def:"Government-issued identification number used in consumer identity verification." },
+  { cat:"Process", sub:"Consumer & Compliance", term:"NDTL", full:"Net Demand and Time Liabilities", def:"A banking term used in the alternate SLR (Statutory Liquidity Ratio) definition." },
+  { cat:"Process", sub:"Consumer & Compliance", term:"CVR", full:"Contingent Value Right", def:"A financial instrument giving holders the right to receive future value contingent on certain conditions." },
+  { cat:"Process", sub:"Consumer & Compliance", term:"TPH", full:"The Penny Hoarder", def:"A content/media supply partner; cited as an example of a top-of-funnel pricing partner." },
+  { cat:"Process", sub:"General Business", term:"LCI", full:"Lender Check-in", def:"A regular touchpoint or review meeting with a lender partner." },
+  { cat:"Process", sub:"General Business", term:"Accts", def:"Abbreviation for Accounts." },
+];
+
+// ── State ──────────────────────────────────────────────────────────────────
+let activeCategory = 'All';
+let activeSub = 'All';
+let searchQuery = '';
+
+// ── Helpers ────────────────────────────────────────────────────────────────
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function highlight(text, query) {
+  if (!query) return esc(text);
+  const safe = esc(text);
+  const q = query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return safe.replace(new RegExp(q,'gi'), m => `<mark>${m}</mark>`);
+}
+
+function getSubcats() {
+  const cats = activeCategory === 'All' || activeCategory === 'Diagrams'
+    ? TERMS
+    : TERMS.filter(t => t.cat === activeCategory);
+  return [...new Set(cats.map(t => t.sub))].sort();
+}
+
+function filteredTerms() {
+  return TERMS.filter(t => {
+    if (activeCategory === 'Diagrams') return false;
+    if (activeCategory !== 'All' && t.cat !== activeCategory) return false;
+    if (activeSub !== 'All' && t.sub !== activeSub) return false;
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      return t.term.toLowerCase().includes(q)
+        || (t.full||'').toLowerCase().includes(q)
+        || t.def.toLowerCase().includes(q)
+        || (t.sub||'').toLowerCase().includes(q);
+    }
+    return true;
+  });
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function renderSubcatBar() {
+  const bar = document.getElementById('subcatBar');
+  if (activeCategory === 'Diagrams') { bar.innerHTML = ''; return; }
+  const subs = getSubcats();
+  let html = `<button class="subcat-chip ${activeSub==='All'?'active':''}" data-sub="All">All</button>`;
+  subs.forEach(s => {
+    html += `<button class="subcat-chip ${activeSub===s?'active':''}" data-sub="${esc(s)}">${esc(s)}</button>`;
+  });
+  bar.innerHTML = html;
+  bar.querySelectorAll('.subcat-chip').forEach(btn => {
+    btn.addEventListener('click', () => { activeSub = btn.dataset.sub; render(); });
+  });
+}
+
+function renderMain() {
+  const main = document.getElementById('main');
+  const diagrams = document.getElementById('diagrams-section');
+
+  if (activeCategory === 'Diagrams') {
+    main.innerHTML = '';
+    diagrams.classList.remove('hidden');
+    document.getElementById('resultCount').textContent = '7 diagrams';
+    return;
+  }
+
+  diagrams.classList.add('hidden');
+  const terms = filteredTerms();
+  document.getElementById('resultCount').textContent = `${terms.length} term${terms.length !== 1 ? 's' : ''}`;
+
+  if (terms.length === 0) {
+    main.innerHTML = `<div class="no-results">No terms match your search.</div>`;
+    return;
+  }
+
+  const groups = {};
+  terms.forEach(t => {
+    const key = activeCategory === 'All' ? `${t.cat}|||${t.sub}` : t.sub;
+    if (!groups[key]) groups[key] = { cat: t.cat, sub: t.sub, items: [] };
+    groups[key].items.push(t);
+  });
+
+  let html = '';
+  Object.entries(groups).forEach(([groupKey, group]) => {
+    const { cat, sub, items } = group;
+    html += `<div class="section-group">
+      <div class="section-header">
+        <span class="cat-badge cat-${cat}">${cat}</span>
+        <span class="section-title">${esc(sub)}</span>
+      </div>
+      <div class="term-grid">`;
+    items.forEach(t => {
+      const nameHtml = highlight(t.term, searchQuery);
+      const fullHtml = t.full ? `<span class="acronym-tag">${highlight(t.full, searchQuery)}</span>` : '';
+      const defHtml = highlight(t.def, searchQuery);
+      html += `<div class="term-card">
+        <div class="term-name">${nameHtml}${fullHtml}</div>
+        <div class="term-def">${defHtml}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  main.innerHTML = html;
+}
+
+function render() { renderSubcatBar(); renderMain(); }
+
+// ── Event wiring ───────────────────────────────────────────────────────────
+document.querySelectorAll('.cat-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeCategory = tab.dataset.cat;
+    activeSub = 'All';
+    const si = document.getElementById('searchInput');
+    if (activeCategory === 'Diagrams') si.disabled = true;
+    else si.disabled = false;
+    render();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value.trim();
+  activeSub = 'All';
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
