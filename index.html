@@ -85,6 +85,28 @@
   mark { background: #fef9c3; border-radius: 2px; padding: 0 1px; }
   .hidden { display: none !important; }
 
+  /* ── Inline expansion ── */
+  .term-card { cursor: pointer; }
+  .term-card.expanded { grid-column: 1 / -1; border-color: #a5b4fc; box-shadow: 0 2px 12px rgba(91,110,245,0.10); }
+  .expand-hint { font-size: 11px; color: #c4c9d6; margin-left: auto; padding-left: 8px; flex-shrink: 0; transition: color 0.15s; }
+  .term-card:hover .expand-hint { color: #9ca3af; }
+  .term-card.expanded .expand-hint { color: #5b6ef5; }
+  .related-inline { margin-top: 12px; padding-top: 12px; border-top: 1px solid #e9ecf3; }
+  .related-inline-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; margin-bottom: 7px; }
+  .related-chips-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .related-term-chip {
+    font-size: 12px; padding: 4px 10px; border-radius: 8px;
+    background: #eef0fd; color: #4338ca; border: 1px solid #c7d2fe; cursor: pointer;
+    transition: background 0.12s;
+  }
+  .related-term-chip:hover { background: #e0e7ff; }
+  .related-diag-chip {
+    font-size: 12px; padding: 4px 10px; border-radius: 8px;
+    background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; cursor: pointer;
+    transition: background 0.12s;
+  }
+  .related-diag-chip:hover { background: #ede9fe; }
+
   /* ── Diagrams ── */
   #diagrams-section { padding: 0; }
   .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; padding: 16px 20px; max-width: 1200px; margin: 0 auto; }
@@ -1155,7 +1177,206 @@
       </div>
     </div>
 
-  
+    <div id="diag-14" class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">🏢</span>
+        <div>
+          <div class="diag-title">Gen Digital Corporate Structure</div>
+          <div class="diag-subtitle">Where Engine, MoneyLion, GBR, CardCritics, LifeLock & Norton sit within the parent company</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:linear-gradient(135deg,#1e1b4b,#312e81);color:#fff;border-radius:12px;padding:14px 20px;text-align:center;">
+            <div style="font-size:15px;font-weight:800;letter-spacing:0.03em;">Gen Digital</div>
+            <div style="font-size:11px;opacity:0.8;margin-top:3px;">Parent Company · Formerly NortonLifeLock · Tempe, AZ</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#f0fdf4;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+              <div style="font-size:12px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Trust-Based Solutions (Financial)</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#065f46;">MoneyLion</div><div style="font-size:11px;color:#6b7280;">Consumer fintech app · PFM, banking, investing</div></div>
+                <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#065f46;">Engine (by MoneyLion / by Gen)</div><div style="font-size:11px;color:#6b7280;">B2B financial marketplace &amp; distribution platform</div></div>
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#065f46;">GoBankingRates (GBR)</div><div style="font-size:11px;color:#6b7280;">Personal finance content &amp; media · Editorial, rates, CC reviews</div></div>
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#065f46;">CardCritics</div><div style="font-size:11px;color:#6b7280;">GBR's CC review site · Migrating to Engine-powered ads</div></div>
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#065f46;">Malka</div><div style="font-size:11px;color:#6b7280;">Gen Digital entity · Part of M&amp;A SSO consolidation</div></div>
+              </div>
+            </div>
+            <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px;">
+              <div style="font-size:12px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Cybersecurity Brands</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#1e40af;">Norton</div><div style="font-size:11px;color:#6b7280;">Antivirus &amp; internet security · Consumer supply partner on Engine</div></div>
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#1e40af;">LifeLock</div><div style="font-size:11px;color:#6b7280;">Identity theft protection · Supply + demand partner on Engine</div></div>
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:8px;padding:8px 10px;"><div style="font-size:12px;font-weight:700;color:#1e40af;">Avast</div><div style="font-size:11px;color:#6b7280;">Antivirus · Potential Engine supply partner (Gen Supply scaling)</div></div>
+              </div>
+              <div style="margin-top:10px;padding:8px 10px;background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;">
+                <div style="font-size:11px;font-weight:700;color:#92400e;">🔗 Engine's role within Gen</div>
+                <div style="font-size:11px;color:#78350f;margin-top:3px;">Engine is becoming Gen's B2B distribution platform for ALL Gen products — starting with the financial marketplace, expanding to Scam Protection SDK and beyond.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="diag-15" class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">🔄</span>
+        <div>
+          <div class="diag-title">GBR ↔ Engine: Dual Role</div>
+          <div class="diag-subtitle">GBR operates as both a Supply Partner (sending traffic) and a Demand Source (offering products)</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start;">
+            <div style="background:#ecfdf5;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+              <div style="font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">GBR as Supply Partner</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>GoBankingRates.com</strong> — editorial traffic (savings rate articles, CC listicles)</div>
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>CardCritics.com</strong> — credit card comparison traffic</div>
+                <div style="background:#fff;border:1px solid #d1fae5;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>Content Syndication</strong> — Contentful-driven feeds to ML &amp; other Gen surfaces</div>
+              </div>
+              <div style="margin-top:8px;font-size:10px;color:#065f46;font-weight:700;">→ GBR sends consumer traffic INTO Engine</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:20px;">
+              <div style="background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border-radius:12px;padding:14px 12px;text-align:center;min-width:100px;">
+                <div style="font-size:13px;font-weight:800;">Engine</div>
+                <div style="font-size:10px;opacity:0.85;margin-top:2px;">Marketplace &amp;<br>Ad Server</div>
+              </div>
+              <div style="font-size:10px;color:#9ca3af;text-align:center;">Double Opt-In<br>match required</div>
+            </div>
+            <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px;">
+              <div style="font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">GBR as Demand Partner</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>CardCritics CC Offers</strong> — GBR-owned issuer ads served via Engine API (Inventory Extension, live)</div>
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>Savings / Deposits Offers</strong> — GBR savings rate partners distributed via Engine</div>
+                <div style="background:#fff;border:1px solid #dbeafe;border-radius:7px;padding:7px 9px;font-size:11px;color:#374151;"><strong>Agency Assets</strong> — via Content Catalogue API (Phase 2)</div>
+              </div>
+              <div style="margin-top:8px;font-size:10px;color:#1e40af;font-weight:700;">→ Engine serves GBR's offers to consumers</div>
+            </div>
+          </div>
+          <div style="padding:10px 14px;background:#faf5ff;border:1px solid #ddd6fe;border-radius:8px;font-size:11px;color:#6d28d9;">
+            <strong>SE note:</strong> When selling to a GBR contact, they may be the buyer for both supply (traffic) AND demand (offers). Contracts and account structures need to reflect both roles. The Double Opt-In model still applies — GBR's supply sub-account and demand sub-account must both enable a match.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="diag-16" class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">📈</span>
+        <div>
+          <div class="diag-title">Internal Trade Desk Model</div>
+          <div class="diag-subtitle">ML/Engine/GBR buying paid leads externally and routing them into the MoneyLion marketplace</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center;">
+            <div style="background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;">📣</div><div style="font-size:11px;font-weight:700;color:#92400e;margin-top:4px;">Paid Ad Platforms</div><div style="font-size:10px;color:#6b7280;margin-top:2px;">Google, Meta, etc.</div></div>
+            <div style="text-align:center;color:#9ca3af;font-size:18px;">→</div>
+            <div style="background:#ede9fe;border:1px solid #c4b5fd;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;">👤</div><div style="font-size:11px;font-weight:700;color:#5b21b6;margin-top:4px;">Consumer Click</div><div style="font-size:10px;color:#6b7280;margin-top:2px;">Financial product intent</div></div>
+            <div style="text-align:center;color:#9ca3af;font-size:18px;">→</div>
+            <div style="background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:8px;text-align:center;"><div style="font-size:18px;">🏦</div><div style="font-size:11px;font-weight:700;color:#065f46;margin-top:4px;">MoneyLion Marketplace</div><div style="font-size:10px;color:#6b7280;margin-top:2px;">Engine-powered offers</div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #e2e5ea;border-radius:8px;overflow:hidden;margin-top:4px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:#f5f6f8;padding:6px 10px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7a8194;gap:8px;"><div>Pilot</div><div>Goal</div><div>Status</div><div>Key Challenge</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:8px 10px;font-size:11px;border-top:1px solid #e2e5ea;gap:8px;align-items:start;"><div style="font-weight:700;color:#4f46e5;">Loans</div><div style="color:#374151;">Profitable paid loan traffic</div><div><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;">Active</span></div><div style="color:#6b7280;">ROAS ~$0.40–0.50 · Not yet profitable</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:8px 10px;font-size:11px;border-top:1px solid #e2e5ea;gap:8px;align-items:start;"><div style="font-weight:700;color:#4f46e5;">Subprime Cards</div><div style="color:#374151;">Scale CC vertical via paid traffic</div><div><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;">Active</span></div><div style="color:#6b7280;">Custom onboarding flow needed</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:8px 10px;font-size:11px;border-top:1px solid #e2e5ea;gap:8px;align-items:start;"><div style="font-weight:700;color:#4f46e5;">Games</div><div style="color:#374151;">ML app installs → long-term x-sell</div><div><span style="background:#fef3c7;color:#92400e;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;">Active</span></div><div style="color:#6b7280;">Measuring long-term ARPU</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;padding:8px 10px;font-size:11px;border-top:1px solid #e2e5ea;gap:8px;align-items:start;"><div style="font-weight:700;color:#4f46e5;">Mortgages</div><div style="color:#374151;">Scale new vertical, prove demand</div><div><span style="background:#dbeafe;color:#1e40af;font-size:10px;font-weight:700;padding:2px 6px;border-radius:6px;">Instrumentation</span></div><div style="color:#6b7280;">New vertical — building tracking first</div></div>
+          </div>
+          <div style="padding:8px 12px;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;font-size:11px;color:#991b1b;">
+            <strong>Goal:</strong> Portfolio ROAS &gt; 1.0 across all pilots combined. DS team building TDAF (Trade Desk DAF) model to improve lead-to-offer matching. Profitable loans + games cross-sell funds mortgage and cards expansion.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="diag-17" class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">🤖</span>
+        <div>
+          <div class="diag-title">LLM/Chatbot Integration — Microsoft Copilot Model</div>
+          <div class="diag-subtitle">How Engine powers financial recommendations inside AI-native surfaces · Announced April 2026</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div style="background:#f0f9ff;border:1.5px solid #60a5fa;border-radius:10px;padding:10px;text-align:center;"><div style="font-size:20px;">📚</div><div style="font-size:13px;font-weight:800;color:#1d4ed8;margin-top:4px;">1. Inform</div><div style="font-size:11px;color:#374151;margin-top:4px;">Copilot uses Offer Searches API to enrich its knowledge with real-time financial product data. LLM formulates a natural language response with personalized recommendations.</div></div>
+            <div style="background:#f5f3ff;border:1.5px solid #a78bfa;border-radius:10px;padding:10px;text-align:center;"><div style="font-size:20px;">🔗</div><div style="font-size:13px;font-weight:800;color:#5b21b6;margin-top:4px;">2. Connect</div><div style="font-size:11px;color:#374151;margin-top:4px;">Consumer clicks a recommendation. Copilot surfaces an Engine embed for the actual product application — required for compliance, especially credit cards (90-day issuer approval process).</div></div>
+            <div style="background:#ecfdf5;border:1.5px solid #6ee7b7;border-radius:10px;padding:10px;text-align:center;"><div style="font-size:20px;">✅</div><div style="font-size:13px;font-weight:800;color:#065f46;margin-top:4px;">3. Act</div><div style="font-size:11px;color:#374151;margin-top:4px;">Consumer completes application on lender's site. EDE file flows back to Engine. Revenue recognized via standard LFLI / payout flow.</div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #e2e5ea;border-radius:8px;padding:12px;">
+            <div style="font-size:11px;font-weight:800;color:#7a8194;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Technical Architecture</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+              <div><div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">Data Layer — Offer Searches API</div><div style="font-size:11px;color:#6b7280;line-height:1.5;">Returns structured offer JSON to Copilot agent. Used for Deposits, Home, Insurance, Lending. Engine MCP Server enables tool calls from within the LLM reasoning loop.</div></div>
+              <div><div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:4px;">Embed Layer — Compliant Display</div><div style="font-size:11px;color:#6b7280;line-height:1.5;">Credit Cards require Engine embed due to issuer compliance requirements. Surfaces: Copilot taskbar hover, Edge homepage, reactive chat, MSN, Bing.</div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">Microsoft Copilot Chat</span>
+            <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">MSN</span>
+            <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">Bing</span>
+            <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">Edge Homepage</span>
+            <span style="background:#d1fae5;color:#065f46;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">Verticals: CC, Deposits, Loans, Home, Insurance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="diag-18" class="diag-card full-width">
+      <div class="diag-header">
+        <span class="diag-icon">🚀</span>
+        <div>
+          <div class="diag-title">Engine → Gen: B2B Distribution Vision</div>
+          <div class="diag-subtitle">Engine evolving from financial marketplace to Gen Digital's full B2B distribution layer</div>
+        </div>
+      </div>
+      <div class="diag-body">
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+            <div style="background:#f0fdf4;border:2px solid #4ade80;border-radius:10px;padding:12px;">
+              <div style="font-size:10px;font-weight:800;color:#15803d;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Now — Core Business</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #d1fae5;">✅ Financial marketplace (loans, CC, savings, insurance)</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #d1fae5;">✅ B2B supply/demand partner integrations</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #d1fae5;">✅ Control Center self-serve platform</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #d1fae5;">✅ GBR Inventory Extension (CardCritics offers live)</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #d1fae5;">✅ Microsoft Copilot / MSN / Bing (live Apr 2026)</div>
+              </div>
+            </div>
+            <div style="background:#faf5ff;border:2px solid #c4b5fd;border-radius:10px;padding:12px;">
+              <div style="font-size:10px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">FY26 H2 — Expansion</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #ddd6fe;">🔄 Scam Protection SDK on Engine (~May 2026)</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #ddd6fe;">🔄 Gen SSO migration complete (Jun 2026)</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #ddd6fe;">🔄 CardCritics full inventory replacement</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #ddd6fe;">🔄 GBR banking teams under Partner Solutions</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #ddd6fe;">🔄 Trade Desk: profitable loans + cards</div>
+              </div>
+            </div>
+            <div style="background:#fff7ed;border:2px solid #fb923c;border-radius:10px;padding:12px;">
+              <div style="font-size:10px;font-weight:800;color:#c2410c;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px;">Future — Full Gen Distribution</div>
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #fed7aa;">🔮 Partner Hub: unified portal for all Gen B2B</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #fed7aa;">🔮 Norton / Avast / LifeLock supply at scale</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #fed7aa;">🔮 Additional Gen cybersecurity products via Engine API</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #fed7aa;">🔮 Unified financial + cybersecurity marketplace</div>
+                <div style="font-size:11px;color:#374151;padding:4px 8px;background:#fff;border-radius:6px;border:1px solid #fed7aa;">🔮 "Engine by Gen" full rebrand</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:10px 14px;background:#fef3c7;border:1px solid #fbbf24;border-radius:8px;font-size:11px;color:#92400e;">
+            <strong>Strategic insight:</strong> The Scam Protection SDK launch on Engine is explicitly described internally as "the first step of a larger vision to leverage Engine's experience in B2B integration sales and distribution across ALL of Gen Digital's products." Engine's technical infrastructure and partner relationships are the distribution vehicle for Gen's entire product portfolio.
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
   </div>
 </div>
@@ -1409,6 +1630,33 @@ const TERMS = [
   { cat:"Process", sub:"General Business", term:"CVR", full:"Contingent Value Right", def:"A financial instrument giving holders the right to receive future value contingent on certain conditions." },
   { cat:"Process", sub:"Partner Ecosystem", term:"TPH", full:"The Penny Hoarder", def:"A content/media supply partner; cited as an example of a top-of-funnel pricing partner." },
   { cat:"Process", sub:"General Business", term:"LCI", full:"Lender Check-in", def:"A regular touchpoint or review meeting with a lender partner." },
+  { cat:"Orgs", sub:"Gen Digital", term:"Gen Digital", def:"The parent company of MoneyLion, GoBankingRates (GBR), Norton, LifeLock, CardCritics, and Malka. Engine operates under the MoneyLion / Trust-Based Solutions division of Gen Digital. Formerly known as NortonLifeLock. Headquartered in Tempe, AZ." },
+  { cat:"Orgs", sub:"Gen Digital", term:"Trust-Based Solutions", def:"The Gen Digital business unit that houses the financial brands: MoneyLion, Engine, GoBankingRates (GBR), CardCritics, and Malka. Distinct from Gen's cybersecurity brands (Norton, LifeLock, Avast)." },
+  { cat:"Orgs", sub:"Gen Digital", term:"GBR", full:"GoBankingRates", def:"Gen Digital's personal finance content and media brand. Operates editorial websites with savings rates, credit card comparisons, financial news, and listicles. GBR's analytics, data engineering, and data product teams are now integrating under the MoneyLion/Engine organizational structure. GBR is both a supply partner (sending consumer traffic to Engine) and a demand source (GBR-owned credit card and savings offers served via Engine)." },
+  { cat:"Orgs", sub:"Gen Digital", term:"CardCritics", def:"GBR's credit card review and comparison website (cardcritics.com). Being actively integrated to serve Engine-powered credit card offers via Engine's API, replacing CardCritics' legacy ad platform. Phase 1 (Inventory Extension) is complete — CardCritics CC offers now live on LifeLock and MoneyLion. Phases 2–5 cover asset expansion, publisher tooling, A/B testing, and event tracking." },
+  { cat:"Orgs", sub:"Gen Digital", term:"Malka", def:"A Gen Digital entity referenced alongside MoneyLion and GBR in SSO and IT integration projects. Part of the broader Gen Digital unification initiative migrating all M&A brands to Gen SSO by June 2026." },
+  { cat:"Orgs", sub:"Gen Digital", term:"LifeLock", def:"Gen Digital's identity theft protection brand. A demand partner on Engine — LifeLock surfaces serve Engine-powered credit card and financial product offers to their consumer base. Also referenced in the CardCritics Inventory Extension rollout (CardCritics CC offers now live on LifeLock)." },
+  { cat:"Products", sub:"Platform & APIs", term:"Offer Searches API", def:"Engine API that returns structured financial product offer data for enriching LLM/chatbot agent responses. Used by partners like Microsoft Copilot to retrieve real-time offer data without rendering a full embed — the partner's AI agent uses the data to formulate natural language responses, then links out to a compliant Engine embed for the actual application." },
+  { cat:"Products", sub:"Platform & APIs", term:"Content Catalogue API", def:"Engine API serving agency-provided creative assets (images, copy, ad templates) to publisher partners. Used in the CardCritics integration to allow rendering of both advertiser-provided and agency-provided creative assets independently of legacy ad platforms." },
+  { cat:"Products", sub:"Platform & APIs", term:"Postback", def:"An HTTP callback Engine sends to a partner's configured URL when a specific event fires — typically a monetization, click, or payout event. Partners use postbacks to sync Engine revenue data back to their own systems, ad platforms (Google, Meta), or BI tools in near real-time. Critical for Trade Desk ROAS optimization." },
+  { cat:"Products", sub:"Platform & APIs", term:"MCP", full:"Model Context Protocol", def:"An open protocol that allows LLM agents (like Microsoft Copilot) to call external tools and APIs as part of their reasoning. Engine has built an MCP Server on top of the Offer Searches API, enabling AI agents to query Engine's financial marketplace in real time. Understanding MCP is listed as a critical skill for SE working with LLM/Chatbot ICPs." },
+  { cat:"Products", sub:"Partnerships & Distribution", term:"Inventory Extension", def:"A model where a partner's own financial product offers are served through Engine's ad-serving infrastructure to Engine's broader publisher network. GBR's Phase 1 Inventory Extension is complete: GBR credit card offers now run on Engine and are served to LifeLock and MoneyLion consumers. Contrasts with the standard model where demand partners are external lenders/issuers — here GBR is simultaneously supply (traffic source) and demand (offer source)." },
+  { cat:"Products", sub:"Partnerships & Distribution", term:"Scam Protection SDK", def:"Gen Digital's cybersecurity/fraud protection product being made distributable via Engine's B2B integration platform. The first Gen non-financial product offered through Engine. Represents the beginning of a larger strategic vision: Engine becoming the B2B distribution layer for all Gen Digital products, not just the financial marketplace. Targeted live ~May 2026." },
+  { cat:"Products", sub:"Partnerships & Distribution", term:"Partner Hub", def:"The planned unified partner portal giving B2B partners a single logged-in experience to manage all Gen integrations — Engine marketplace, Scam SDK, and future Gen products. Phase 1A (MVP) targets FY26 Q4. Currently some self-service functionality lives outside Control Center; Partner Hub aims to re-centralize everything." },
+  { cat:"Products", sub:"Partnerships & Distribution", term:"Engine by Gen", def:"The emerging rebrand of 'Engine by MoneyLion.' As Gen Digital unifies its brands, partners can now choose which brand to display — 'Engine by MoneyLion' or 'Engine by Gen.' Reflects Engine's strategic expansion beyond MoneyLion into the broader Gen Digital product portfolio." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Microsoft Copilot", def:"A frontier LLM/chatbot partner for Engine. Announced April 2026. Engine powers personalized financial product recommendations (credit cards, loans, deposits, insurance) inside Microsoft's Copilot, MSN, and Bing surfaces. Integration uses the Offer Searches API for data enrichment and Engine embeds for compliant application flow. Represents Engine's largest external AI distribution deal to date." },
+  { cat:"Process", sub:"Partner Ecosystem", term:"Trade Desk (Internal)", def:"An internal media buying pilot run by ML, Engine, and GBR teams. The team buys paid financial product leads from external ad platforms (Google, Meta) and routes them into the MoneyLion marketplace, with the goal of generating a profit (ROAS > 1.0). Active pilots: Loans, Subprime Credit Cards, Games, Mortgages. Current loans ROAS is ~$0.40–0.50. Distinct from the external-facing Trade Desk org within Partner Solutions." },
+  { cat:"Process", sub:"Data & Analytics", term:"ROAS", full:"Return on Ad Spend", def:"Revenue generated divided by the cost of advertising. Used by the Trade Desk to measure profitability of paid media campaigns. Target is ROAS > 1.0 (profitable). Current Trade Desk loans ROAS is approximately $0.40–0.50, meaning the team spends more on ads than it earns — DS/analytics work is focused on improving targeting and revenue tail to reach profitability." },
+  { cat:"Process", sub:"Data & Analytics", term:"TDAF", full:"Trade Desk Demand API Filter", def:"A custom version of the DAF (Demand API Filter) model optimized specifically for Trade Desk traffic profiles. Being developed by the DS team to better match Trade Desk-acquired leads to high-converting demand partners. Estimated 3–4 weeks to build." },
+  { cat:"Process", sub:"Data & Analytics", term:"rETL", full:"Reverse ETL", def:"The process of extracting data from a data warehouse (Snowflake) and pushing it back to operational systems — typically ad platforms like Google or Meta. Used by Martech to post conversion audiences and monetization signals back to ad platforms for ROAS optimization. Part of the Trade Desk infrastructure." },
+  { cat:"Process", sub:"Data & Analytics", term:"Delphina", def:"An AI-powered analytics tool being evaluated for unified cross-brand reporting across Engine, GBR, and CardCritics. Goal: a single reporting surface where stakeholders can query performance data across all three brands without separate BI environments." },
+  { cat:"Process", sub:"General Business", term:"EBR", full:"Executive Business Review", def:"A formal exec-level partner performance review meeting and deck. Typically quarterly. Includes partner revenue performance, pipeline, upcoming roadmap items, and strategic alignment. A standardized EBR template is being built within Partner Solutions." },
+  { cat:"Process", sub:"General Business", term:"SFDC", full:"Salesforce", def:"CRM platform used across Gen Digital. Engine has its own Salesforce instance separate from Gen's. Supply partner onboarding is tracked via Case objects; Sales Opportunities via Opportunity objects." },
+  { cat:"Process", sub:"General Business", term:"Glean", def:"Gen Digital's company-wide AI-powered knowledge and search tool. Employees use Glean as the first stop for finding internal documentation, presentations, Slack history, and Confluence pages across the entire organization. Described internally as the 'preliminary Google search' for internal information." },
+  { cat:"Process", sub:"General Business", term:"Contentful", def:"The CMS (Content Management System) used to configure and syndicate partner content feeds across MoneyLion, GBR, and Gen surfaces. Used for editorial content distribution (articles, rate tables, listicles) as part of the GBR–MoneyLion content syndication initiative." },
+  { cat:"Process", sub:"Technology & Infrastructure", term:"Gen SSO", full:"Gen Single Sign-On / GenMyApps", def:"Gen Digital's unified identity platform. All MoneyLion, Engine, GBR, Malka, and related brand applications are being migrated from their Okta instances to Gen SSO by June 30, 2026. Engine was prioritized first due to its unified schema and aligned contract timeline. Affects how employees and partners authenticate into tools like Control Center, Confluence, Jira, Snowflake, and Datadog." },
+  { cat:"Process", sub:"Technology & Infrastructure", term:"LiteLLM", def:"An open-source API gateway that standardizes access to multiple LLM providers (OpenAI, Anthropic, etc.) under a single OpenAI-compatible interface. Mentioned in Engine onboarding docs as a useful tool for building agentic AI workflows. Allows teams to switch between LLM providers without rewriting integration code." },
+  { cat:"Process", sub:"Commercial & Legal", term:"ICP", full:"Ideal Customer Profile", def:"A defined profile of the ideal target partner for Engine's sales team. ICPs are segmented by vertical and technical complexity. A newer ICP is LLMs/Chatbots (low volume, high value, high technical complexity — e.g., Microsoft Copilot). Also used interchangeably with 'Sector' in some internal planning docs." },
 ];
 
 // ── State ──────────────────────────────────────────────────────────────────
@@ -1494,6 +1742,11 @@ const DIAGRAM_INDEX = [
   { id:'diag-11', keywords:['eeso','expected earning share','neutral point','override','boost','suppress','0.6','earning share','price ceiling','price floor'] },
   { id:'diag-12', keywords:['ps org','supply org','demand org','o&o','gbr','ml supply','gen supply','media','trade desk','org structure','partner solutions','pro-serv'] },
   { id:'diag-13', keywords:['supply','demand','ecosystem','ssa','dsa','supply enablement','double opt','partner','supply partner','demand partner'] },
+  { id:'diag-14', keywords:['gen digital','gen','corporate structure','norton','lifelock','avast','gbr','gobankingrates','cardcritics','malka','moneylion','trust-based solutions','parent company','org','corporate'] },
+  { id:'diag-15', keywords:['gbr','gobankingrates','dual role','inventory extension','cardcritics','supply demand','both','content catalogue','contentful','content syndication'] },
+  { id:'diag-16', keywords:['trade desk','internal trade desk','roas','paid media','loans paid','subprime cards','games','mortgages','tdaf','media buying','paid traffic','cac'] },
+  { id:'diag-17', keywords:['copilot','microsoft','llm','chatbot','mcp','model context protocol','offer searches','offer searches api','ai','agent','bing','msn','edge','inform connect act'] },
+  { id:'diag-18', keywords:['roadmap','vision','scam protection','sdk','partner hub','engine by gen','gen distribution','strategy','expansion','fy26','rebranding','future'] },
 ];
 
 function matchedDiagrams(q) {
@@ -1509,7 +1762,7 @@ function renderMain() {
   if (activeCategory === 'Diagrams') {
     main.innerHTML = '';
     diagrams.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '13 diagrams';
+    document.getElementById('resultCount').textContent = '18 diagrams';
     return;
   }
 
@@ -1539,17 +1792,23 @@ function renderMain() {
       </div>
       <div class="term-grid">`;
     items.forEach(t => {
+      const idx = TERMS.indexOf(t);
       const nameHtml = highlight(t.term, searchQuery);
       const fullHtml = t.full ? `<span class="acronym-tag">${highlight(t.full, searchQuery)}</span>` : '';
       const defHtml = highlight(t.def, searchQuery);
-      html += `<div class="term-card">
-        <div class="term-name">${nameHtml}${fullHtml}</div>
+      html += `<div class="term-card" data-idx="${idx}">
+        <div class="term-name">${nameHtml}${fullHtml}<span class="expand-hint">▼ related</span></div>
         <div class="term-def">${defHtml}</div>
       </div>`;
     });
     html += `</div></div>`;
   });
   main.innerHTML = html;
+
+  // Wire up inline expand on term cards
+  main.querySelectorAll('.term-card').forEach(card => {
+    card.addEventListener('click', () => toggleRelatedInline(card, parseInt(card.dataset.idx)));
+  });
 
   // Inject related diagrams at top if searching
   if (searchQuery) {
@@ -1574,6 +1833,85 @@ function renderMain() {
       main.append(section);
     }
   }
+}
+
+function toggleRelatedInline(card, idx) {
+  if (card.classList.contains('expanded')) {
+    card.classList.remove('expanded');
+    const rel = card.querySelector('.related-inline');
+    if (rel) rel.remove();
+    const hint = card.querySelector('.expand-hint');
+    if (hint) hint.textContent = '▼ related';
+    return;
+  }
+  card.classList.add('expanded');
+  const hint = card.querySelector('.expand-hint');
+  if (hint) hint.textContent = '▲ close';
+
+  const t = TERMS[idx];
+
+  // Related terms: same subcategory, excluding self, up to 6
+  const sameSubTerms = TERMS.filter((other, i) => i !== idx && other.sub === t.sub).slice(0, 6);
+
+  // Related diagrams: match term name + acronym against diagram keywords
+  const termTokens = [t.term.toLowerCase(), (t.full||'').toLowerCase()].filter(Boolean);
+  const relDiags = DIAGRAM_INDEX.filter(d =>
+    d.keywords.some(kw => termTokens.some(tk => tk.length > 2 && (kw.includes(tk) || tk.includes(kw))))
+  ).slice(0, 5);
+
+  let html = `<div class="related-inline">`;
+
+  if (sameSubTerms.length > 0) {
+    html += `<div class="related-inline-label">Related terms in ${esc(t.sub)}</div><div class="related-chips-row">`;
+    sameSubTerms.forEach(r => {
+      html += `<span class="related-term-chip">${esc(r.term)}${r.full ? ` · ${esc(r.full)}` : ''}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  if (relDiags.length > 0) {
+    html += `<div class="related-inline-label" style="margin-top:6px;">Related diagrams</div><div class="related-chips-row">`;
+    relDiags.forEach(d => {
+      const diagEl = document.getElementById(d.id);
+      const title = diagEl ? diagEl.querySelector('.diag-title').textContent : d.id;
+      html += `<span class="related-diag-chip" data-diag="${d.id}">📊 ${esc(title)}</span>`;
+    });
+    html += `</div>`;
+  }
+
+  if (sameSubTerms.length === 0 && relDiags.length === 0) {
+    html += `<div style="font-size:12px;color:#9ca3af;">No related content found.</div>`;
+  }
+
+  html += `</div>`;
+  card.insertAdjacentHTML('beforeend', html);
+
+  // Diagram chip → jump to diagram tab and scroll to it
+  card.querySelectorAll('.related-diag-chip').forEach(chip => {
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      activeCategory = 'Diagrams';
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      document.querySelector('.cat-tab[data-cat="Diagrams"]').classList.add('active');
+      render();
+      setTimeout(() => {
+        const el = document.getElementById(chip.dataset.diag);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    });
+  });
+
+  // Related term chip → search for it
+  card.querySelectorAll('.related-term-chip').forEach(chip => {
+    chip.addEventListener('click', e => {
+      e.stopPropagation();
+      const si = document.getElementById('searchInput');
+      si.value = chip.textContent.split('·')[0].trim();
+      searchQuery = si.value;
+      activeSub = 'All';
+      render();
+    });
+  });
 }
 
 function render() { renderSubcatBar(); renderMain(); }
