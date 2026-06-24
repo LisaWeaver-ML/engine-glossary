@@ -47,8 +47,29 @@
   .cat-tab[data-cat="Orgs"].active   { background: #10b981; border-color: #10b981; }
   .cat-tab[data-cat="Process"].active { background: #f59e0b; border-color: #f59e0b; }
   .cat-tab[data-cat="Products"].active { background: #ef4444; border-color: #ef4444; }
-  .cat-tab[data-cat="Business"].active  { background: #0891b2; border-color: #0891b2; }
-  .cat-tab[data-cat="Technical"].active { background: #7c3aed; border-color: #7c3aed; }
+  .cat-tab[data-cat="Business"].active     { background: #0891b2; border-color: #0891b2; }
+  .cat-tab[data-cat="Technical"].active    { background: #7c3aed; border-color: #7c3aed; }
+  .cat-tab[data-cat="Supply Workflows"].active   { background: #0369a1; border-color: #0369a1; }
+  .cat-tab[data-cat="Demand Workflows"].active   { background: #b45309; border-color: #b45309; }
+
+  /* Collapsible diagrams */
+  .diag-header { cursor: pointer; user-select: none; display: flex; align-items: flex-start; gap: 10px; }
+  .diag-header:hover { opacity: 0.85; }
+  .diag-toggle { margin-left: auto; font-size: 13px; color: #9ca3af; flex-shrink: 0; padding-left: 8px; transition: transform 0.2s; }
+  .diag-card.collapsed .diag-toggle { transform: rotate(-90deg); }
+  .diag-body { margin-top: 12px; }
+  .diag-card.collapsed .diag-body { display: none; }
+
+  /* Table of contents */
+  .diag-toc { background: #fff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; grid-column: 1 / -1; }
+  .diag-toc-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #9ca3af; margin-bottom: 10px; }
+  .diag-toc-list { display: flex; flex-direction: column; gap: 3px; }
+  .diag-toc-item { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 7px; font-size: 12px; color: #374151; text-decoration: none; cursor: pointer; transition: background 0.12s; }
+  .diag-toc-item:hover { background: #f3f4f6; color: #5b6ef5; }
+  .diag-toc-item .toc-icon { font-size: 14px; flex-shrink: 0; }
+  .diag-toc-item .toc-label { flex: 1; font-weight: 500; }
+  .diag-toc-item .toc-arrow { font-size: 10px; color: #d1d5db; }
+  .diag-toc-item:hover .toc-arrow { color: #5b6ef5; }
 
   .subcats {
     display: flex; gap: 4px; padding: 8px 20px; background: #fff;
@@ -109,7 +130,7 @@
   .related-diag-chip:hover { background: #ede9fe; }
 
   /* ── Diagrams ── */
-  #diagrams-business, #diagrams-technical { padding: 0; }
+  #diagrams-business, #diagrams-technical, #diagrams-supply, #diagrams-demand { padding: 0; }
   .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; padding: 16px 20px; max-width: 1200px; margin: 0 auto; }
   .related-diags-section { padding: 12px 20px 0; max-width: 1200px; margin: 0 auto; }
   .related-diags-label { font-size: 11px; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
@@ -274,12 +295,11 @@
     <span id="resultCount"></span>
   </div>
   <div class="cat-tabs">
-    <button class="cat-tab active" data-cat="All">All</button>
-    <button class="cat-tab" data-cat="Orgs">Orgs</button>
-    <button class="cat-tab" data-cat="Process">Process</button>
-    <button class="cat-tab" data-cat="Products">Products</button>
+    <button class="cat-tab active" data-cat="All">Definitions</button>
     <button class="cat-tab" data-cat="Business">📊 Business</button>
     <button class="cat-tab" data-cat="Technical">⚙️ Technical</button>
+    <button class="cat-tab" data-cat="Supply Workflows">📤 Supply Workflows</button>
+    <button class="cat-tab" data-cat="Demand Workflows">📥 Demand Workflows</button>
   </div>
 </header>
 
@@ -1319,7 +1339,7 @@
               <div class="h8-box h8-child">
                 <div class="h8-title">API Token / Bearer Token</div>
                 <div class="h8-meta"><span class="h8-badge h8-cc">Control Center</span></div>
-                <div class="h8-meta">UUID: <code class="h8c">49add4e7-d6a3-46de-8740-d8340fe9537e</code></div>
+                <div class="h8-meta">UUID: <code class="h8c">&lt;YOUR_API_TOKEN&gt;</code></div>
                 <div class="h8-meta">Scoped to one SSA. Included as Authorization header in Originator API calls.</div>
               </div>
               <div class="h8-box h8-child">
@@ -1626,6 +1646,661 @@
       </div>
     </div>
 
+    <div id="diag-23" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🔬</span>
+      <div>
+        <div class="diag-title">Lead Lifecycle &amp; Offer Decisioning</div>
+        <div class="diag-subtitle">8 sequential gates Engine runs per Demand Sub-Account (DSA). Failing any gate drops the lead for that DSA — it may still be eligible for others.</div>
+      </div>
+    </div>
+
+    <style>
+      .d23-flow { max-width: 680px; margin: 12px auto 0; }
+      .d23-node { background: #1e3a5f; color: #fff; border-radius: 10px; padding: 11px 18px; text-align: center; }
+      .d23-node .d23-label { font-size: 13px; font-weight: 700; }
+      .d23-node .d23-sub { font-size: 11px; opacity: 0.75; margin-top: 3px; }
+      .d23-conn { display: flex; flex-direction: column; align-items: center; padding: 3px 0; }
+      .d23-conn-line { width: 2px; height: 18px; background: #cbd5e1; }
+      .d23-conn-label { font-size: 10px; color: #94a3b8; font-style: italic; margin: 1px 0; }
+      .d23-row { display: grid; grid-template-columns: 1fr 140px; gap: 10px; align-items: start; }
+      .d23-gate { background: #fff; border: 1.5px solid #e2e8f0; border-left: 4px solid #3b82f6; border-radius: 8px; overflow: hidden; }
+      .d23-gate.spark { border-left-color: #8b5cf6; }
+      .d23-gate.green { border-left-color: #10b981; }
+      .d23-head { display: flex; align-items: center; gap: 8px; padding: 7px 14px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+      .d23-gate.spark .d23-head { background: #faf5ff; border-bottom-color: #e9d5ff; }
+      .d23-gate.green .d23-head { background: #f0fdf4; border-bottom-color: #bbf7d0; }
+      .d23-num { color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; background: #3b82f6; flex-shrink: 0; }
+      .d23-gate.spark .d23-num { background: #8b5cf6; }
+      .d23-gate.green .d23-num { background: #10b981; }
+      .d23-name { font-size: 12px; font-weight: 700; color: #1e293b; }
+      .d23-body { padding: 9px 14px; display: flex; flex-direction: column; gap: 6px; }
+      .d23-desc { font-size: 11px; color: #374151; line-height: 1.5; }
+      .d23-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+      .d23-pill { font-size: 10px; padding: 3px 9px; border-radius: 20px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+      .d23-pill.code { font-family: monospace; background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+      .d23-pill.spark { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
+      .d23-pill.green { background: #f0fdf4; color: #065f46; border-color: #bbf7d0; }
+      .d23-note { font-size: 10px; color: #6b7280; font-style: italic; padding: 5px 8px; background: #f8fafc; border-radius: 5px; border-left: 3px solid #e2e8f0; }
+      .d23-split { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+      .d23-split-cell { border-radius: 6px; padding: 7px 9px; font-size: 10px; line-height: 1.5; }
+      .d23-split-cell strong { display: block; margin-bottom: 2px; }
+      .d23-fail { display: flex; flex-direction: column; gap: 3px; padding-top: 8px; }
+      .d23-fail-arrow { font-size: 10px; color: #94a3b8; }
+      .d23-fail-badge { font-size: 10px; font-weight: 600; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 6px; padding: 5px 9px; line-height: 1.4; }
+      .d23-obs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+      .d23-obs-chip { font-size: 10px; background: #fff; border: 1px solid #e2e5ea; border-radius: 5px; padding: 3px 8px; color: #374151; }
+    </style>
+
+    <div class="d23-flow">
+
+      <div class="d23-node">
+        <div class="d23-label">Lead API — Entry Point</div>
+        <div class="d23-sub">Accepts payload from any integration · normalizes schema · routes to decisioning</div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div><div class="d23-conn-label">runs once per Demand Sub-Account (DSA) ↓</div><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 1 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 1</span><span class="d23-name">Supply / Demand Pairing</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Three quick checks before any heavy processing. All must pass.</div>
+            <div class="d23-pills">
+              <span class="d23-pill">Active pairing exists?</span>
+              <span class="d23-pill">Product type compatible?</span>
+              <span class="d23-pill">State not excluded?</span>
+            </div>
+            <div class="d23-pills">
+              <span class="d23-pill code">supplyDemandInclusion</span>
+              <span class="d23-pill code">productTypes</span>
+              <span class="d23-pill code">stateExclusions cache</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Short-circuit — not evaluated further for this DSA</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 2 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 2</span><span class="d23-name">Lead Hydration &amp; Validation</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Normalizes the lead into a canonical shape, then validates it can be imported. All downstream rules depend on this step.</div>
+            <div class="d23-pills">
+              <span class="d23-pill">Normalize identity fields</span>
+              <span class="d23-pill">Derive product subtypes &amp; IDs</span>
+              <span class="d23-pill">Field-level validation</span>
+              <span class="d23-pill">Import requirements met?</span>
+            </div>
+            <div class="d23-pills">
+              <span class="d23-pill code">LeadValidator</span>
+              <span class="d23-pill code">LeadImporter</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Rejected — error surfaced to caller</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 3 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 3</span><span class="d23-name">Fraud &amp; Lead Quality Check</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Calls the CDPs Lead Quality API to score fraud risk. Hard fraud rules can immediately disqualify.</div>
+            <div class="d23-pills">
+              <span class="d23-pill">Identity consistency</span>
+              <span class="d23-pill">Submission velocity</span>
+              <span class="d23-pill">Device signals</span>
+              <span class="d23-pill">Hard fraud rules</span>
+            </div>
+            <div class="d23-pills">
+              <span class="d23-pill code">LeadQualityService</span>
+              <span class="d23-pill code">/lead-quality-metrics/v1</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Blocked — excluded from all bidding</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 4 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 4</span><span class="d23-name">DSA Enablement &amp; Caps</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Ensures the demand side is open for business. The killswitch overrides everything — a disabled DSA generates no offers regardless of lead quality.</div>
+            <div class="d23-pills">
+              <span class="d23-pill">DSA globally enabled?</span>
+              <span class="d23-pill">Volume cap not reached?</span>
+              <span class="d23-pill">Budget cap not reached?</span>
+            </div>
+            <div class="d23-pills">
+              <span class="d23-pill code">enabledDemandSubAccounts cache</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Excluded for this DSA only</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 5 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 5</span><span class="d23-name">Knockout (KO) Filters</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Hard rules set by the demand partner. Evaluated before any partner API call — keeps the rate table focused on leads the lender can actually approve.</div>
+            <div class="d23-pills">
+              <span class="d23-pill">Loan amount in range?</span>
+              <span class="d23-pill">Credit score band?</span>
+              <span class="d23-pill">Income minimum met?</span>
+              <span class="d23-pill">LTV ratio in bounds?</span>
+            </div>
+            <div class="d23-pills">
+              <span class="d23-pill code">ruleDemandApiFilters</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Filtered — no partner API call made</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 6 -->
+      <div class="d23-row">
+        <div class="d23-gate">
+          <div class="d23-head"><span class="d23-num">Gate 6</span><span class="d23-name">Offer / Decision Cache Lookup</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Checks for a prior decision on this consumer + DSA combo. Called a "decision cache" because it also caches rejections.</div>
+            <div class="d23-pills">
+              <span class="d23-pill code">ssn</span>
+              <span class="d23-pill code">ssn + email</span>
+              <span class="d23-pill code">ssn + email + purpose</span>
+              <span class="d23-pill code">lastName + email</span>
+            </div>
+            <div class="d23-split">
+              <div class="d23-split-cell" style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;"><strong>1LM cache hit</strong>Return cached decision. Skip partner API.</div>
+              <div class="d23-split-cell" style="background:#fff7ed;color:#92400e;border:1px solid #fed7aa;"><strong>2LM cache hit (with offer)</strong>Exclude that offer. Next highest bidder gets the spot.</div>
+            </div>
+            <div class="d23-note">Cache miss or no cache strategy → continue to Gate 7/8</div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← cache hit</div><div class="d23-fail-badge" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0;">Cached decision returned</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 7 -->
+      <div class="d23-row">
+        <div class="d23-gate spark">
+          <div class="d23-head"><span class="d23-num">Gate 7</span><span class="d23-name">Spark Enrichment &nbsp;<span style="font-weight:400;color:#9ca3af;font-size:10px;">if DSA is Spark-enabled</span></span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Engine calls the Spark decisioning API with the hydrated lead. Enriches with real-time data and generates pre-decisioned offers.</div>
+            <div class="d23-pills">
+              <span class="d23-pill spark">Credit bureau soft-pull</span>
+              <span class="d23-pill spark">Bank data / cashflow eval</span>
+              <span class="d23-pill spark">Hosted model underwriting</span>
+              <span class="d23-pill spark">Offer generation &amp; ranking</span>
+            </div>
+            <div class="d23-note">Spark also runs offline (batch) for lifecycle campaigns — separate from this synchronous flow.</div>
+          </div>
+        </div>
+        <div class="d23-fail"><div class="d23-fail-arrow">← skipped if</div><div class="d23-fail-badge" style="background:#faf5ff;color:#6d28d9;border-color:#ddd6fe;">DSA not Spark-enabled</div></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <!-- Gate 8 -->
+      <div class="d23-row">
+        <div class="d23-gate green">
+          <div class="d23-head"><span class="d23-num">Gate 8</span><span class="d23-name">Partner Bidding &amp; Rate Table Assembly</span></div>
+          <div class="d23-body">
+            <div class="d23-desc">Live API calls to eligible demand partners. Offers scored and ranked. Best match wins top placement.</div>
+            <div class="d23-split">
+              <div class="d23-split-cell" style="background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;"><strong>1LM</strong>Simultaneous calls to all enabled lenders. Scored: pred_converted × payout × EES</div>
+              <div class="d23-split-cell" style="background:#fff7ed;color:#92400e;border:1px solid #fed7aa;"><strong>2LM (if all 1LM decline)</strong>Partners bid CPC for access. No underwriting API needed.</div>
+            </div>
+            <div class="d23-pills" style="margin-top:2px;">
+              <span class="d23-pill green">Rate table assembled</span>
+              <span class="d23-pill green">Ranked by Rec Score</span>
+              <span class="d23-pill green">Offer Wall built</span>
+            </div>
+          </div>
+        </div>
+        <div class="d23-fail"></div>
+      </div>
+      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+
+      <div class="d23-node">
+        <div class="d23-label">Response via Lead API</div>
+        <div class="d23-sub">Rate table returned to supply partner · Consumer sees Offer Wall</div>
+      </div>
+
+      <div style="margin-top:10px;background:#f8fafc;border:1px solid #e2e5ea;border-radius:8px;padding:9px 14px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#9ca3af;margin-bottom:6px;">Observability — logged at each gate</div>
+        <div class="d23-obs">
+          <span class="d23-obs-chip">Supply/demand eligibility</span>
+          <span class="d23-obs-chip">Validation / importability</span>
+          <span class="d23-obs-chip">Fraud outcomes</span>
+          <span class="d23-obs-chip">Cap &amp; KO filter results</span>
+          <span class="d23-obs-chip">Cache hits / misses</span>
+          <span class="d23-obs-chip">Partner call outcomes</span>
+        </div>
+      </div>
+
+    </div><!-- /d23-flow -->
+
+    <!-- old version removed -->
+    </div><!-- /diag-23 -->
+
+  </div>
+</div>
+
+<div id="diagrams-supply" class="hidden">
+  <div class="diag-grid">
+
+    <div id="diag-21" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🔌</span>
+      <div>
+        <div class="diag-title">Second Party Prefill — User Experience</div>
+        <div class="diag-subtitle">An optional enhancement to the Offer Wall flow. When a partner already has the consumer's data, they can POST it server-to-server first to get a prefillToken — skipping or shortening the form. The display options (Partner Page or Embed) are the same as the standard Offer Wall.</div>
+      </div>
+    </div>
+
+    <!-- Three-column header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+      <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;">Partner (Server)</div>
+      <div style="background:#d1fae5;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.07em;">Engine</div>
+      <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;">Consumer (Sees This)</div>
+    </div>
+
+    <!-- Step 1 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">User clicks CTA</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">User taps "Check my loan offers" on the partner's site. Partner has the user's data on file.</div>
+      </div>
+      <div></div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:16px;margin-bottom:4px;">👆</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Taps a button</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">"Check my offers," "See my rates," etc. No form yet.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Partner server immediately calls Engine API ↓</div>
+
+    <!-- Step 2 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">2</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">POST to Engine API</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Partner sends consumer PII server-to-server. <strong>Never touches the browser.</strong></div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
+        <div style="font-size:16px;margin-bottom:4px;">⚡</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Returns prefillToken</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Engine encrypts PII and returns a short-lived token. <strong>Valid 3 min, max 3 uses.</strong> Both display options always returned.</div>
+      </div>
+      <div></div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Partner chooses how to present the experience ↓</div>
+
+    <!-- Frontend Integration Decision -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Frontend Integration Decision — Both Options Always Returned</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:#eff6ff;border:1.5px solid #3b82f6;border-radius:8px;padding:11px;">
+          <div style="font-size:10px;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option A — Partner Page (Linkout)</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Redirect to Engine-hosted page</div>
+          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">Consumer is sent to a co-branded MoneyLion landing page. Engine controls the full offer display UX.</div>
+          <code style="font-size:10px;background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:5px;">use: partnerPageUrl</code>
+        </div>
+        <div style="background:#faf5ff;border:1.5px solid #a855f7;border-radius:8px;padding:11px;">
+          <div style="font-size:10px;font-weight:800;color:#7e22ce;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option B — Embedded Experience</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Inject embed on partner's own site</div>
+          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">Partner drops the script tag into their page. Consumer never leaves. Embed auto-mounts using the prefillToken.</div>
+          <code style="font-size:10px;background:#f3e8ff;color:#7e22ce;padding:3px 8px;border-radius:5px;">use: embedSnippet</code>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:10px;color:#9ca3af;margin-top:8px;font-style:italic;">Both partnerPageUrl and embedSnippet are returned in every API response — no configuration needed.</div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer enters the Engine experience ↓</div>
+
+    <!-- What consumer sees -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">What the Consumer Sees Depends on How Much Data the Partner Sent</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div style="background:#eff6ff;border:1.5px solid #3b82f6;border-radius:8px;padding:10px;">
+          <div style="font-size:10px;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Partner Sent All Data</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Skips straight to Review</div>
+          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">No form fields to fill in — consumer lands directly on the confirmation screen.</div>
+          <div style="background:#fef9c3;border:1px solid #fbbf24;border-radius:6px;padding:6px 8px;font-size:10px;color:#92400e;"><strong>💡 Consider Offer Wall API instead.</strong> If you're sending complete data + consents programmatically, the Offer Wall API is a better fit.</div>
+        </div>
+        <div style="background:#f0fdf4;border:1.5px solid #4ade80;border-radius:8px;padding:10px;">
+          <div style="font-size:10px;font-weight:800;color:#15803d;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Consumer Sees</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Only missing fields shown</div>
+          <div style="font-size:11px;color:#4b5563;line-height:1.5;">Pre-filled screens are skipped. Consumer only sees screens with gaps. <strong>Note:</strong> if any field on a screen is missing, the whole screen is shown.</div>
+        </div>
+        <div style="background:#fafafa;border:1.5px solid #d1d5db;border-radius:8px;padding:10px;">
+          <div style="font-size:10px;font-weight:800;color:#4b5563;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Consumer Sees</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Standard form</div>
+          <div style="font-size:11px;color:#4b5563;line-height:1.5;">No data sent or token expired. Graceful fallback — consumer fills out the full application as normal. No error shown.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Always required, regardless of how much was prefilled ↓</div>
+
+    <!-- Review Screen -->
+    <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:14px;margin-bottom:4px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:18px;">🔎</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#111;">Review Screen — Always Shown</div>
+          <div style="font-size:11px;color:#6b7280;">Consumer must confirm before submitting. Everything is editable.</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Masked sensitive data</div>
+          <div style="font-size:10.5px;color:#4b5563;">SSN shows as ***-**-6789. Consumer confirms without re-entering.</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Fully editable</div>
+          <div style="font-size:10.5px;color:#4b5563;">Consumer can correct any prefilled field before submission.</div>
+        </div>
+        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Consent collected here</div>
+          <div style="font-size:10.5px;color:#4b5563;">FCRA and TCPA language presented and agreed to on this screen.</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
+
+    <!-- Prequalified offers -->
+    <div style="background:#fff;border:1.5px solid #a78bfa;border-radius:10px;padding:14px;margin-bottom:4px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:18px;">🎉</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#111;">Consumer sees prequalified offers</div>
+          <div style="font-size:11px;color:#6b7280;">Engine displays matched loan offers in a co-branded experience. Consumer selects a lender and clicks Apply Now.</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+        <!-- Lender card 1 -->
+        <div style="border:2px solid #7c3aed;border-radius:10px;padding:12px;position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:#7c3aed;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">BEST MATCH</div>
+          <div style="width:28px;height:28px;background:#3b82f6;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">C</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Clearview Bank</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">9.49%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$208/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#7c3aed;color:#fff;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+        <!-- Lender card 2 -->
+        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
+          <div style="width:28px;height:28px;background:#0d9488;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">N</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Northfield Lending</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">11.99%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$222/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+        <!-- Lender card 3 -->
+        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
+          <div style="width:28px;height:28px;background:#059669;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">A</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Apex Credit Union</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">14.25%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$234/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
+
+    <!-- Apply Now footer -->
+    <div style="background:#fff;border:1.5px solid #e2e5ea;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
+      <span style="font-size:22px;">🔗</span>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px;">"Apply Now" redirects consumer to the lender's site</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Clicking Apply Now opens the selected lender's application directly. The consumer leaves the Engine experience and completes their full application on the lender's own platform.</div>
+      </div>
+    </div>
+
+    </div><!-- /diag-21 -->
+
+    <div id="diag-22" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🔗</span>
+      <div>
+        <div class="diag-title">Offer Wall — Partner Page &amp; Embed</div>
+        <div class="diag-subtitle">Two display options, one integration. Both tokens are always returned in every API response — partner chooses which to use.</div>
+      </div>
+    </div>
+
+    <!-- Three-column header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+      <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;">Partner (Frontend)</div>
+      <div style="background:#d1fae5;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.07em;">Engine</div>
+      <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;">Consumer (Sees This)</div>
+    </div>
+
+    <!-- Step 1: Partner adds CTA -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Add a CTA to your site</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:8px;">Place a button, banner, or link anywhere — site, app, email, SMS. <strong>No server call needed upfront</strong> — unless you choose to prefill.</div>
+        <div style="background:#fef9c3;border:1px solid #fbbf24;border-radius:7px;padding:7px 9px;margin-bottom:8px;">
+          <div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:2px;">⚡ Optional: Second Party Prefill</div>
+          <div style="font-size:10px;color:#78350f;line-height:1.5;">Already have the consumer's data (e.g. logged-in user)? POST it server-to-server first to get a <code style="font-size:9px;background:#fef3c7;padding:1px 4px;border-radius:3px;">prefillToken</code>. Engine pre-populates the form — or skips it entirely. Then use the same URL/snippet below.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <code style="font-size:9.5px;background:#eff6ff;color:#1d4ed8;padding:4px 8px;border-radius:5px;">Option A: partnerPageUrl</code>
+          <code style="font-size:9.5px;background:#faf5ff;color:#7e22ce;padding:4px 8px;border-radius:5px;">Option B: embedSnippet</code>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:5px;font-style:italic;">Both returned in every API response.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+        <div style="font-size:11px;color:#6b7280;margin-bottom:6px;font-style:italic;">No server call needed.<br/>Engine waits for consumer.</div>
+        <div style="font-size:10px;color:#9ca3af;font-style:italic;">Unless using Prefill →<br/>then server call comes first.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="background:#6366f1;color:#fff;border-radius:8px;padding:10px 14px;text-align:center;font-size:12px;font-weight:700;margin-bottom:6px;">Check My Loan Offers →</div>
+        <div style="font-size:10.5px;color:#6b7280;text-align:center;">Consumer sees a CTA. What happens next depends on which option the partner chose.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer clicks ↓</div>
+
+    <!-- Fork: Option A vs Option B -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Display Decision — Both options always returned, partner picks one</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+        <!-- Option A -->
+        <div style="background:#eff6ff;border:1.5px solid #3b82f6;border-radius:8px;padding:11px;">
+          <div style="font-size:10px;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option A — Partner Page (Linkout)</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">Consumer leaves → Engine-hosted page</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px;">
+            <div style="font-size:11px;color:#374151;">🔗 Consumer clicks link → browser redirects</div>
+            <div style="font-size:11px;color:#374151;">🏠 Lands on Engine-hosted co-branded page</div>
+            <div style="font-size:11px;color:#374151;">🎨 Engine controls entire page UX &amp; branding</div>
+            <div style="font-size:11px;color:#374151;">📤 Consumer leaves the partner site</div>
+          </div>
+          <code style="display:block;font-size:9.5px;background:#dbeafe;color:#1e40af;padding:5px 8px;border-radius:5px;">use: partnerPageUrl</code>
+          <div style="margin-top:7px;font-size:10px;color:#1d4ed8;background:#fff;border:1px solid #bfdbfe;border-radius:5px;padding:4px 7px;">✅ Lowest lift — just a URL. No code changes on the partner site.</div>
+        </div>
+
+        <!-- Option B -->
+        <div style="background:#faf5ff;border:1.5px solid #a855f7;border-radius:8px;padding:11px;">
+          <div style="font-size:10px;font-weight:800;color:#7e22ce;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option B — Embed / iFrame</div>
+          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">Consumer stays → Engine renders inline</div>
+          <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px;">
+            <div style="font-size:11px;color:#374151;">📝 Partner drops <code style="font-size:10px;background:#ede9fe;color:#6d28d9;padding:1px 4px;border-radius:3px;">&lt;script&gt;</code> tag into page</div>
+            <div style="font-size:11px;color:#374151;">⚡ Engine widget auto-mounts via embedSnippet</div>
+            <div style="font-size:11px;color:#374151;">📍 Offer Wall renders inline on partner's site</div>
+            <div style="font-size:11px;color:#374151;">🏠 Consumer never leaves the partner site</div>
+          </div>
+          <code style="display:block;font-size:9.5px;background:#f3e8ff;color:#7e22ce;padding:5px 8px;border-radius:5px;">use: embedSnippet</code>
+          <div style="margin-top:7px;font-size:10px;color:#7e22ce;background:#fff;border:1px solid #d8b4fe;border-radius:5px;padding:4px 7px;">✅ Higher engagement — seamless experience, consumer stays in context.</div>
+        </div>
+
+      </div>
+      <div style="text-align:center;font-size:10px;color:#9ca3af;margin-top:10px;font-style:italic;">Both paths serve the identical form, decisioning engine, and offer wall — only the container differs.</div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer enters the Engine experience (hosted or inline) ↓</div>
+
+    <!-- Step 2: Form -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">2</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Partner work is done</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">No further action required either way. Engine takes over the full consumer experience from here.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">⚡ Loads co-branded form</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:5px;">Engine reads SSA token, applies partner branding (logo, colors), and renders the loan inquiry form — hosted or inline.</div>
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:4px 7px;font-size:10px;color:#166534;">Cookie check: returning consumer data pre-filled automatically.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Sees co-branded loan form</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:5px 8px;font-size:10px;color:#374151;">📋 Personal info (name, DOB, address)</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:5px 8px;font-size:10px;color:#374151;">💼 Employment &amp; income</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:5px 8px;font-size:10px;color:#374151;">💰 Loan amount &amp; purpose</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;padding:5px 8px;font-size:10px;color:#374151;">🔒 SSN (last 4 or full, per config)</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer submits form ↓</div>
+
+    <!-- Step 3: Engine decisioning -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Engine Decisioning — Identical for Both Options</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px 12px;font-size:11px;color:#374151;text-align:center;">🍪 Cookie check<br/><span style="font-size:9.5px;color:#9ca3af;">returning consumer?</span></div>
+        <div style="color:#9ca3af;font-size:18px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px 12px;font-size:11px;color:#374151;text-align:center;">🚨 Fraud check<br/><span style="font-size:9.5px;color:#9ca3af;">block if flagged</span></div>
+        <div style="color:#9ca3af;font-size:18px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px 12px;font-size:11px;color:#374151;text-align:center;">⚡ Spark enrichment<br/><span style="font-size:9.5px;color:#9ca3af;">if demand sub enabled</span></div>
+        <div style="color:#9ca3af;font-size:18px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px 12px;font-size:11px;color:#374151;text-align:center;">🏦 1LM API calls<br/><span style="font-size:9.5px;color:#9ca3af;">all enabled lenders</span></div>
+        <div style="color:#9ca3af;font-size:18px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:7px 12px;font-size:11px;color:#374151;text-align:center;">📊 Rec Score sort<br/><span style="font-size:9.5px;color:#9ca3af;">best match = top</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Rate table assembled ↓</div>
+
+    <!-- Step 4: Offer Wall -->
+    <div style="background:#fff;border:1.5px solid #a78bfa;border-radius:10px;padding:14px;margin-bottom:4px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <span style="font-size:18px;">🎉</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#111;">Consumer sees the Offer Wall</div>
+          <div style="font-size:11px;color:#6b7280;">Offers ranked by Rec Score. Option A: full Engine-hosted page. Option B: inline widget on partner site.</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;">
+        <div style="border:2px solid #7c3aed;border-radius:10px;padding:12px;position:relative;">
+          <div style="position:absolute;top:-8px;left:12px;background:#7c3aed;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">BEST MATCH</div>
+          <div style="width:28px;height:28px;background:#3b82f6;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">C</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Clearview Bank</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">9.49%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$208/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#7c3aed;color:#fff;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
+          <div style="width:28px;height:28px;background:#0d9488;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">N</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Northfield Lending</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">11.99%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$222/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
+          <div style="width:28px;height:28px;background:#059669;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">A</div>
+          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Apex Credit Union</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">14.25%</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$234/mo</div></div>
+            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
+        </div>
+      </div>
+      <div style="background:#fef9c3;border:1px solid #fbbf24;border-radius:7px;padding:7px 12px;font-size:10.5px;color:#92400e;">
+        <strong>2LM fallback:</strong> If all 1LM lenders decline, Engine automatically surfaces a Second Look offer — identical behaviour for both Option A and B.
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
+
+    <!-- Step 5: Apply Now + Revenue -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:14px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span style="font-size:18px;">🔗</span>
+          <div style="font-size:12px;font-weight:700;color:#111;">Apply Now → Lender site</div>
+        </div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Consumer clicks Apply Now and is redirected to the selected lender's own application — same for both options. Consumer completes their full application off-platform.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:14px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:8px;">💰 Revenue Events</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;">
+            <span style="color:#374151;font-weight:600;">CPC</span>
+            <span style="color:#6b7280;">Click recorded in offer_clicks</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;">
+            <span style="color:#374151;font-weight:600;">CPA / RevShare</span>
+            <span style="color:#6b7280;">EDE event → LFLI → revenue entry</span>
+          </div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:5px 8px;font-size:10px;color:#166534;margin-top:2px;">Revenue model is the same regardless of display option chosen.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- When to use each -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:5px;">Choose Option A (Partner Page) when…</div>
+        <div style="font-size:11px;color:#374151;line-height:1.6;">You want zero engineering lift. Works instantly as a link in emails, push notifications, SMS, or any CTA. Best for decline redirects, co-marketing, and partners without front-end dev resources.</div>
+      </div>
+      <div style="background:#faf5ff;border:1.5px solid #d8b4fe;border-radius:10px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#7e22ce;margin-bottom:5px;">Choose Option B (Embed) when…</div>
+        <div style="font-size:11px;color:#374151;line-height:1.6;">Keeping the consumer on your site is a priority. Requires dropping a <code style="font-size:10px;background:#ede9fe;color:#6d28d9;padding:1px 4px;border-radius:3px;">&lt;script&gt;</code> tag, but delivers a seamless in-page experience. Best for logged-in dashboards and cross-sell placements within your own product.</div>
+      </div>
+    </div>
+
+    </div><!-- /diag-22 -->
+
+  </div>
+</div>
+
+<div id="diagrams-demand" class="hidden">
+  <div class="diag-grid">
+    <div class="diag-card full-width" style="text-align:center;padding:40px 20px;color:#9ca3af;">
+      <div style="font-size:32px;margin-bottom:12px;">📥</div>
+      <div style="font-size:14px;font-weight:600;color:#6b7280;margin-bottom:6px;">Demand integration workflows coming soon</div>
+      <div style="font-size:12px;">Diagrams for 1LM Underwriting API, 2LM / Special Offers, and Co-branded Checkout will appear here.</div>
+    </div>
   </div>
 </div>
 
@@ -1692,6 +2367,8 @@ const TERMS = [
   { cat:"Products", sub:"Internal Tools & Platforms", term:"LPT", full:"Lender Pricing Tool", def:"Internal tool for managing and setting lender pricing." },
   { cat:"Products", sub:"Internal Tools & Platforms", term:"Spark", def:"Engine's product that surfaces MoneyLion's first-party BVE (Bank Verification Enrichment) data as structured cashflow attributes — verified income, employer name, employment type (employed, gig, self-employed), pay frequency, and next paycheck date — derived from recurring transaction analysis across 27M+ linked accounts. Available three ways: as knockout/filter criteria on leads, as raw attributes passed to a third-party CF CRA (e.g. Nova, Prism), or as Engine's proprietary income/employment signals. Enables pre-qualification filtering that improves click-to-funded rates and unlocks a premium BVE-Enriched lead tier at higher CPL." },
   { cat:"Products", sub:"Internal Tools & Platforms", term:"BVE", full:"Bank Verification Enrichment", def:"MoneyLion's first-party dataset of verified cashflow attributes — income, employer, employment type, pay frequency, and next paycheck date — derived from transaction analysis across 27M+ linked bank accounts. Surfaced through the Spark product. Covers ~40% of Engine traffic; the 60% without BVE data require per-partner fallback controls." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Knockout Criteria", full:"KO Filter", def:"Hard filters set by a demand partner that disqualify a consumer lead before Engine ever calls that partner's API. Common knockouts include: loan amount outside the partner's range, state not licensed, credit score below threshold, income below minimum, or flagged fraud signals. Knockout filters run during the 9-gate Engine decisioning sequence — if a consumer fails a lender's KO criteria, that lender is silently excluded from their rate table. Partners configure KO criteria in Control Center. Also called KO filters." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Underwriting", def:"The process by which a lender evaluates a consumer's creditworthiness and decides whether to approve a loan, and at what terms (rate, amount, duration). In the Engine context, underwriting happens on the demand side — after Engine routes a consumer to a lender via the rate table, the lender runs their own underwriting to produce a final offer or decline. For 1LM partners, underwriting APIs are required so Engine can call them in real time. Underwriting criteria can also feed upstream into a partner's Knockout Criteria to pre-filter leads before any API call is made." },
   { cat:"Process", sub:"Integration Mechanics", term:"CF CRA", full:"Cashflow Credit Reporting Agency", def:"A third-party agency that receives and structures cashflow data for use in lender underwriting decisions. In the Spark/BVE context, Engine can pass BVE attributes to CF CRAs such as Nova or Prism, which format the data for lender consumption as an alternative to standard credit bureau data." },
   { cat:"Process", sub:"Integration Mechanics", term:"Relay Token", def:"A token that passes MoneyLion's pre-verified BVE data to a partner's checkout flow, eliminating the need for the consumer to re-link their bank account. Reduces friction in partner onboarding flows by reusing already-verified data without requiring a second consent or bank-linking step." },
   { cat:"Process", sub:"Commercial & Legal", term:"Clawback", def:"A contractual provision allowing a demand partner to reclaim previously paid revenue if a loan defaults, is fraudulent, or if the partner's underwriting findings differ materially from pre-verified data (e.g. Spark/BVE attributes). Clawback exposure is a key risk when Engine's first-party data is used directly in lender decisioning." },
@@ -1729,6 +2406,9 @@ const TERMS = [
 
   // ─── PROCESS ───────────────────────────────────────────────────────────
   { cat:"Process", sub:"Consumer Funnel", term:"Funnel Flow", def:"The end-to-end consumer journey from first entering the loan flow through monetization. Comprises 5 business processes: Lead Generation → Offer Decisioning → Offer Clicks → Funding/EDE → Financial Reconciliation." },
+  { cat:"Process", sub:"Reporting & Data Tools", term:"DRL", full:"Demand Reporting Lambda", def:"A serverless function (AWS Lambda) that processes and aggregates demand-side events — clicks, conversions, revenue — for reporting purposes. Sits between raw event data and the reporting layer, transforming and routing demand partner performance data into Looker and other downstream reporting surfaces." },
+  { cat:"Process", sub:"Integration Mechanics", term:"SSA", full:"Supply Sub-Account", def:"The account unit on the supply side of Engine. Each supply partner can have multiple SSAs — one per integration, vertical, or channel. The SSA is what gets an API token, configures allowed product types, and is the entity that a Lead UUID is permanently tied to at creation. Configured in Control Center." },
+  { cat:"Process", sub:"Integration Mechanics", term:"DSA", full:"Demand Sub-Account", def:"The account unit on the demand side of Engine. A single demand partner (e.g. Upstart) can have multiple DSAs — one per product, state, supply channel, or pricing tier. All per-lender configuration lives at the DSA level: knockout filters, volume/budget caps, cache strategy, Spark enablement, and the global killswitch. The 9-gate lead decisioning flow runs once per DSA for every incoming lead." },
   { cat:"Process", sub:"Consumer Funnel", term:"Lead", def:"The system representation of a consumer who has entered Engine's marketplace via a supply integration (embed, partner page, API/SDK, or affiliate link). Created at entry; tied permanently to the originating supply subaccount. Not a person-level identifier." },
   { cat:"Process", sub:"Consumer Funnel", term:"Lead UUID", def:"The unique identifier assigned the moment a lead is created. System-wide join key to downstream objects (rate tables, offer events/clicks, LFLI). Not person-level — tied to the supply subaccount entry. Format: UUID string (36 chars with hyphens)." },
   { cat:"Process", sub:"Consumer Funnel", term:"Qualified Lead", def:"A consumer who provides all required valid data, submits the Engine application form, and clicks into an offer. For life insurance and mortgage, submits valid required info to initiate an application (unless already submitted within prior 60 days)." },
@@ -1928,7 +2608,7 @@ function highlight(text, query) {
 }
 
 function getSubcats() {
-  const cats = activeCategory === 'All' || activeCategory === 'Business' || activeCategory === 'Technical'
+  const cats = activeCategory === 'All' || activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows'
     ? TERMS
     : TERMS.filter(t => t.cat === activeCategory);
   return [...new Set(cats.map(t => t.sub))].sort();
@@ -1936,7 +2616,7 @@ function getSubcats() {
 
 function filteredTerms() {
   const filtered = TERMS.filter(t => {
-    if (activeCategory === 'Business' || activeCategory === 'Technical') return false;
+    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') return false;
     if (activeCategory !== 'All' && t.cat !== activeCategory) return false;
     if (activeSub !== 'All' && t.sub !== activeSub) return false;
     if (searchQuery) {
@@ -1969,7 +2649,7 @@ function filteredTerms() {
 // ── Render ─────────────────────────────────────────────────────────────────
 function renderSubcatBar() {
   const bar = document.getElementById('subcatBar');
-  if (activeCategory === 'Business' || activeCategory === 'Technical') { bar.innerHTML = ''; return; }
+  if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') { bar.innerHTML = ''; return; }
   const subs = getSubcats();
   let html = `<button class="subcat-chip ${activeSub==='All'?'active':''}" data-sub="All">All</button>`;
   subs.forEach(s => {
@@ -2002,6 +2682,9 @@ const DIAGRAM_INDEX = [
   { id:'diag-18', keywords:['roadmap','vision','scam protection','sdk','partner hub','engine by gen','gen distribution','strategy','expansion','fy26','rebranding','future'] },
   { id:'diag-19', keywords:['1lm','2lm','first look','second look','decisioning','gate','cookie','spark','fraud','cap','knockout','ko filter','daf','offer cache','decision cache','14 fields','loan application','escalation','2nd look'] },
   { id:'diag-20', keywords:['icp','supply','demand','fintech lender','marketplace aggregator','neobank','publisher','performance marketer','ping tree','comparison chart','offer wall','emailer','financial institution','partner type','use case','declines','cross sell','sofi','upstart','bestegg','nerdwallet','credible','chime','brigit','moneylion','citi','truist','forbes','cnbc','lendingclub','refijet','caribou','lendingtree','who we sell to','supply icp','demand icp'] },
+  { id:'diag-21', keywords:['prefill','prefilltoken','second party prefill','server-to-server','pii','partner page','embed','linkout','embedsnippet','partnerPageUrl','form prefill','review screen','fcra','tcpa','consent','apply now','offer wall api','missing fields','standard form','graceful fallback','co-branded','integration','ux','user experience','lender redirect'] },
+  { id:'diag-22', keywords:['offer wall','partner page','linkout','embed','iframe','embedsnippet','script tag','redirect','co-branded','cta','loan form','rate table','apply now','rec score','supply integration','cpc','revshare','ede','2lm fallback','partnerPageUrl','embedSnippet','cookie check','returning consumer','inline widget','display option'] },
+  { id:'diag-23', keywords:['lead lifecycle','decisioning','offer decisioning','gate','lead api','supply demand pairing','hydration','lead validator','lead importer','fraud','lead quality','cdp','caps','killswitch','enabledDemandSubAccounts','knockout','ko filter','ruleDemandApiFilters','offer cache','decision cache','cache hit','cache miss','spark','partner bidding','rate table','rec score','1lm','2lm','stateExclusions','supplyDemandInclusion','productTypes','observability'] },
 ];
 
 function matchedDiagrams(q) {
@@ -2014,24 +2697,42 @@ function renderMain() {
   const main = document.getElementById('main');
   const diagBusiness = document.getElementById('diagrams-business');
   const diagTechnical = document.getElementById('diagrams-technical');
+  const diagSupply = document.getElementById('diagrams-supply');
+  const diagDemand = document.getElementById('diagrams-demand');
+
+  const hideAll = () => {
+    diagBusiness.classList.add('hidden');
+    diagTechnical.classList.add('hidden');
+    diagSupply.classList.add('hidden');
+    diagDemand.classList.add('hidden');
+  };
 
   if (activeCategory === 'Business') {
-    main.innerHTML = '';
+    main.innerHTML = ''; hideAll();
     diagBusiness.classList.remove('hidden');
-    diagTechnical.classList.add('hidden');
     document.getElementById('resultCount').textContent = '13 diagrams';
     return;
   }
   if (activeCategory === 'Technical') {
-    main.innerHTML = '';
+    main.innerHTML = ''; hideAll();
     diagTechnical.classList.remove('hidden');
-    diagBusiness.classList.add('hidden');
-    document.getElementById('resultCount').textContent = '7 diagrams';
+    document.getElementById('resultCount').textContent = '8 diagrams';
+    return;
+  }
+  if (activeCategory === 'Supply Workflows') {
+    main.innerHTML = ''; hideAll();
+    diagSupply.classList.remove('hidden');
+    document.getElementById('resultCount').textContent = '2 workflows';
+    return;
+  }
+  if (activeCategory === 'Demand Workflows') {
+    main.innerHTML = ''; hideAll();
+    diagDemand.classList.remove('hidden');
+    document.getElementById('resultCount').textContent = '0 workflows';
     return;
   }
 
-  diagBusiness.classList.add('hidden');
-  diagTechnical.classList.add('hidden');
+  hideAll();
   const terms = filteredTerms();
   document.getElementById('resultCount').textContent = `${terms.length} term${terms.length !== 1 ? 's' : ''}`;
 
@@ -2193,7 +2894,7 @@ document.querySelectorAll('.cat-tab').forEach(tab => {
     activeCategory = tab.dataset.cat;
     activeSub = 'All';
     const si = document.getElementById('searchInput');
-    if (activeCategory === 'Business' || activeCategory === 'Technical') si.disabled = true;
+    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') si.disabled = true;
     else si.disabled = false;
     render();
   });
@@ -2206,6 +2907,94 @@ document.getElementById('searchInput').addEventListener('input', e => {
 });
 
 render();
+
+// ── Collapsible diagrams + TOC ──────────────────────────────────────────────
+
+function toggleDiagCard(card) {
+  card.classList.toggle('collapsed');
+}
+
+function jumpToDiag(id) {
+  const card = document.getElementById(id);
+  if (!card) return;
+  // Expand if collapsed
+  card.classList.remove('collapsed');
+  setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+function initCollapsibleDiagrams() {
+  const sectionIds = [
+    'diagrams-business', 'diagrams-technical',
+    'diagrams-supply', 'diagrams-demand'
+  ];
+
+  sectionIds.forEach(sectionId => {
+    const section = document.getElementById(sectionId);
+    if (!section || section.dataset.tocBuilt) return;
+    section.dataset.tocBuilt = '1';
+
+    const grid = section.querySelector('.diag-grid');
+    if (!grid) return;
+
+    const cards = grid.querySelectorAll('.diag-card');
+    const tocItems = [];
+
+    cards.forEach(card => {
+      const header = card.querySelector('.diag-header');
+      if (!header || header.dataset.collapsible) return;
+      header.dataset.collapsible = '1';
+
+      const titleEl = card.querySelector('.diag-title');
+      const iconEl  = card.querySelector('.diag-icon');
+      const title   = titleEl ? titleEl.textContent : 'Diagram';
+      const icon    = iconEl  ? iconEl.textContent  : '📊';
+
+      // Wrap everything after the header in .diag-body
+      const body = document.createElement('div');
+      body.className = 'diag-body';
+      const siblings = Array.from(card.children);
+      let past = false;
+      siblings.forEach(el => {
+        if (el === header) { past = true; return; }
+        if (past) body.appendChild(el);
+      });
+      card.appendChild(body);
+
+      // Add toggle chevron
+      const toggle = document.createElement('span');
+      toggle.className = 'diag-toggle';
+      toggle.textContent = '▼';
+      header.appendChild(toggle);
+
+      // Click to collapse/expand
+      header.addEventListener('click', () => toggleDiagCard(card));
+
+      if (card.id) tocItems.push({ id: card.id, icon, title });
+    });
+
+    // Build TOC and prepend to grid
+    if (tocItems.length > 0) {
+      const toc = document.createElement('div');
+      toc.className = 'diag-toc';
+      toc.innerHTML = `
+        <div class="diag-toc-title">Contents — ${tocItems.length} diagram${tocItems.length !== 1 ? 's' : ''}</div>
+        <div class="diag-toc-list">
+          ${tocItems.map(item => `
+            <div class="diag-toc-item" onclick="jumpToDiag('${item.id}')">
+              <span class="toc-icon">${item.icon}</span>
+              <span class="toc-label">${item.title}</span>
+              <span class="toc-arrow">↓</span>
+            </div>
+          `).join('')}
+        </div>`;
+      grid.insertBefore(toc, grid.firstChild);
+    }
+  });
+}
+
+// All diagram sections are in the DOM from page load (just hidden),
+// so one call on load initialises everything.
+initCollapsibleDiagrams();
 </script>
 </body>
 </html>
