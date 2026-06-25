@@ -130,8 +130,8 @@
   .related-diag-chip:hover { background: #ede9fe; }
 
   /* ── Diagrams ── */
-  #diagrams-business, #diagrams-technical, #diagrams-supply, #diagrams-demand { padding: 0; }
-  .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 16px; padding: 16px 20px; max-width: 1200px; margin: 0 auto; }
+  #diagrams-business, #diagrams-technical, #diagrams-supply, #diagrams-demand { padding: 0; background: #dde1e8; }
+  .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
   .related-diags-section { padding: 12px 20px 0; max-width: 1200px; margin: 0 auto; }
   .related-diags-label { font-size: 11px; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
   .related-diags-label::after { content:''; flex:1; height:1px; background:#e9d5ff; }
@@ -2291,6 +2291,430 @@
 
     </div><!-- /diag-22 -->
 
+    <div id="diag-24" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🪄</span>
+      <div>
+        <div class="diag-title">Embed Marketplace — All Verticals</div>
+        <div class="diag-subtitle">Personal Loans · Credit Cards · Banking &amp; Deposits · Auto Insurance · New Marketplaces — one integration pattern, vertical-specific form fields and offer cards.</div>
+      </div>
+    </div>
+
+    <!-- Three-column header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;margin-top:4px;">
+      <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;">Partner (Frontend)</div>
+      <div style="background:#d1fae5;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.07em;">Engine</div>
+      <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;">Consumer (Sees This)</div>
+    </div>
+
+    <!-- Step 1: Drop the script tag -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Drop the script tag</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:8px;">Paste the <code style="font-size:10px;background:#f1f5f9;padding:1px 4px;border-radius:3px;">embedSnippet</code> into the page where you want the marketplace to appear. One tag per placement.</div>
+        <div style="background:#1e293b;border-radius:6px;padding:8px 10px;">
+          <code style="font-size:9.5px;color:#7dd3fc;line-height:1.7;display:block;">&lt;script<br/>&nbsp;&nbsp;src="https://embed.engine.tech/v1/embed.js"<br/>&nbsp;&nbsp;data-token="<span style="color:#fbbf24;">{embedSnippet}</span>"<br/>&nbsp;&nbsp;data-vertical="<span style="color:#86efac;">{vertical}</span>"<br/>&gt;&lt;/script&gt;</code>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:5px;font-style:italic;">No server call needed. Works anywhere JavaScript runs.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">⚡ Widget auto-mounts</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">Engine reads the token + vertical from the script tag, resolves the SSA, and renders the marketplace widget inline at the script's location.</div>
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:5px 8px;font-size:10px;color:#166534;">Cookie check: returning consumer data pre-filled automatically.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Sees an inline marketplace</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">The Engine widget appears directly on the partner's page — consumer never navigates away. Looks and feels like part of the partner's site.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer starts filling out the form ↓</div>
+
+    <!-- Vertical-specific form fields -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Step 2 — Vertical-Specific Form Fields</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+
+        <!-- Personal Loans -->
+        <div style="background:#fff;border:1.5px solid #3b82f6;border-radius:8px;overflow:hidden;">
+          <div style="background:#dbeafe;padding:5px 8px;font-size:10px;font-weight:700;color:#1e40af;text-align:center;">💰 Personal Loans</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Loan amount &amp; purpose</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Employment &amp; income</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Housing costs</div>
+          </div>
+        </div>
+
+        <!-- Credit Cards -->
+        <div style="background:#fff;border:1.5px solid #8b5cf6;border-radius:8px;overflow:hidden;">
+          <div style="background:#ede9fe;padding:5px 8px;font-size:10px;font-weight:700;color:#6d28d9;text-align:center;">💳 Credit Cards</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Annual income</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Housing costs</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Card preference</div>
+          </div>
+        </div>
+
+        <!-- Banking / Deposits -->
+        <div style="background:#fff;border:1.5px solid #0891b2;border-radius:8px;overflow:hidden;">
+          <div style="background:#e0f2fe;padding:5px 8px;font-size:10px;font-weight:700;color:#0369a1;text-align:center;">🏦 Banking &amp; Deposits</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Account type pref.</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Initial deposit amt.</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Employment</div>
+          </div>
+        </div>
+
+        <!-- Auto Insurance -->
+        <div style="background:#fff;border:1.5px solid #f59e0b;border-radius:8px;overflow:hidden;">
+          <div style="background:#fef3c7;padding:5px 8px;font-size:10px;font-weight:700;color:#92400e;text-align:center;">🚗 Auto Insurance</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Vehicle yr/make/model</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Coverage type</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Driving history</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Current insurer</div>
+          </div>
+        </div>
+
+        <!-- New Marketplaces -->
+        <div style="background:#fff;border:1.5px dashed #9ca3af;border-radius:8px;overflow:hidden;">
+          <div style="background:#f9fafb;padding:5px 8px;font-size:10px;font-weight:700;color:#6b7280;text-align:center;">✨ New Marketplaces</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;min-height:80px;">
+            <div style="font-size:9.5px;color:#9ca3af;text-align:center;font-style:italic;">Fields defined per vertical during integration setup</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer submits ↓</div>
+
+    <!-- Engine decisioning -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:8px;">Step 3 — Engine Decisioning (identical across all verticals)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🍪 Cookie check</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🚨 Fraud check</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">⚡ Spark (if enabled)</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🏦 Partner API calls</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">📊 Rec Score sort</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Rate table assembled ↓</div>
+
+    <!-- Offer cards by vertical -->
+    <div style="background:#fff;border:1.5px solid #a78bfa;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Step 4 — Offer Card Format (inline on partner site, by vertical)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+
+        <!-- PL offer card -->
+        <div style="border:1.5px solid #3b82f6;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#1e40af;margin-bottom:6px;">💰 Personal Loans</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">APR</div><div style="font-size:12px;font-weight:800;color:#111;">9.49%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Amount</div><div style="font-size:12px;font-weight:800;color:#111;">$10K</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly</div><div style="font-size:12px;font-weight:800;color:#111;">$208</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Term</div><div style="font-size:12px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#3b82f6;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Apply Now →</div>
+        </div>
+
+        <!-- CC offer card -->
+        <div style="border:1.5px solid #8b5cf6;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#6d28d9;margin-bottom:6px;">💳 Credit Cards</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Reg. APR</div><div style="font-size:12px;font-weight:800;color:#111;">19.99%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Annual Fee</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Rewards</div><div style="font-size:12px;font-weight:800;color:#111;">2% CB</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Bonus</div><div style="font-size:12px;font-weight:800;color:#111;">$200</div></div>
+          </div>
+          <div style="background:#8b5cf6;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Apply Now →</div>
+        </div>
+
+        <!-- Banking offer card -->
+        <div style="border:1.5px solid #0891b2;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#0369a1;margin-bottom:6px;">🏦 Banking</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">APY</div><div style="font-size:12px;font-weight:800;color:#111;">4.50%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Min Balance</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly Fee</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Type</div><div style="font-size:12px;font-weight:800;color:#111;">HYSA</div></div>
+          </div>
+          <div style="background:#0891b2;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Open Account →</div>
+        </div>
+
+        <!-- Auto Insurance offer card -->
+        <div style="border:1.5px solid #f59e0b;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:6px;">🚗 Auto Insurance</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly</div><div style="font-size:12px;font-weight:800;color:#111;">$87</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Coverage</div><div style="font-size:12px;font-weight:800;color:#111;">Full</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Deductible</div><div style="font-size:12px;font-weight:800;color:#111;">$500</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Rating</div><div style="font-size:12px;font-weight:800;color:#111;">A+</div></div>
+          </div>
+          <div style="background:#f59e0b;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Get Quote →</div>
+        </div>
+
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
+
+    <!-- Apply Now + Revenue -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:5px;">🔗 Apply Now — Consumer stays on partner site</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Clicking Apply Now or Get Quote redirects the consumer to the partner/lender's own application. The Engine widget closes or collapses. Consumer completes the application off-platform.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:8px;">💰 Revenue Events</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="font-size:11px;color:#374151;"><span style="font-weight:600;">CPC</span> — click recorded in offer_clicks at click time</div>
+          <div style="font-size:11px;color:#374151;"><span style="font-weight:600;">CPA / RevShare</span> — EDE event → LFLI → revenue entry</div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:5px 8px;font-size:10px;color:#166534;margin-top:2px;">Revenue model is the same regardless of vertical.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why embed -->
+    <div style="background:#faf5ff;border:1.5px solid #d8b4fe;border-radius:10px;padding:12px;">
+      <div style="font-size:11px;font-weight:700;color:#7e22ce;margin-bottom:5px;">Why partners choose Embed over Partner Page</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="font-size:11px;color:#374151;line-height:1.6;">Consumer never leaves the partner's site — higher engagement and lower drop-off vs. redirect. The marketplace feels native to the partner's product. Works especially well in logged-in dashboards, account pages, and cross-sell placements.</div>
+        <div style="font-size:11px;color:#374151;line-height:1.6;">Trade-off vs. Partner Page: requires adding a <code style="font-size:10px;background:#ede9fe;color:#6d28d9;padding:1px 4px;border-radius:3px;">&lt;script&gt;</code> tag to the page (minor eng lift). Otherwise identical integration — same token, same decisioning, same revenue model.</div>
+      </div>
+    </div>
+
+    </div><!-- /diag-24 -->
+
+    <div id="diag-25" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🔗</span>
+      <div>
+        <div class="diag-title">Partner Pages — All Verticals</div>
+        <div class="diag-subtitle">Personal Loans · Credit Cards · Banking &amp; Deposits · Auto Insurance · New Marketplaces — one redirect flow, Engine hosts everything, consumer leaves partner site.</div>
+      </div>
+    </div>
+
+    <!-- Three-column header -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;margin-top:4px;">
+      <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;">Partner (Frontend)</div>
+      <div style="background:#d1fae5;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.07em;">Engine</div>
+      <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;">Consumer (Sees This)</div>
+    </div>
+
+    <!-- Step 1: Partner adds link -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Add a link or CTA</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:8px;">Place the <code style="font-size:10px;background:#f1f5f9;padding:1px 4px;border-radius:3px;">partnerPageUrl</code> anywhere — button, banner, email, SMS, in-app. <strong>No code changes</strong> — just a URL. No script tag, no SDK, no server call.</div>
+        <div style="background:#1e293b;border-radius:6px;padding:8px 10px;">
+          <code style="font-size:9.5px;color:#7dd3fc;line-height:1.7;display:block;">https://offers.engine.tech/<br/>&nbsp;&nbsp;?token=<span style="color:#fbbf24;">{partnerPageUrl}</span><br/>&nbsp;&nbsp;&amp;vertical=<span style="color:#86efac;">{vertical}</span></code>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:5px;font-style:italic;">Vertical is encoded in the URL — no configuration needed per placement.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+        <div style="font-size:11px;color:#6b7280;font-style:italic;">No server call at this step.<br/>Engine waits for consumer to click.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="background:#6366f1;color:#fff;border-radius:8px;padding:10px 14px;text-align:center;font-size:12px;font-weight:700;margin-bottom:8px;">Check My Offers →</div>
+        <div style="font-size:10.5px;color:#6b7280;text-align:center;">Consumer clicks → browser navigates away from partner site to Engine-hosted page.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Browser redirects to Engine-hosted co-branded page ↓</div>
+
+    <!-- Step 2: Engine page loads -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">2</div>
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Partner's work is done</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Nothing further required. Engine now owns the full consumer experience — branding, form, decisioning, and offer display.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">⚡ Serves co-branded page</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:5px;">Engine reads the token + vertical, applies partner branding (logo, colors), and serves the vertical-specific form on an Engine-hosted URL.</div>
+        <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:4px 7px;font-size:10px;color:#166534;">Cookie check: returning consumer data pre-filled automatically.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:5px;">Lands on Engine-hosted page</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Sees a co-branded form at an Engine URL. Looks and feels like part of the partner experience — partner logo prominent, Engine branding subtle.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer fills out the vertical-specific form ↓</div>
+
+    <!-- Vertical-specific form fields -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Step 3 — Vertical-Specific Form Fields</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+
+        <div style="background:#fff;border:1.5px solid #3b82f6;border-radius:8px;overflow:hidden;">
+          <div style="background:#dbeafe;padding:5px 8px;font-size:10px;font-weight:700;color:#1e40af;text-align:center;">💰 Personal Loans</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Loan amount &amp; purpose</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Employment &amp; income</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Housing costs</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #8b5cf6;border-radius:8px;overflow:hidden;">
+          <div style="background:#ede9fe;padding:5px 8px;font-size:10px;font-weight:700;color:#6d28d9;text-align:center;">💳 Credit Cards</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Annual income</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Housing costs</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Card preference</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #0891b2;border-radius:8px;overflow:hidden;">
+          <div style="background:#e0f2fe;padding:5px 8px;font-size:10px;font-weight:700;color:#0369a1;text-align:center;">🏦 Banking &amp; Deposits</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">SSN</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Account type pref.</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Initial deposit amt.</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Employment</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px solid #f59e0b;border-radius:8px;overflow:hidden;">
+          <div style="background:#fef3c7;padding:5px 8px;font-size:10px;font-weight:700;color:#92400e;text-align:center;">🚗 Auto Insurance</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;">
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Name, DOB, address</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Vehicle yr/make/model</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Coverage type</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;border-bottom:1px solid #f1f5f9;">Driving history</div>
+            <div style="font-size:9.5px;color:#374151;padding:2px 0;">Current insurer</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1.5px dashed #9ca3af;border-radius:8px;overflow:hidden;">
+          <div style="background:#f9fafb;padding:5px 8px;font-size:10px;font-weight:700;color:#6b7280;text-align:center;">✨ New Marketplaces</div>
+          <div style="padding:7px 8px;display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;min-height:80px;">
+            <div style="font-size:9.5px;color:#9ca3af;text-align:center;font-style:italic;">Fields defined per vertical during integration setup</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer submits ↓</div>
+
+    <!-- Engine decisioning -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:8px;">Step 4 — Engine Decisioning (identical across all verticals)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🍪 Cookie check</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🚨 Fraud check</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">⚡ Spark (if enabled)</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">🏦 Partner API calls</div>
+        <div style="color:#9ca3af;font-size:16px;align-self:center;">→</div>
+        <div style="background:#fff;border:1px solid #e2e8f0;border-radius:7px;padding:6px 11px;font-size:11px;color:#374151;text-align:center;">📊 Rec Score sort</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Rate table assembled ↓</div>
+
+    <!-- Offer cards -->
+    <div style="background:#fff;border:1.5px solid #a78bfa;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Step 5 — Offer Wall (Engine-hosted, co-branded, by vertical)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+
+        <div style="border:1.5px solid #3b82f6;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#1e40af;margin-bottom:6px;">💰 Personal Loans</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">APR</div><div style="font-size:12px;font-weight:800;color:#111;">9.49%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Amount</div><div style="font-size:12px;font-weight:800;color:#111;">$10K</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly</div><div style="font-size:12px;font-weight:800;color:#111;">$208</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Term</div><div style="font-size:12px;font-weight:800;color:#111;">60 mo</div></div>
+          </div>
+          <div style="background:#3b82f6;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Apply Now →</div>
+        </div>
+
+        <div style="border:1.5px solid #8b5cf6;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#6d28d9;margin-bottom:6px;">💳 Credit Cards</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Reg. APR</div><div style="font-size:12px;font-weight:800;color:#111;">19.99%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Annual Fee</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Rewards</div><div style="font-size:12px;font-weight:800;color:#111;">2% CB</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Bonus</div><div style="font-size:12px;font-weight:800;color:#111;">$200</div></div>
+          </div>
+          <div style="background:#8b5cf6;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Apply Now →</div>
+        </div>
+
+        <div style="border:1.5px solid #0891b2;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#0369a1;margin-bottom:6px;">🏦 Banking</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">APY</div><div style="font-size:12px;font-weight:800;color:#111;">4.50%</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Min Balance</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly Fee</div><div style="font-size:12px;font-weight:800;color:#111;">$0</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Type</div><div style="font-size:12px;font-weight:800;color:#111;">HYSA</div></div>
+          </div>
+          <div style="background:#0891b2;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Open Account →</div>
+        </div>
+
+        <div style="border:1.5px solid #f59e0b;border-radius:8px;padding:9px;text-align:center;">
+          <div style="font-size:10px;font-weight:700;color:#92400e;margin-bottom:6px;">🚗 Auto Insurance</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:6px;">
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Monthly</div><div style="font-size:12px;font-weight:800;color:#111;">$87</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Coverage</div><div style="font-size:12px;font-weight:800;color:#111;">Full</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Deductible</div><div style="font-size:12px;font-weight:800;color:#111;">$500</div></div>
+            <div><div style="font-size:8.5px;color:#9ca3af;font-weight:600;">Rating</div><div style="font-size:12px;font-weight:800;color:#111;">A+</div></div>
+          </div>
+          <div style="background:#f59e0b;color:#fff;border-radius:5px;padding:5px;font-size:10px;font-weight:700;">Get Quote →</div>
+        </div>
+
+      </div>
+    </div>
+    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
+
+    <!-- Apply Now + Revenue -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:5px;">🔗 Apply Now → Lender site</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Consumer clicks Apply Now and is redirected to the selected partner's own application. Engine's role ends at the click. Consumer completes their full application off-platform.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:8px;">💰 Revenue Events</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="font-size:11px;color:#374151;"><span style="font-weight:600;">CPC</span> — click recorded in offer_clicks at click time</div>
+          <div style="font-size:11px;color:#374151;"><span style="font-weight:600;">CPA / RevShare</span> — EDE event → LFLI → revenue entry</div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:5px;padding:5px 8px;font-size:10px;color:#166534;margin-top:2px;">Revenue model identical across all verticals.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- vs Embed callout -->
+    <div style="background:#eff6ff;border:1.5px solid #93c5fd;border-radius:10px;padding:12px;">
+      <div style="font-size:11px;font-weight:700;color:#1e40af;margin-bottom:6px;">Partner Page vs. Embed — choosing the right one</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#1e40af;margin-bottom:3px;">✅ Choose Partner Page when…</div>
+          <div style="font-size:11px;color:#374151;line-height:1.6;">Zero engineering lift needed. Works as a link in emails, push notifications, SMS, CTA buttons. Best for decline redirects, co-marketing placements, and partners without frontend dev resources.</div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#7e22ce;margin-bottom:3px;">✅ Choose Embed when…</div>
+          <div style="font-size:11px;color:#374151;line-height:1.6;">Keeping the consumer on your site matters. Requires a <code style="font-size:10px;background:#ede9fe;color:#6d28d9;padding:1px 4px;border-radius:3px;">&lt;script&gt;</code> tag but delivers a seamless in-page experience. Best for logged-in dashboards and cross-sell placements.</div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /diag-25 -->
+
   </div>
 </div>
 
@@ -2372,6 +2796,9 @@ const TERMS = [
   { cat:"Process", sub:"Integration Mechanics", term:"CF CRA", full:"Cashflow Credit Reporting Agency", def:"A third-party agency that receives and structures cashflow data for use in lender underwriting decisions. In the Spark/BVE context, Engine can pass BVE attributes to CF CRAs such as Nova or Prism, which format the data for lender consumption as an alternative to standard credit bureau data." },
   { cat:"Process", sub:"Integration Mechanics", term:"Relay Token", def:"A token that passes MoneyLion's pre-verified BVE data to a partner's checkout flow, eliminating the need for the consumer to re-link their bank account. Reduces friction in partner onboarding flows by reusing already-verified data without requiring a second consent or bank-linking step." },
   { cat:"Process", sub:"Commercial & Legal", term:"Clawback", def:"A contractual provision allowing a demand partner to reclaim previously paid revenue if a loan defaults, is fraudulent, or if the partner's underwriting findings differ materially from pre-verified data (e.g. Spark/BVE attributes). Clawback exposure is a key risk when Engine's first-party data is used directly in lender decisioning." },
+  { cat:"Process", sub:"Pricing & Economics", term:"CP$1K", full:"Cost per $1,000 Funded", def:"A demand-side pricing metric expressing how much a lender pays Engine per $1,000 of loan principal funded. Useful for normalizing payout comparisons across loan amounts — e.g. a $300 CPA on a $5,000 loan = $60 CP$1K. Helps Engine and lenders benchmark efficiency across different loan sizes and verticals. Note: this definition is inferred — verify the exact usage with your team." },
+  { cat:"Process", sub:"Pricing & Economics", term:"Yield Management", def:"The practice of optimizing revenue across the Engine marketplace by tuning offer ordering, pricing controls, and partner mix. Involves adjusting EESO, Price Ceilings/Floors, DAF, and demand sub-account configuration to maximize total earned revenue per lead while maintaining consumer experience quality. In practice: balancing lender bid competitiveness, fill rate, and Engine margin simultaneously." },
+  { cat:"Process", sub:"Integration Mechanics", term:"Affiliate Link", def:"A demand-side offer type where a demand partner provides a static redirect URL (rather than a real-time API integration) to be placed on supply partner properties. Instead of Engine calling a lender's underwriting API, the consumer clicks directly through to the demand partner's own landing page. Tracking and attribution flow back via URL parameters (typically subid3) through affiliate networks like Impact Radius. Engine maintains one demand sub-account per partner per product sub-type for all affiliate links, and one supply sub-account per placement type — keeping Looker reporting clean. Common for partners with simpler integrations or specific compliance requirements." },
   { cat:"Process", sub:"Pricing & Economics", term:"BVE-Enriched Lead Tier", def:"A premium lead tier available through the Spark product where the consumer's income and employment have been verified via MoneyLion's BVE data. Commands a higher CPL than standard leads due to the improved match quality and higher click-to-funded conversion rates for demand partners." },
   { cat:"Products", sub:"Internal Tools & Platforms", term:"CNF", full:"Core Network Frontend", def:"Core products are migrating to CNF to improve performance, scalability, and efficiency. Note: CNF also stands for Channel & Network Filters in the integration context — see Integration Mechanics." },
   { cat:"Products", sub:"Internal Tools & Platforms", term:"CD", full:"Compliance Dashboard", def:"Dashboard for tracking governance, risk, and compliance items." },
@@ -2406,7 +2833,7 @@ const TERMS = [
 
   // ─── PROCESS ───────────────────────────────────────────────────────────
   { cat:"Process", sub:"Consumer Funnel", term:"Funnel Flow", def:"The end-to-end consumer journey from first entering the loan flow through monetization. Comprises 5 business processes: Lead Generation → Offer Decisioning → Offer Clicks → Funding/EDE → Financial Reconciliation." },
-  { cat:"Process", sub:"Reporting & Data Tools", term:"DRL", full:"Demand Reporting Lambda", def:"A serverless function (AWS Lambda) that processes and aggregates demand-side events — clicks, conversions, revenue — for reporting purposes. Sits between raw event data and the reporting layer, transforming and routing demand partner performance data into Looker and other downstream reporting surfaces." },
+  { cat:"Process", sub:"Reporting & Data Tools", term:"DRL", full:"Demand Reporting Lambda", def:"An AWS Lambda service (repo: EVENFinancial/demand-reporting-lambda) that ingests demand partner reporting files via SFTP. Authenticates with partner SFTP servers using a private RSA key, pulls conversion and revenue reporting files partners push, and imports them into Engine's internal systems (DDIF — Demand Data Import Files). The inbound file pipeline for partner-reported conversion data, as opposed to EDE which captures real-time click events. GBR is an exception — they push directly to S3 via IAM role rather than SFTP." },
   { cat:"Process", sub:"Integration Mechanics", term:"SSA", full:"Supply Sub-Account", def:"The account unit on the supply side of Engine. Each supply partner can have multiple SSAs — one per integration, vertical, or channel. The SSA is what gets an API token, configures allowed product types, and is the entity that a Lead UUID is permanently tied to at creation. Configured in Control Center." },
   { cat:"Process", sub:"Integration Mechanics", term:"DSA", full:"Demand Sub-Account", def:"The account unit on the demand side of Engine. A single demand partner (e.g. Upstart) can have multiple DSAs — one per product, state, supply channel, or pricing tier. All per-lender configuration lives at the DSA level: knockout filters, volume/budget caps, cache strategy, Spark enablement, and the global killswitch. The 9-gate lead decisioning flow runs once per DSA for every incoming lead." },
   { cat:"Process", sub:"Consumer Funnel", term:"Lead", def:"The system representation of a consumer who has entered Engine's marketplace via a supply integration (embed, partner page, API/SDK, or affiliate link). Created at entry; tied permanently to the originating supply subaccount. Not a person-level identifier." },
@@ -2684,6 +3111,8 @@ const DIAGRAM_INDEX = [
   { id:'diag-20', keywords:['icp','supply','demand','fintech lender','marketplace aggregator','neobank','publisher','performance marketer','ping tree','comparison chart','offer wall','emailer','financial institution','partner type','use case','declines','cross sell','sofi','upstart','bestegg','nerdwallet','credible','chime','brigit','moneylion','citi','truist','forbes','cnbc','lendingclub','refijet','caribou','lendingtree','who we sell to','supply icp','demand icp'] },
   { id:'diag-21', keywords:['prefill','prefilltoken','second party prefill','server-to-server','pii','partner page','embed','linkout','embedsnippet','partnerPageUrl','form prefill','review screen','fcra','tcpa','consent','apply now','offer wall api','missing fields','standard form','graceful fallback','co-branded','integration','ux','user experience','lender redirect'] },
   { id:'diag-22', keywords:['offer wall','partner page','linkout','embed','iframe','embedsnippet','script tag','redirect','co-branded','cta','loan form','rate table','apply now','rec score','supply integration','cpc','revshare','ede','2lm fallback','partnerPageUrl','embedSnippet','cookie check','returning consumer','inline widget','display option'] },
+  { id:'diag-24', keywords:['embed','iframe','script tag','marketplace','personal loans','credit cards','banking','deposits','auto insurance','new marketplace','vertical','form fields','offer card','inline','widget','embedsnippet','apy','apr','annual fee','rewards','coverage','monthly premium','supply integration','cross sell','logged in','dashboard'] },
+  { id:'diag-25', keywords:['partner page','partner pages','redirect','linkout','marketplace','personal loans','credit cards','banking','deposits','auto insurance','new marketplace','vertical','form fields','offer card','hosted','engine hosted','co-branded','partnerPageUrl','cta','link','no code','no script','supply integration','email','sms','decline redirect'] },
   { id:'diag-23', keywords:['lead lifecycle','decisioning','offer decisioning','gate','lead api','supply demand pairing','hydration','lead validator','lead importer','fraud','lead quality','cdp','caps','killswitch','enabledDemandSubAccounts','knockout','ko filter','ruleDemandApiFilters','offer cache','decision cache','cache hit','cache miss','spark','partner bidding','rate table','rec score','1lm','2lm','stateExclusions','supplyDemandInclusion','productTypes','observability'] },
 ];
 
@@ -2722,7 +3151,7 @@ function renderMain() {
   if (activeCategory === 'Supply Workflows') {
     main.innerHTML = ''; hideAll();
     diagSupply.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '2 workflows';
+    document.getElementById('resultCount').textContent = '4 workflows';
     return;
   }
   if (activeCategory === 'Demand Workflows') {
