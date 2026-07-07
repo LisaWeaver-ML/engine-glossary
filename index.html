@@ -308,6 +308,168 @@
 <div id="diagrams-business" class="hidden">
   <div class="diag-grid">
 
+    <div id="diag-27" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🗺️</span>
+      <div>
+        <div class="diag-title">Engine Marketplace: Platform Landscape</div>
+        <div class="diag-subtitle">Who we are, what we sell, and how it works. The full picture of Engine's two-sided financial marketplace</div>
+      </div>
+    </div>
+    <style>
+      .lnd-kicker{font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px}
+      .lnd-headline{font-size:20px;font-weight:900;color:#1e3a5f;line-height:1.2;margin-bottom:6px}
+      .lnd-headline span{color:#00b5a3}
+      .lnd-sub{font-size:12px;color:#6b7280;max-width:560px;line-height:1.5;margin-bottom:14px}
+      .lnd-journey{background:#fff;border-radius:8px;padding:11px 16px;border:1.5px solid #e2e8f0;display:flex;align-items:center;margin-bottom:10px}
+      .lnd-jstep{flex:1;text-align:center;padding:0 6px}
+      .lnd-jicon{font-size:20px;margin-bottom:3px}
+      .lnd-jlabel{font-size:10px;font-weight:700;color:#374151}
+      .lnd-jsub{font-size:9px;color:#9ca3af;margin-top:1px}
+      .lnd-jarrow{font-size:18px;color:#cbd5e1;flex-shrink:0;padding:0 3px}
+      .lnd-jarrow.g{color:#00b5a3}
+      .lnd-zones{display:grid;grid-template-columns:1fr 28px 1.5fr 28px 1fr;gap:0;margin-bottom:10px;align-items:stretch}
+      .lnd-supply{background:#fff;border-radius:12px 0 0 12px;border:1.5px solid #bfdbfe;border-right:none;padding:16px 14px;display:flex;flex-direction:column;gap:12px}
+      .lnd-demand{background:#fff;border-radius:0 12px 12px 0;border:1.5px solid #fed7aa;border-left:none;padding:16px 14px;display:flex;flex-direction:column;gap:12px}
+      .lnd-engine{background:#1e3a5f;padding:16px 14px;display:flex;flex-direction:column;gap:10px}
+      .lnd-zlabel{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1px}
+      .lnd-supply .lnd-zlabel{color:#2563eb}
+      .lnd-demand .lnd-zlabel{color:#b45309}
+      .lnd-ztitle{font-size:13px;font-weight:900;color:#111;margin-bottom:3px}
+      .lnd-zdesc{font-size:10px;color:#6b7280;line-height:1.5}
+      .lnd-shead{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#9ca3af;margin-bottom:5px;border-bottom:1px solid #f1f5f9;padding-bottom:3px}
+      .lnd-wholist{display:flex;flex-direction:column;gap:5px}
+      .lnd-whoitem{display:flex;align-items:flex-start;gap:7px}
+      .lnd-sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px;background:#3b82f6}
+      .lnd-demand .lnd-sdot{background:#f59e0b}
+      .lnd-whoname{font-size:10px;font-weight:600;color:#374151}
+      .lnd-whoeg{font-size:9px;color:#9ca3af}
+      .lnd-howlist{display:flex;flex-direction:column;gap:4px}
+      .lnd-howitem{font-size:10px;color:#374151;display:flex;align-items:center;gap:5px}
+      .lnd-pace{font-size:8.5px;padding:1px 6px;border-radius:20px;font-weight:600;flex-shrink:0}
+      .lnd-spuce{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+      .lnd-arr{display:flex;align-items:center;justify-content:center;background:#f8fafc;border-top:1.5px solid #e2e8f0;border-bottom:1.5px solid #e2e8f0;font-size:16px}
+      .lnd-ebadge{background:#00d9c0;color:#000;font-size:11px;font-weight:900;padding:4px 10px;border-radius:6px;display:inline-block;margin-right:6px}
+      .lnd-eby{font-size:9px;color:#9ca3af}
+      .lnd-epitch{font-size:10px;color:#cccccc;line-height:1.5;margin-top:4px}
+      .lnd-epitch strong{color:#fff}
+      .lnd-ehow{background:rgba(0,217,192,.1);border:1px solid rgba(0,217,192,.25);border-radius:6px;padding:8px 10px}
+      .lnd-ehlabel{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#00d9c0;margin-bottom:4px}
+      .lnd-ehstep{font-size:9.5px;color:rgba(255,255,255,.8);display:flex;gap:5px;line-height:1.4;margin-bottom:3px}
+      .lnd-stepn{color:#00d9c0;font-weight:700;flex-shrink:0}
+      .lnd-vlabel{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#6b7280;margin-bottom:5px}
+      .lnd-vgrid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+      .lnd-vchip{border-radius:6px;padding:6px 8px;display:flex;align-items:center;gap:6px}
+      .lnd-vicon{font-size:12px}
+      .lnd-vname{font-size:9.5px;font-weight:700;color:#fff}
+      .lnd-spark-block{margin-top:7px}
+      .lnd-spark-hdr{display:flex;align-items:center;gap:5px;margin-bottom:4px}
+      .lnd-spark-lbl{font-size:10px;font-weight:700;color:#374151}
+      .lnd-spark-modes{margin-left:14px;border-left:2px solid #ddd6fe;padding-left:8px;display:flex;flex-direction:column;gap:4px}
+      .lnd-smode{font-size:9.5px;color:#6d28d9;font-weight:500}
+      .lnd-smoded{font-size:9px;color:#9ca3af}
+      .lnd-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+      .lnd-bbox{background:#fff;border-radius:8px;padding:10px 12px;border:1.5px solid #e2e8f0}
+      .lnd-blabel{font-size:8.5px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#9ca3af;margin-bottom:5px}
+      .lnd-bitem{font-size:10px;color:#374151;margin-bottom:3px}
+      .lnd-bitem::before{content:'✓ ';font-weight:700;color:#10b981}
+      .lnd-revitem{font-size:10px;color:#374151;display:flex;justify-content:space-between;margin-bottom:3px}
+      .lnd-rtag{font-size:9px;font-weight:700}
+      .lnd-rblue{color:#1d4ed8}
+      .lnd-rgreen{color:#059669}
+    </style>
+
+
+
+    <div class="lnd-journey">
+      <div class="lnd-jstep"><div class="lnd-jicon">🙋</div><div class="lnd-jlabel">Consumer has a need</div><div class="lnd-jsub">Loan, card, savings, insurance…</div></div>
+      <div class="lnd-jarrow">→</div>
+      <div class="lnd-jstep"><div class="lnd-jicon">🏢</div><div class="lnd-jlabel">Supply partner surfaces them</div><div class="lnd-jsub">On their site, app, or content</div></div>
+      <div class="lnd-jarrow g">→</div>
+      <div class="lnd-jstep"><div class="lnd-jicon">⚡</div><div class="lnd-jlabel">Engine matches in real time</div><div class="lnd-jsub">Rec Score finds the best fit</div></div>
+      <div class="lnd-jarrow g">→</div>
+      <div class="lnd-jstep"><div class="lnd-jicon">🏦</div><div class="lnd-jlabel">Demand partner wins the offer</div><div class="lnd-jsub">Lender, issuer, or provider</div></div>
+      <div class="lnd-jarrow">→</div>
+      <div class="lnd-jstep"><div class="lnd-jicon">🎉</div><div class="lnd-jlabel">Consumer gets their product</div><div class="lnd-jsub">Loan, card, account or policy</div></div>
+    </div>
+
+    <div class="lnd-zones">
+      <div class="lnd-supply">
+        <div><div class="lnd-zlabel">Supply Partners</div><div class="lnd-ztitle">They bring the consumers</div><div class="lnd-zdesc">Partners who already have financial consumers and want to connect them with the right product.</div></div>
+        <div><div class="lnd-shead">Who they are</div><div class="lnd-wholist">
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Fintech Lenders &amp; Neobanks</div><div class="lnd-whoeg">SoFi, Chime, Self, Brigit</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Publishers &amp; Media</div><div class="lnd-whoeg">Forbes, CNBC, US News</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Performance Marketers</div><div class="lnd-whoeg">Ping tree, comparison, emailers</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Financial Institutions</div><div class="lnd-whoeg">Banks, credit unions</div></div></div>
+        </div></div>
+        <div><div class="lnd-shead">How they connect</div><div class="lnd-howlist">
+          <div class="lnd-howitem"><span class="lnd-pace lnd-spuce">Simplest</span> Partner Page</div>
+          <div class="lnd-howitem"><span class="lnd-pace lnd-spuce">Easy</span> Embed / iFrame</div>
+          <div class="lnd-howitem"><span class="lnd-pace lnd-spuce">Mobile</span> iOS / Android SDK</div>
+          <div class="lnd-howitem"><span class="lnd-pace lnd-spuce">Full control</span> Native API</div>
+        </div></div>
+      </div>
+
+      <div class="lnd-arr" style="border-left:1.5px solid #bfdbfe;color:#10b981;">▶</div>
+
+      <div class="lnd-engine">
+        <div><span class="lnd-ebadge">⚡ Engine</span><span class="lnd-eby">by MoneyLion</span><div class="lnd-epitch">The <strong>matching layer</strong> between consumers and financial products, running real-time decisioning across our full demand network.</div></div>
+        <div class="lnd-ehow">
+          <div class="lnd-ehlabel">What Engine does</div>
+          <div class="lnd-ehstep"><span class="lnd-stepn">1.</span> Collects the consumer's financial profile</div>
+          <div class="lnd-ehstep"><span class="lnd-stepn">2.</span> Runs decisioning: fraud, KO filters, caps</div>
+          <div class="lnd-ehstep"><span class="lnd-stepn">3.</span> Calls demand partners' APIs in real time</div>
+          <div class="lnd-ehstep"><span class="lnd-stepn">4.</span> Ranks offers by Rec Score (best fit first)</div>
+          <div class="lnd-ehstep"><span class="lnd-stepn">5.</span> Surfaces the rate table to the consumer</div>
+        </div>
+        <div>
+          <div class="lnd-vlabel">Across 6 verticals</div>
+          <div class="lnd-vgrid">
+            <div class="lnd-vchip" style="background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3)"><span class="lnd-vicon">💰</span><span class="lnd-vname">Personal Loans</span></div>
+            <div class="lnd-vchip" style="background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.3)"><span class="lnd-vicon">💳</span><span class="lnd-vname">Credit Cards</span></div>
+            <div class="lnd-vchip" style="background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3)"><span class="lnd-vicon">🏦</span><span class="lnd-vname">Banking &amp; Deposits</span></div>
+            <div class="lnd-vchip" style="background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3)"><span class="lnd-vicon">🚗</span><span class="lnd-vname">Auto Insurance</span></div>
+            <div class="lnd-vchip" style="background:rgba(244,63,94,.15);border:1px solid rgba(244,63,94,.3)"><span class="lnd-vicon">🔄</span><span class="lnd-vname">Debt Relief</span></div>
+            <div class="lnd-vchip" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)"><span class="lnd-vicon">✨</span><span class="lnd-vname">New &amp; Emerging</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lnd-arr" style="border-right:1.5px solid #fed7aa;color:#f59e0b;">◀</div>
+
+      <div class="lnd-demand">
+        <div><div class="lnd-zlabel">Demand Partners</div><div class="lnd-ztitle">They provide the products</div><div class="lnd-zdesc">Financial institutions and providers who want to reach pre-qualified consumers at scale.</div></div>
+        <div><div class="lnd-shead">Who they are</div><div class="lnd-wholist">
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Banks &amp; Credit Unions</div><div class="lnd-whoeg">Citi, Truist, PenFed</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Fintech Lenders</div><div class="lnd-whoeg">Upstart, Avant, LendingPoint</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Card Issuers &amp; Insurers</div><div class="lnd-whoeg">Credit One, carriers via Spark</div></div></div>
+          <div class="lnd-whoitem"><span class="lnd-sdot"></span><div><div class="lnd-whoname">Debt Relief Providers</div><div class="lnd-whoeg">Americor, JG Wentworth</div></div></div>
+        </div></div>
+        <div><div class="lnd-shead">How they connect</div>
+          <div class="lnd-howlist"><div class="lnd-howitem"><span class="lnd-pace" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;">Standard</span> Native API</div></div>
+          <div class="lnd-spark-block">
+            <div class="lnd-spark-hdr"><span class="lnd-pace" style="background:#faf5ff;color:#7c3aed;border:1px solid #ddd6fe;">Hosted</span><span class="lnd-spark-lbl">Spark</span></div>
+            <div class="lnd-spark-modes">
+              <div><div class="lnd-smode">Fully Hosted</div><div class="lnd-smoded">Engine hosts the model (no partner API needed)</div></div>
+              <div><div class="lnd-smode">Spark Filtering</div><div class="lnd-smoded">Partner has API; Spark pre-screens leads first</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lnd-bottom">
+      <div class="lnd-bbox"><div class="lnd-blabel">Why supply partners work with Engine</div><div class="lnd-bitem">Monetise declined applicants instead of losing them</div><div class="lnd-bitem">Launch a financial marketplace without building one</div><div class="lnd-bitem">Earn revenue on every consumer who converts</div></div>
+      <div class="lnd-bbox"><div class="lnd-blabel">Revenue model</div>
+        <div class="lnd-revitem"><span><span class="lnd-rtag lnd-rblue">CPC</span>: Cost per click</span><span style="font-size:9px;color:#9ca3af;">paid at click</span></div>
+        <div class="lnd-revitem"><span><span class="lnd-rtag lnd-rgreen">CPA</span>: Cost per acquisition</span><span style="font-size:9px;color:#9ca3af;">paid per funded product</span></div>
+        <div class="lnd-revitem"><span><span class="lnd-rtag lnd-rgreen">RevShare</span>: Revenue share</span><span style="font-size:9px;color:#9ca3af;">% of funded amount</span></div>
+        <div style="margin-top:5px;font-size:9px;color:#9ca3af;font-style:italic;">Both sides benefit every time a consumer finds the right product.</div>
+      </div>
+      <div class="lnd-bbox"><div class="lnd-blabel">Why demand partners work with Engine</div><div class="lnd-bitem">Reach pre-qualified consumers at scale</div><div class="lnd-bitem">Only pay for results, no wasted spend</div><div class="lnd-bitem">Access high-intent traffic unavailable elsewhere</div></div>
+    </div>
+    </div><!-- /diag-27 -->
+
     <div id="diag-1" class="diag-card full-width">
       <div class="diag-header">
         <span class="diag-icon">🔽</span>
@@ -1651,245 +1813,145 @@
       <span class="diag-icon">🔬</span>
       <div>
         <div class="diag-title">Lead Lifecycle &amp; Offer Decisioning</div>
-        <div class="diag-subtitle">8 sequential gates Engine runs per Demand Sub-Account (DSA). Failing any gate drops the lead for that DSA — it may still be eligible for others.</div>
+        <div class="diag-subtitle">9-step flow Engine runs per Demand Sub-Account (DSA), grouped by phase. Failing any check drops the lead for that DSA; it may still be eligible for others.</div>
       </div>
     </div>
 
-    <style>
-      .d23-flow { max-width: 680px; margin: 12px auto 0; }
-      .d23-node { background: #1e3a5f; color: #fff; border-radius: 10px; padding: 11px 18px; text-align: center; }
-      .d23-node .d23-label { font-size: 13px; font-weight: 700; }
-      .d23-node .d23-sub { font-size: 11px; opacity: 0.75; margin-top: 3px; }
-      .d23-conn { display: flex; flex-direction: column; align-items: center; padding: 3px 0; }
-      .d23-conn-line { width: 2px; height: 18px; background: #cbd5e1; }
-      .d23-conn-label { font-size: 10px; color: #94a3b8; font-style: italic; margin: 1px 0; }
-      .d23-row { display: grid; grid-template-columns: 1fr 140px; gap: 10px; align-items: start; }
-      .d23-gate { background: #fff; border: 1.5px solid #e2e8f0; border-left: 4px solid #3b82f6; border-radius: 8px; overflow: hidden; }
-      .d23-gate.spark { border-left-color: #8b5cf6; }
-      .d23-gate.green { border-left-color: #10b981; }
-      .d23-head { display: flex; align-items: center; gap: 8px; padding: 7px 14px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
-      .d23-gate.spark .d23-head { background: #faf5ff; border-bottom-color: #e9d5ff; }
-      .d23-gate.green .d23-head { background: #f0fdf4; border-bottom-color: #bbf7d0; }
-      .d23-num { color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 20px; background: #3b82f6; flex-shrink: 0; }
-      .d23-gate.spark .d23-num { background: #8b5cf6; }
-      .d23-gate.green .d23-num { background: #10b981; }
-      .d23-name { font-size: 12px; font-weight: 700; color: #1e293b; }
-      .d23-body { padding: 9px 14px; display: flex; flex-direction: column; gap: 6px; }
-      .d23-desc { font-size: 11px; color: #374151; line-height: 1.5; }
-      .d23-pills { display: flex; flex-wrap: wrap; gap: 4px; }
-      .d23-pill { font-size: 10px; padding: 3px 9px; border-radius: 20px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-      .d23-pill.code { font-family: monospace; background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
-      .d23-pill.spark { background: #f5f3ff; color: #6d28d9; border-color: #ddd6fe; }
-      .d23-pill.green { background: #f0fdf4; color: #065f46; border-color: #bbf7d0; }
-      .d23-note { font-size: 10px; color: #6b7280; font-style: italic; padding: 5px 8px; background: #f8fafc; border-radius: 5px; border-left: 3px solid #e2e8f0; }
-      .d23-split { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-      .d23-split-cell { border-radius: 6px; padding: 7px 9px; font-size: 10px; line-height: 1.5; }
-      .d23-split-cell strong { display: block; margin-bottom: 2px; }
-      .d23-fail { display: flex; flex-direction: column; gap: 3px; padding-top: 8px; }
-      .d23-fail-arrow { font-size: 10px; color: #94a3b8; }
-      .d23-fail-badge { font-size: 10px; font-weight: 600; background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 6px; padding: 5px 9px; line-height: 1.4; }
-      .d23-obs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
-      .d23-obs-chip { font-size: 10px; background: #fff; border: 1px solid #e2e5ea; border-radius: 5px; padding: 3px 8px; color: #374151; }
-    </style>
+    <svg viewBox="0 0 1280 700" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+    <title>Lead Lifecycle and Offer Decisioning</title>
 
-    <div class="d23-flow">
+    <!-- ENTRY NODE: Lead Ingestion (Step 1) -->
+    <rect x="20" y="10" width="1240" height="52" rx="10" fill="#1e3a5f"/>
+    <rect x="38" y="20" width="52" height="17" rx="8" fill="rgba(255,255,255,0.2)"/>
+    <text x="64" y="33" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 1</text>
+    <text x="640" y="31" text-anchor="middle" fill="white" font-size="14" font-weight="700">Lead Ingestion</text>
+    <text x="640" y="50" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="11">Lead API accepts payload · normalizes schema · routes to internal decisioning workflow (runs once per DSA)</text>
+    <line x1="640" y1="62" x2="640" y2="80" stroke="#94a3b8" stroke-width="2"/>
+    <polygon points="635,76 645,76 640,82" fill="#94a3b8"/>
 
-      <div class="d23-node">
-        <div class="d23-label">Lead API — Entry Point</div>
-        <div class="d23-sub">Accepts payload from any integration · normalizes schema · routes to decisioning</div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div><div class="d23-conn-label">runs once per Demand Sub-Account (DSA) ↓</div><div class="d23-conn-line"></div></div>
+    <!-- LANE 1: PRE-PROCESSING -->
+    <rect x="0" y="83" width="1280" height="170" fill="#eff6ff"/>
+    <rect x="0" y="83" width="116" height="170" fill="#bfdbfe"/>
+    <text transform="rotate(-90,58,168)" x="58" y="168" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700" letter-spacing="1.5">PRE-PROCESSING</text>
+    <!-- Step 2 -->
+    <rect x="120" y="98" width="336" height="115" rx="8" fill="white" stroke="#dbeafe" stroke-width="1.5"/>
+    <rect x="120" y="98" width="5" height="115" rx="3" fill="#3b82f6"/>
+    <rect x="132" y="108" width="54" height="17" rx="8" fill="#3b82f6"/>
+    <text x="159" y="121" text-anchor="middle" fill="white" font-size="10" font-weight="800" font-family="'Courier New',monospace">Step 2</text>
+    <text x="194" y="121" fill="#1e293b" font-size="12" font-weight="700">Supply / Demand Pairing</text>
+    <text x="132" y="140" fill="#374151" font-size="10">&#8226; Active supply-demand pairing exists</text>
+    <text x="132" y="155" fill="#374151" font-size="10">&#8226; Product type compatible</text>
+    <text x="132" y="170" fill="#374151" font-size="10">&#8226; State not excluded</text>
+    <text x="132" y="185" fill="#64748b" font-size="9" font-family="'Courier New',monospace">supplyDemandInclusion · stateExclusions</text>
+    <text x="288" y="223" text-anchor="middle" fill="#dc2626" font-size="9" font-style="italic">fail: short-circuit for this DSA</text>
+    <line x1="456" y1="155" x2="474" y2="155" stroke="#94a3b8" stroke-width="1.5"/>
+    <polygon points="470,151 480,155 470,159" fill="#94a3b8"/>
+    <!-- Step 3 -->
+    <rect x="480" y="98" width="340" height="115" rx="8" fill="white" stroke="#dbeafe" stroke-width="1.5"/>
+    <rect x="480" y="98" width="5" height="115" rx="3" fill="#3b82f6"/>
+    <rect x="492" y="108" width="54" height="17" rx="8" fill="#3b82f6"/>
+    <text x="519" y="121" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 3</text>
+    <text x="554" y="121" fill="#1e293b" font-size="12" font-weight="700">Lead Hydration &amp; Validation</text>
+    <text x="492" y="140" fill="#374151" font-size="10">&#8226; Normalize identity fields</text>
+    <text x="492" y="155" fill="#374151" font-size="10">&#8226; Derive product subtypes &amp; IDs</text>
+    <text x="492" y="170" fill="#374151" font-size="10">&#8226; Field-level validation + import check</text>
+    <text x="492" y="185" fill="#64748b" font-size="9" font-family="'Courier New',monospace">LeadValidator · LeadImporter</text>
+    <text x="650" y="223" text-anchor="middle" fill="#dc2626" font-size="9" font-style="italic">fail: rejected, error to caller</text>
+    <line x1="820" y1="155" x2="838" y2="155" stroke="#94a3b8" stroke-width="1.5"/>
+    <polygon points="834,151 844,155 834,159" fill="#94a3b8"/>
+    <!-- Step 4 -->
+    <rect x="844" y="98" width="416" height="115" rx="8" fill="white" stroke="#dbeafe" stroke-width="1.5"/>
+    <rect x="844" y="98" width="5" height="115" rx="3" fill="#3b82f6"/>
+    <rect x="856" y="108" width="54" height="17" rx="8" fill="#3b82f6"/>
+    <text x="883" y="121" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 4</text>
+    <text x="918" y="121" fill="#1e293b" font-size="12" font-weight="700">Fraud &amp; Lead Quality</text>
+    <text x="856" y="140" fill="#374151" font-size="10">&#8226; Identity consistency check</text>
+    <text x="856" y="155" fill="#374151" font-size="10">&#8226; Submission velocity + device signals</text>
+    <text x="856" y="170" fill="#374151" font-size="10">&#8226; Hard fraud rules (immediate disqualify)</text>
+    <text x="856" y="185" fill="#64748b" font-size="9" font-family="'Courier New',monospace">LeadQualityService</text>
+    <text x="856" y="198" fill="#64748b" font-size="9" font-family="'Courier New',monospace">/customer-data-platform-metrics-api/lead-quality-metrics/v1</text>
+    <text x="1052" y="223" text-anchor="middle" fill="#dc2626" font-size="9" font-style="italic">fail: blocked from all bidding</text>
+    <line x1="640" y1="253" x2="640" y2="272" stroke="#94a3b8" stroke-width="2"/>
+    <polygon points="635,268 645,268 640,274" fill="#94a3b8"/>
 
-      <!-- Gate 1 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 1</span><span class="d23-name">Supply / Demand Pairing</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Three quick checks before any heavy processing. All must pass.</div>
-            <div class="d23-pills">
-              <span class="d23-pill">Active pairing exists?</span>
-              <span class="d23-pill">Product type compatible?</span>
-              <span class="d23-pill">State not excluded?</span>
-            </div>
-            <div class="d23-pills">
-              <span class="d23-pill code">supplyDemandInclusion</span>
-              <span class="d23-pill code">productTypes</span>
-              <span class="d23-pill code">stateExclusions cache</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Short-circuit — not evaluated further for this DSA</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+    <!-- LANE 2: ELIGIBILITY -->
+    <rect x="0" y="275" width="1280" height="155" fill="#fffbeb"/>
+    <rect x="0" y="275" width="116" height="155" fill="#fde68a"/>
+    <text transform="rotate(-90,58,352)" x="58" y="352" text-anchor="middle" fill="#92400e" font-size="11" font-weight="700" letter-spacing="1.5">ELIGIBILITY</text>
+    <!-- Step 5 -->
+    <rect x="120" y="290" width="545" height="110" rx="8" fill="white" stroke="#fde68a" stroke-width="1.5"/>
+    <rect x="120" y="290" width="5" height="110" rx="3" fill="#f59e0b"/>
+    <rect x="132" y="300" width="54" height="17" rx="8" fill="#f59e0b"/>
+    <text x="159" y="313" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 5</text>
+    <text x="194" y="313" fill="#1e293b" font-size="12" font-weight="700">DSA Enablement &amp; Caps</text>
+    <text x="132" y="332" fill="#374151" font-size="10">&#8226; DSA globally enabled? (killswitch overrides all)</text>
+    <text x="132" y="347" fill="#374151" font-size="10">&#8226; Volume cap not reached?</text>
+    <text x="132" y="362" fill="#374151" font-size="10">&#8226; Budget cap not reached?</text>
+    <text x="132" y="378" fill="#64748b" font-size="9" font-family="'Courier New',monospace">enabledDemandSubAccounts cache</text>
+    <text x="393" y="414" text-anchor="middle" fill="#dc2626" font-size="9" font-style="italic">fail: excluded for this DSA only</text>
+    <line x1="665" y1="345" x2="683" y2="345" stroke="#94a3b8" stroke-width="1.5"/>
+    <polygon points="679,341 689,345 679,349" fill="#94a3b8"/>
+    <!-- Step 6 -->
+    <rect x="689" y="290" width="566" height="110" rx="8" fill="white" stroke="#fde68a" stroke-width="1.5"/>
+    <rect x="689" y="290" width="5" height="110" rx="3" fill="#f59e0b"/>
+    <rect x="701" y="300" width="54" height="17" rx="8" fill="#f59e0b"/>
+    <text x="728" y="313" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 6</text>
+    <text x="763" y="313" fill="#1e293b" font-size="12" font-weight="700">Knockout (KO) Filters</text>
+    <text x="701" y="332" fill="#374151" font-size="10">&#8226; Loan amount in range? Credit score band?</text>
+    <text x="701" y="347" fill="#374151" font-size="10">&#8226; Income minimum met? LTV ratio in bounds?</text>
+    <text x="701" y="362" fill="#374151" font-size="10">&#8226; Hard rules set by demand partner, pre-evaluated</text>
+    <text x="701" y="378" fill="#64748b" font-size="9" font-family="'Courier New',monospace">ruleDemandApiFilters</text>
+    <text x="972" y="414" text-anchor="middle" fill="#dc2626" font-size="9" font-style="italic">fail: filtered, no partner API call made</text>
+    <line x1="640" y1="430" x2="640" y2="449" stroke="#94a3b8" stroke-width="2"/>
+    <polygon points="635,445 645,445 640,451" fill="#94a3b8"/>
 
-      <!-- Gate 2 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 2</span><span class="d23-name">Lead Hydration &amp; Validation</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Normalizes the lead into a canonical shape, then validates it can be imported. All downstream rules depend on this step.</div>
-            <div class="d23-pills">
-              <span class="d23-pill">Normalize identity fields</span>
-              <span class="d23-pill">Derive product subtypes &amp; IDs</span>
-              <span class="d23-pill">Field-level validation</span>
-              <span class="d23-pill">Import requirements met?</span>
-            </div>
-            <div class="d23-pills">
-              <span class="d23-pill code">LeadValidator</span>
-              <span class="d23-pill code">LeadImporter</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Rejected — error surfaced to caller</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+    <!-- LANE 3: OFFER ASSEMBLY -->
+    <rect x="0" y="452" width="1280" height="170" fill="#f0fdf4"/>
+    <rect x="0" y="452" width="116" height="170" fill="#bbf7d0"/>
+    <text transform="rotate(-90,58,537)" x="58" y="537" text-anchor="middle" fill="#065f46" font-size="11" font-weight="700" letter-spacing="1.5">OFFER ASSEMBLY</text>
+    <!-- Step 7: Cache Lookup -->
+    <rect x="120" y="467" width="336" height="115" rx="8" fill="white" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="120" y="467" width="5" height="115" rx="3" fill="#10b981"/>
+    <rect x="132" y="477" width="54" height="17" rx="8" fill="#10b981"/>
+    <text x="159" y="490" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 7</text>
+    <text x="194" y="490" fill="#1e293b" font-size="12" font-weight="700">Cache Lookup</text>
+    <text x="132" y="509" fill="#374151" font-size="10">&#8226; Check prior decision: consumer + DSA</text>
+    <text x="132" y="524" fill="#374151" font-size="10">&#8226; 1LM hit: return cached, skip partner API</text>
+    <text x="132" y="539" fill="#374151" font-size="10">&#8226; 2LM hit: exclude offer, next bidder wins</text>
+    <text x="132" y="555" fill="#64748b" font-size="9" font-family="'Courier New',monospace">ssn · ssn+email · ssn+email+purpose · lastName+email</text>
+    <text x="288" y="593" text-anchor="middle" fill="#166534" font-size="9" font-style="italic">cache hit: cached decision returned</text>
+    <line x1="456" y1="524" x2="474" y2="524" stroke="#94a3b8" stroke-width="1.5"/>
+    <polygon points="470,520 480,524 470,528" fill="#94a3b8"/>
+    <!-- Spark Enrichment (no step number) -->
+    <rect x="480" y="467" width="332" height="115" rx="8" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.5"/>
+    <rect x="480" y="467" width="5" height="115" rx="3" fill="#8b5cf6"/>
+    <text x="492" y="490" fill="#1e293b" font-size="12" font-weight="700">Spark Enrichment</text>
+    <text x="492" y="506" fill="#7c3aed" font-size="9" font-style="italic">if DSA is Spark-enabled</text>
+    <text x="492" y="523" fill="#374151" font-size="10">&#8226; Credit bureau soft-pull</text>
+    <text x="492" y="538" fill="#374151" font-size="10">&#8226; Bank data / cashflow evaluation</text>
+    <text x="492" y="553" fill="#374151" font-size="10">&#8226; Hosted model underwriting</text>
+    <text x="646" y="593" text-anchor="middle" fill="#7c3aed" font-size="9" font-style="italic">skipped: DSA not Spark-enabled</text>
+    <line x1="812" y1="524" x2="830" y2="524" stroke="#94a3b8" stroke-width="1.5"/>
+    <polygon points="826,520 836,524 826,528" fill="#94a3b8"/>
+    <!-- Step 8: Partner Bidding -->
+    <rect x="836" y="467" width="424" height="115" rx="8" fill="white" stroke="#bbf7d0" stroke-width="1.5"/>
+    <rect x="836" y="467" width="5" height="115" rx="3" fill="#10b981"/>
+    <rect x="848" y="477" width="54" height="17" rx="8" fill="#10b981"/>
+    <text x="875" y="490" text-anchor="middle" fill="white" font-size="10" font-weight="800">Step 8</text>
+    <text x="910" y="490" fill="#1e293b" font-size="12" font-weight="700">Partner Bidding &amp; Rate Table</text>
+    <text x="848" y="509" fill="#374151" font-size="10">&#8226; Live API calls to eligible demand partners</text>
+    <text x="848" y="524" fill="#374151" font-size="10">&#8226; 1LM: simultaneous calls, scored on Rec Score</text>
+    <text x="848" y="539" fill="#374151" font-size="10">&#8226; 2LM (if all 1LM decline): CPC partner auction</text>
+    <text x="848" y="555" fill="#64748b" font-size="9" font-family="'Courier New',monospace">pred_converted × payout × EES</text>
+    <line x1="640" y1="622" x2="640" y2="639" stroke="#94a3b8" stroke-width="2"/>
+    <polygon points="635,635 645,635 640,641" fill="#94a3b8"/>
 
-      <!-- Gate 3 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 3</span><span class="d23-name">Fraud &amp; Lead Quality Check</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Calls the CDPs Lead Quality API to score fraud risk. Hard fraud rules can immediately disqualify.</div>
-            <div class="d23-pills">
-              <span class="d23-pill">Identity consistency</span>
-              <span class="d23-pill">Submission velocity</span>
-              <span class="d23-pill">Device signals</span>
-              <span class="d23-pill">Hard fraud rules</span>
-            </div>
-            <div class="d23-pills">
-              <span class="d23-pill code">LeadQualityService</span>
-              <span class="d23-pill code">/lead-quality-metrics/v1</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Blocked — excluded from all bidding</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
+    <!-- EXIT NODE: Response & Observability -->
+    <rect x="20" y="642" width="1240" height="50" rx="10" fill="#1e3a5f"/>
+    <text x="640" y="663" text-anchor="middle" fill="white" font-size="14" font-weight="700">Response &amp; Observability</text>
+    <text x="640" y="681" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="11">Rate table returned via Lead API · logs emitted at each step for routing, escalations &amp; optimization</text>
+    </svg>
 
-      <!-- Gate 4 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 4</span><span class="d23-name">DSA Enablement &amp; Caps</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Ensures the demand side is open for business. The killswitch overrides everything — a disabled DSA generates no offers regardless of lead quality.</div>
-            <div class="d23-pills">
-              <span class="d23-pill">DSA globally enabled?</span>
-              <span class="d23-pill">Volume cap not reached?</span>
-              <span class="d23-pill">Budget cap not reached?</span>
-            </div>
-            <div class="d23-pills">
-              <span class="d23-pill code">enabledDemandSubAccounts cache</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Excluded for this DSA only</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
-
-      <!-- Gate 5 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 5</span><span class="d23-name">Knockout (KO) Filters</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Hard rules set by the demand partner. Evaluated before any partner API call — keeps the rate table focused on leads the lender can actually approve.</div>
-            <div class="d23-pills">
-              <span class="d23-pill">Loan amount in range?</span>
-              <span class="d23-pill">Credit score band?</span>
-              <span class="d23-pill">Income minimum met?</span>
-              <span class="d23-pill">LTV ratio in bounds?</span>
-            </div>
-            <div class="d23-pills">
-              <span class="d23-pill code">ruleDemandApiFilters</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← on fail</div><div class="d23-fail-badge">Filtered — no partner API call made</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
-
-      <!-- Gate 6 -->
-      <div class="d23-row">
-        <div class="d23-gate">
-          <div class="d23-head"><span class="d23-num">Gate 6</span><span class="d23-name">Offer / Decision Cache Lookup</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Checks for a prior decision on this consumer + DSA combo. Called a "decision cache" because it also caches rejections.</div>
-            <div class="d23-pills">
-              <span class="d23-pill code">ssn</span>
-              <span class="d23-pill code">ssn + email</span>
-              <span class="d23-pill code">ssn + email + purpose</span>
-              <span class="d23-pill code">lastName + email</span>
-            </div>
-            <div class="d23-split">
-              <div class="d23-split-cell" style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;"><strong>1LM cache hit</strong>Return cached decision. Skip partner API.</div>
-              <div class="d23-split-cell" style="background:#fff7ed;color:#92400e;border:1px solid #fed7aa;"><strong>2LM cache hit (with offer)</strong>Exclude that offer. Next highest bidder gets the spot.</div>
-            </div>
-            <div class="d23-note">Cache miss or no cache strategy → continue to Gate 7/8</div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← cache hit</div><div class="d23-fail-badge" style="background:#f0fdf4;color:#166534;border-color:#bbf7d0;">Cached decision returned</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
-
-      <!-- Gate 7 -->
-      <div class="d23-row">
-        <div class="d23-gate spark">
-          <div class="d23-head"><span class="d23-num">Gate 7</span><span class="d23-name">Spark Enrichment &nbsp;<span style="font-weight:400;color:#9ca3af;font-size:10px;">if DSA is Spark-enabled</span></span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Engine calls the Spark decisioning API with the hydrated lead. Enriches with real-time data and generates pre-decisioned offers.</div>
-            <div class="d23-pills">
-              <span class="d23-pill spark">Credit bureau soft-pull</span>
-              <span class="d23-pill spark">Bank data / cashflow eval</span>
-              <span class="d23-pill spark">Hosted model underwriting</span>
-              <span class="d23-pill spark">Offer generation &amp; ranking</span>
-            </div>
-            <div class="d23-note">Spark also runs offline (batch) for lifecycle campaigns — separate from this synchronous flow.</div>
-          </div>
-        </div>
-        <div class="d23-fail"><div class="d23-fail-arrow">← skipped if</div><div class="d23-fail-badge" style="background:#faf5ff;color:#6d28d9;border-color:#ddd6fe;">DSA not Spark-enabled</div></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
-
-      <!-- Gate 8 -->
-      <div class="d23-row">
-        <div class="d23-gate green">
-          <div class="d23-head"><span class="d23-num">Gate 8</span><span class="d23-name">Partner Bidding &amp; Rate Table Assembly</span></div>
-          <div class="d23-body">
-            <div class="d23-desc">Live API calls to eligible demand partners. Offers scored and ranked. Best match wins top placement.</div>
-            <div class="d23-split">
-              <div class="d23-split-cell" style="background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;"><strong>1LM</strong>Simultaneous calls to all enabled lenders. Scored: pred_converted × payout × EES</div>
-              <div class="d23-split-cell" style="background:#fff7ed;color:#92400e;border:1px solid #fed7aa;"><strong>2LM (if all 1LM decline)</strong>Partners bid CPC for access. No underwriting API needed.</div>
-            </div>
-            <div class="d23-pills" style="margin-top:2px;">
-              <span class="d23-pill green">Rate table assembled</span>
-              <span class="d23-pill green">Ranked by Rec Score</span>
-              <span class="d23-pill green">Offer Wall built</span>
-            </div>
-          </div>
-        </div>
-        <div class="d23-fail"></div>
-      </div>
-      <div class="d23-conn"><div class="d23-conn-line"></div></div>
-
-      <div class="d23-node">
-        <div class="d23-label">Response via Lead API</div>
-        <div class="d23-sub">Rate table returned to supply partner · Consumer sees Offer Wall</div>
-      </div>
-
-      <div style="margin-top:10px;background:#f8fafc;border:1px solid #e2e5ea;border-radius:8px;padding:9px 14px;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#9ca3af;margin-bottom:6px;">Observability — logged at each gate</div>
-        <div class="d23-obs">
-          <span class="d23-obs-chip">Supply/demand eligibility</span>
-          <span class="d23-obs-chip">Validation / importability</span>
-          <span class="d23-obs-chip">Fraud outcomes</span>
-          <span class="d23-obs-chip">Cap &amp; KO filter results</span>
-          <span class="d23-obs-chip">Cache hits / misses</span>
-          <span class="d23-obs-chip">Partner call outcomes</span>
-        </div>
-      </div>
-
-    </div><!-- /d23-flow -->
-
-    <!-- old version removed -->
     </div><!-- /diag-23 -->
 
   </div>
@@ -1902,181 +1964,126 @@
     <div class="diag-header">
       <span class="diag-icon">🔌</span>
       <div>
-        <div class="diag-title">Second Party Prefill — User Experience</div>
-        <div class="diag-subtitle">An optional enhancement to the Offer Wall flow. When a partner already has the consumer's data, they can POST it server-to-server first to get a prefillToken — skipping or shortening the form. The display options (Partner Page or Embed) are the same as the standard Offer Wall.</div>
+        <div class="diag-title">Second Party Prefill</div>
+        <div class="diag-subtitle">For Partner Page and Embed integrations only. Partner POSTs consumer data server-to-server via <code style="font-size:10px;background:#f1f5f9;padding:1px 3px;border-radius:3px;">POST /leads/prefill</code> to get a prefillToken — shortening or skipping the form. Engine returns both <code style="font-size:10px;background:#f1f5f9;padding:1px 3px;border-radius:3px;">partnerPageUrl</code> and <code style="font-size:10px;background:#f1f5f9;padding:1px 3px;border-radius:3px;">embedSnippet</code> — partner picks one. For Offer Wall with prefill, use the Offer Wall API instead.</div>
       </div>
     </div>
-
-    <!-- Three-column header -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
-      <div style="background:#dbeafe;border:1.5px solid #93c5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#1e40af;text-transform:uppercase;letter-spacing:0.07em;">Partner (Server)</div>
-      <div style="background:#d1fae5;border:1.5px solid #6ee7b7;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#065f46;text-transform:uppercase;letter-spacing:0.07em;">Engine</div>
-      <div style="background:#f5f3ff;border:1.5px solid #c4b5fd;border-radius:8px;padding:8px 12px;text-align:center;font-size:11px;font-weight:800;color:#5b21b6;text-transform:uppercase;letter-spacing:0.07em;">Consumer (Sees This)</div>
-    </div>
-
-    <!-- Step 1 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
-      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
-        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1</div>
-        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">User clicks CTA</div>
-        <div style="font-size:11px;color:#4b5563;line-height:1.5;">User taps "Check my loan offers" on the partner's site. Partner has the user's data on file.</div>
-      </div>
-      <div></div>
-      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
-        <div style="font-size:16px;margin-bottom:4px;">👆</div>
-        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Taps a button</div>
-        <div style="font-size:11px;color:#4b5563;line-height:1.5;">"Check my offers," "See my rates," etc. No form yet.</div>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Partner server immediately calls Engine API ↓</div>
-
-    <!-- Step 2 -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;">
-      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
-        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">2</div>
-        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">POST to Engine API</div>
-        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Partner sends consumer PII server-to-server. <strong>Never touches the browser.</strong></div>
-      </div>
-      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
-        <div style="font-size:16px;margin-bottom:4px;">⚡</div>
-        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Returns prefillToken</div>
-        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Engine encrypts PII and returns a short-lived token. <strong>Valid 3 min, max 3 uses.</strong> Both display options always returned.</div>
-      </div>
-      <div></div>
-    </div>
-    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Partner chooses how to present the experience ↓</div>
-
-    <!-- Frontend Integration Decision -->
-    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Frontend Integration Decision — Both Options Always Returned</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div style="background:#eff6ff;border:1.5px solid #3b82f6;border-radius:8px;padding:11px;">
-          <div style="font-size:10px;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option A — Partner Page (Linkout)</div>
-          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Redirect to Engine-hosted page</div>
-          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">Consumer is sent to a co-branded MoneyLion landing page. Engine controls the full offer display UX.</div>
-          <code style="font-size:10px;background:#dbeafe;color:#1e40af;padding:3px 8px;border-radius:5px;">use: partnerPageUrl</code>
-        </div>
-        <div style="background:#faf5ff;border:1.5px solid #a855f7;border-radius:8px;padding:11px;">
-          <div style="font-size:10px;font-weight:800;color:#7e22ce;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px;">Option B — Embedded Experience</div>
-          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Inject embed on partner's own site</div>
-          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">Partner drops the script tag into their page. Consumer never leaves. Embed auto-mounts using the prefillToken.</div>
-          <code style="font-size:10px;background:#f3e8ff;color:#7e22ce;padding:3px 8px;border-radius:5px;">use: embedSnippet</code>
-        </div>
-      </div>
-      <div style="text-align:center;font-size:10px;color:#9ca3af;margin-top:8px;font-style:italic;">Both partnerPageUrl and embedSnippet are returned in every API response — no configuration needed.</div>
-    </div>
-    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer enters the Engine experience ↓</div>
-
-    <!-- What consumer sees -->
-    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
-      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">What the Consumer Sees Depends on How Much Data the Partner Sent</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-        <div style="background:#eff6ff;border:1.5px solid #3b82f6;border-radius:8px;padding:10px;">
-          <div style="font-size:10px;font-weight:800;color:#1d4ed8;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Partner Sent All Data</div>
-          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Skips straight to Review</div>
-          <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:6px;">No form fields to fill in — consumer lands directly on the confirmation screen.</div>
-          <div style="background:#fef9c3;border:1px solid #fbbf24;border-radius:6px;padding:6px 8px;font-size:10px;color:#92400e;"><strong>💡 Consider Offer Wall API instead.</strong> If you're sending complete data + consents programmatically, the Offer Wall API is a better fit.</div>
-        </div>
-        <div style="background:#f0fdf4;border:1.5px solid #4ade80;border-radius:8px;padding:10px;">
-          <div style="font-size:10px;font-weight:800;color:#15803d;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Consumer Sees</div>
-          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Only missing fields shown</div>
-          <div style="font-size:11px;color:#4b5563;line-height:1.5;">Pre-filled screens are skipped. Consumer only sees screens with gaps. <strong>Note:</strong> if any field on a screen is missing, the whole screen is shown.</div>
-        </div>
-        <div style="background:#fafafa;border:1.5px solid #d1d5db;border-radius:8px;padding:10px;">
-          <div style="font-size:10px;font-weight:800;color:#4b5563;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px;">Consumer Sees</div>
-          <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:4px;">Standard form</div>
-          <div style="font-size:11px;color:#4b5563;line-height:1.5;">No data sent or token expired. Graceful fallback — consumer fills out the full application as normal. No error shown.</div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Always required, regardless of how much was prefilled ↓</div>
-
+    <div style="border-radius:10px;overflow:hidden;border:1.5px solid #e2e8f0;margin-top:8px;">
+    <svg viewBox="0 0 1340 440" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    <defs>
+      <marker id="d21a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#64748b"/></marker>
+      <marker id="d21ag" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#10b981"/></marker>
+      <marker id="d21ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#ef4444"/></marker>
+      <marker id="d21ap" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#8b5cf6"/></marker>
+    </defs>
+    <rect x="0" y="0" width="1340" height="152" fill="#eff6ff"/>
+    <rect x="0" y="152" width="1340" height="162" fill="#f0fdf4"/>
+    <rect x="0" y="314" width="1340" height="126" fill="#faf5ff"/>
+    <rect x="0" y="0" width="74" height="152" fill="#dbeafe"/>
+    <rect x="0" y="152" width="74" height="162" fill="#dcfce7"/>
+    <rect x="0" y="314" width="74" height="126" fill="#ede9fe"/>
+    <text transform="translate(37,76) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">CONSUMER</text>
+    <text transform="translate(37,233) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">ENGINE</text>
+    <text transform="translate(37,377) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#6d28d9">PARTNER (SUPPLY)</text>
+    <line x1="74" y1="152" x2="1340" y2="152" stroke="#bfdbfe" stroke-width="1.5"/>
+    <line x1="74" y1="314" x2="1340" y2="314" stroke="#ddd6fe" stroke-width="1.5"/>
+    <line x1="0" y1="152" x2="74" y2="152" stroke="#bfdbfe" stroke-width="1.5"/>
+    <line x1="0" y1="314" x2="74" y2="314" stroke="#ddd6fe" stroke-width="1.5"/>
+    <!-- Partner: Has data -->
+    <rect x="86" y="330" width="162" height="62" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="167" y="350" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Has consumer</text>
+    <text x="167" y="366" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">data on file</text>
+    <text x="167" y="383" text-anchor="middle" font-size="9.5" fill="#6b7280">Logged-in user recognized</text>
+    <line x1="167" y1="330" x2="167" y2="252" stroke="#8b5cf6" stroke-width="1.8" marker-end="url(#d21ap)"/>
+    <text x="100" y="295" font-size="9" font-weight="700" fill="#6d28d9">POST /leads/prefill</text>
+    <text x="100" y="307" font-size="8.5" fill="#9ca3af">PII server-to-server</text>
+    <!-- Engine: Stores prefill -->
+    <rect x="86" y="178" width="162" height="72" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="167" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Stores prefill data</text>
+    <text x="167" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Returns prefillToken</text>
+    <text x="167" y="233" text-anchor="middle" font-size="9.5" fill="#6b7280">PII never sent in URLs</text>
+    <text x="167" y="247" text-anchor="middle" font-size="9.5" fill="#6b7280">Valid 3 min, max 3 uses</text>
+    <line x1="200" y1="250" x2="200" y2="328" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#d21ap)"/>
+    <text x="208" y="290" font-size="9" font-weight="700" fill="#6d28d9">prefillToken</text>
+    <text x="208" y="302" font-size="8.5" fill="#9ca3af">returned</text>
+    <!-- Partner: CTA with token -->
+    <rect x="262" y="326" width="172" height="80" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="348" y="346" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Places CTA on site</text>
+    <text x="348" y="362" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5b21b6">Token in URL or embed</text>
+    <text x="348" y="378" text-anchor="middle" font-size="9.5" fill="#6b7280">partnerPageUrl or embedSnippet</text>
+    <text x="348" y="394" text-anchor="middle" font-size="9.5" fill="#6b7280">Both returned — partner picks one</text>
+    <line x1="348" y1="326" x2="348" y2="112" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <!-- Consumer: Clicks CTA -->
+    <rect x="262" y="44" width="172" height="66" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="348" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Clicks CTA</text>
+    <text x="348" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">on partner site</text>
+    <text x="348" y="99" text-anchor="middle" font-size="9.5" fill="#6b7280">Check my offers, See my rates...</text>
+    <line x1="434" y1="77" x2="458" y2="77" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <!-- Engine: Validates token -->
+    <rect x="460" y="178" width="148" height="66" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="534" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Validates token</text>
+    <text x="534" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Retrieves stored data</text>
+    <text x="534" y="234" text-anchor="middle" font-size="9.5" fill="#6b7280">Applies partner branding</text>
+    <line x1="608" y1="211" x2="630" y2="211" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <!-- Diamond: Data sent? -->
+    <polygon points="666,187 706,211 666,235 626,211" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="666" y="206" text-anchor="middle" font-size="10" font-weight="700" fill="#065f46">Data</text>
+    <text x="666" y="219" text-anchor="middle" font-size="10" font-weight="700" fill="#065f46">sent?</text>
+    <line x1="666" y1="235" x2="666" y2="268" stroke="#ef4444" stroke-width="1.3" stroke-dasharray="4,3" marker-end="url(#d21ar)"/>
+    <text x="607" y="253" font-size="9.5" fill="#ef4444" font-weight="700">None/expired</text>
+    <rect x="598" y="270" width="136" height="36" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+    <text x="666" y="284" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">No token or expired</text>
+    <text x="666" y="298" text-anchor="middle" font-size="9.5" fill="#6b7280">Full form — graceful fallback</text>
+    <line x1="706" y1="211" x2="730" y2="211" stroke="#10b981" stroke-width="1.8" marker-end="url(#d21ag)"/>
+    <text x="717" y="203" font-size="9.5" font-weight="700" fill="#10b981">Y</text>
+    <!-- Engine: Experience box -->
+    <rect x="732" y="163" width="206" height="114" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="835" y="183" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">Experience set by</text>
+    <text x="835" y="199" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">data completeness</text>
+    <line x1="746" y1="207" x2="926" y2="207" stroke="#e2e8f0" stroke-width="1"/>
+    <circle cx="748" cy="221" r="4" fill="#10b981"/>
+    <text x="758" y="225" font-size="10" font-weight="700" fill="#065f46">All data sent</text>
+    <text x="758" y="239" font-size="9.5" fill="#6b7280">Skips form — lands on Review</text>
+    <circle cx="748" cy="253" r="4" fill="#f59e0b"/>
+    <text x="758" y="257" font-size="10" font-weight="700" fill="#92400e">Partial data sent</text>
+    <text x="758" y="271" font-size="9.5" fill="#6b7280">Missing fields shown only</text>
+    <line x1="835" y1="163" x2="835" y2="112" stroke="#10b981" stroke-width="1.8" marker-end="url(#d21ag)"/>
+    <!-- Consumer: Sees tailored form -->
+    <rect x="732" y="44" width="206" height="66" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="835" y="66" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees only what</text>
+    <text x="835" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Engine needs</text>
+    <text x="835" y="99" text-anchor="middle" font-size="9.5" fill="#6b7280">Form tailored to data sent</text>
+    <line x1="938" y1="77" x2="962" y2="77" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
     <!-- Review Screen -->
-    <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:14px;margin-bottom:4px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-        <span style="font-size:18px;">🔎</span>
-        <div>
-          <div style="font-size:13px;font-weight:700;color:#111;">Review Screen — Always Shown</div>
-          <div style="font-size:11px;color:#6b7280;">Consumer must confirm before submitting. Everything is editable.</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
-        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Masked sensitive data</div>
-          <div style="font-size:10.5px;color:#4b5563;">SSN shows as ***-**-6789. Consumer confirms without re-entering.</div>
-        </div>
-        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Fully editable</div>
-          <div style="font-size:10.5px;color:#4b5563;">Consumer can correct any prefilled field before submission.</div>
-        </div>
-        <div style="background:#f8fafc;border-radius:6px;padding:8px 10px;">
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:3px;">Consent collected here</div>
-          <div style="font-size:10.5px;color:#4b5563;">FCRA and TCPA language presented and agreed to on this screen.</div>
-        </div>
-      </div>
+    <rect x="964" y="36" width="182" height="114" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2.5"/>
+    <rect x="964" y="36" width="182" height="26" rx="8" fill="#1e40af"/>
+    <rect x="964" y="54" width="182" height="8" fill="#1e40af"/>
+    <text x="1055" y="54" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">REVIEW SCREEN</text>
+    <text x="1055" y="75" text-anchor="middle" font-size="11" font-weight="700" fill="#1e40af">Always shown</text>
+    <text x="1055" y="91" text-anchor="middle" font-size="9.5" fill="#374151">Masked data (SSN: ***-**-6789)</text>
+    <text x="1055" y="106" text-anchor="middle" font-size="9.5" fill="#374151">All fields editable</text>
+    <text x="1055" y="121" text-anchor="middle" font-size="9.5" fill="#374151">FCRA and TCPA consent here</text>
+    <text x="1055" y="139" text-anchor="middle" font-size="9" fill="#6b7280">Consumer confirms before submit</text>
+    <line x1="1146" y1="80" x2="1170" y2="80" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <text x="1157" y="72" font-size="9.5" fill="#374151">Submits</text>
+    <line x1="1182" y1="80" x2="1182" y2="176" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <!-- Engine: Decisioning -->
+    <rect x="1168" y="178" width="130" height="66" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="1233" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Runs decisioning</text>
+    <text x="1233" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Builds rate table</text>
+    <text x="1233" y="233" text-anchor="middle" font-size="9.5" fill="#6b7280">Fraud, gates, Rec Score</text>
+    <line x1="1233" y1="178" x2="1233" y2="112" stroke="#10b981" stroke-width="1.8" marker-end="url(#d21ag)"/>
+    <!-- Consumer: Sees offers -->
+    <rect x="1168" y="44" width="130" height="66" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="1233" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees ranked</text>
+    <text x="1233" y="81" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">rate table</text>
+    <text x="1233" y="99" text-anchor="middle" font-size="9.5" fill="#6b7280">Best match at top</text>
+    <line x1="1298" y1="77" x2="1314" y2="77" stroke="#64748b" stroke-width="1.8" marker-end="url(#d21a)"/>
+    <rect x="1286" y="60" width="50" height="34" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+    <text x="1311" y="74" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Apply</text>
+    <text x="1311" y="87" text-anchor="middle" font-size="9.5" fill="#15803d">Now</text>
+    </svg>
     </div>
-    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
-
-    <!-- Prequalified offers -->
-    <div style="background:#fff;border:1.5px solid #a78bfa;border-radius:10px;padding:14px;margin-bottom:4px;">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-        <span style="font-size:18px;">🎉</span>
-        <div>
-          <div style="font-size:13px;font-weight:700;color:#111;">Consumer sees prequalified offers</div>
-          <div style="font-size:11px;color:#6b7280;">Engine displays matched loan offers in a co-branded experience. Consumer selects a lender and clicks Apply Now.</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
-        <!-- Lender card 1 -->
-        <div style="border:2px solid #7c3aed;border-radius:10px;padding:12px;position:relative;">
-          <div style="position:absolute;top:-8px;left:12px;background:#7c3aed;color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;">BEST MATCH</div>
-          <div style="width:28px;height:28px;background:#3b82f6;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">C</div>
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Clearview Bank</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">9.49%</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$208/mo</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
-          </div>
-          <div style="background:#7c3aed;color:#fff;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
-        </div>
-        <!-- Lender card 2 -->
-        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
-          <div style="width:28px;height:28px;background:#0d9488;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">N</div>
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Northfield Lending</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">11.99%</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$222/mo</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
-          </div>
-          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
-        </div>
-        <!-- Lender card 3 -->
-        <div style="border:1.5px solid #e5e7eb;border-radius:10px;padding:12px;">
-          <div style="width:28px;height:28px;background:#059669;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;margin-bottom:6px;">A</div>
-          <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:6px;">Apex Credit Union</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:8px;">
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">APR</div><div style="font-size:13px;font-weight:800;color:#111;">14.25%</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Loan Amount</div><div style="font-size:13px;font-weight:800;color:#111;">$10,000</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Monthly</div><div style="font-size:13px;font-weight:800;color:#111;">$234/mo</div></div>
-            <div><div style="font-size:9px;color:#9ca3af;font-weight:600;text-transform:uppercase;">Term</div><div style="font-size:13px;font-weight:800;color:#111;">60 mo</div></div>
-          </div>
-          <div style="background:#f3f4f6;color:#374151;text-align:center;border-radius:7px;padding:7px;font-size:11px;font-weight:700;">Apply Now →</div>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;font-size:18px;color:#9ca3af;margin-bottom:4px;">↓</div>
-
-    <!-- Apply Now footer -->
-    <div style="background:#fff;border:1.5px solid #e2e5ea;border-radius:10px;padding:12px;display:flex;align-items:center;gap:12px;">
-      <span style="font-size:22px;">🔗</span>
-      <div>
-        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:2px;">"Apply Now" redirects consumer to the lender's site</div>
-        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Clicking Apply Now opens the selected lender's application directly. The consumer leaves the Engine experience and completes their full application on the lender's own platform.</div>
-      </div>
-    </div>
-
     </div><!-- /diag-21 -->
 
     <div id="diag-22" class="diag-card full-width">
@@ -2715,16 +2722,477 @@
 
     </div><!-- /diag-25 -->
 
+    <div id="diag-26" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">🧮</span>
+      <div>
+        <div class="diag-title">Top of Funnel Calculators</div>
+        <div class="diag-subtitle">Lightweight web component widgets that warm up the consumer with a personalized calculation before handing them into the full Engine marketplace form. No SSN or full application at this stage.</div>
+      </div>
+    </div>
+
+    <!-- Shared integration step -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:4px;margin-top:4px;">
+      <div style="background:#fff;border:1.5px solid #93c5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:10px;font-weight:800;color:#1e40af;background:#dbeafe;display:inline-block;padding:2px 8px;border-radius:20px;margin-bottom:6px;">1 — Embed the widget</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;margin-bottom:8px;">Partner drops a script tag + targeted div anywhere on their page. Same approach for all four calculators — only the script URL and div ID change per calculator.</div>
+        <div style="background:#1e293b;border-radius:6px;padding:8px 10px;margin-bottom:6px;">
+          <code style="font-size:9px;color:#7dd3fc;line-height:1.7;display:block;">&lt;script src="<span style="color:#86efac;">prospects-widgets<br/>.moneylion.com/{calc}.js</span>" async&gt;<br/>&lt;/script&gt;<br/>&lt;div id="<span style="color:#fbbf24;">{calc}-widget</span>"<br/>&nbsp;&nbsp;data-user-id="..."<br/>&nbsp;&nbsp;data-email="..."<br/>&nbsp;&nbsp;data-traffic-src="..."&gt;<br/>&lt;/div&gt;</code>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;font-style:italic;">Partners can also pass user-id + email for logged-in consumers — Engine pre-personalises the calculator output.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:8px;padding:12px;">
+        <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:6px;">⚡ Widget loads inline</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">Engine renders the calculator widget at the div location. Consumer stays on the partner's page throughout — no redirect at this stage.</div>
+      </div>
+      <div style="background:#fff;border:1.5px solid #c4b5fd;border-radius:8px;padding:12px;">
+        <div style="font-size:11px;font-weight:700;color:#111;margin-bottom:5px;">Sees a calculator</div>
+        <div style="font-size:11px;color:#4b5563;line-height:1.5;">An interactive widget appears inline. Consumer can start entering financial data immediately — no login, no SSN, no commitment.</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer uses the calculator ↓</div>
+
+    <!-- Per-calculator breakdown -->
+    <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:4px;">
+      <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#64748b;text-align:center;margin-bottom:10px;">Step 2 — Calculator Inputs, Output &amp; Routing</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+
+        <!-- Personal Loan Calculator -->
+        <div style="background:#fff;border:1.5px solid #3b82f6;border-radius:8px;overflow:hidden;">
+          <div style="background:#dbeafe;padding:6px 10px;font-size:11px;font-weight:700;color:#1e40af;">💰 Personal Loan Calculator</div>
+          <div style="padding:9px 10px;display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Consumer inputs</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Loan amount</div>
+                <div style="font-size:10px;color:#374151;">• Loan term (months)</div>
+                <div style="font-size:10px;color:#374151;">• Estimated APR / credit tier</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Calculator shows</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Estimated monthly payment</div>
+                <div style="font-size:10px;color:#374151;">• Total cost of loan</div>
+                <div style="font-size:10px;color:#374151;">• Total interest paid</div>
+              </div>
+            </div>
+            <div style="background:#eff6ff;border-radius:5px;padding:5px 8px;font-size:10px;color:#1d4ed8;font-weight:600;">→ Routes to: Personal Loans marketplace</div>
+            <div style="font-size:9.5px;color:#9ca3af;font-family:monospace;">personal_loan.js</div>
+          </div>
+        </div>
+
+        <!-- Debt Consolidation Calculator -->
+        <div style="background:#fff;border:1.5px solid #f59e0b;border-radius:8px;overflow:hidden;">
+          <div style="background:#fef3c7;padding:6px 10px;font-size:11px;font-weight:700;color:#92400e;">🔗 Debt Consolidation Calculator</div>
+          <div style="padding:9px 10px;display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Consumer inputs</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Up to 3 existing debts</div>
+                <div style="font-size:10px;color:#374151;">&nbsp;&nbsp;(balance, rate, min payment each)</div>
+                <div style="font-size:10px;color:#374151;">• Desired new loan APR + term</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Calculator shows</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Current monthly payment total</div>
+                <div style="font-size:10px;color:#374151;">• New consolidated payment</div>
+                <div style="font-size:10px;color:#374151;">• Monthly &amp; total savings</div>
+              </div>
+            </div>
+            <div style="background:#fffbeb;border-radius:5px;padding:5px 8px;font-size:10px;color:#92400e;font-weight:600;">→ Routes to: Loans marketplace<br/>&nbsp;&nbsp;"Debt consolidation" purpose pre-filled, loan purpose page skipped</div>
+            <div style="font-size:9.5px;color:#9ca3af;font-family:monospace;">debt_consolidation_calculator.js</div>
+          </div>
+        </div>
+
+        <!-- Savings Calculator -->
+        <div style="background:#fff;border:1.5px solid #0891b2;border-radius:8px;overflow:hidden;">
+          <div style="background:#e0f2fe;padding:6px 10px;font-size:11px;font-weight:700;color:#0369a1;">🏦 Savings Calculator</div>
+          <div style="padding:9px 10px;display:flex;flex-direction:column;gap:8px;">
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Consumer inputs</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Starting balance</div>
+                <div style="font-size:10px;color:#374151;">• Monthly contribution</div>
+                <div style="font-size:10px;color:#374151;">• Interest rate (APY)</div>
+                <div style="font-size:10px;color:#374151;">• Time horizon</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;">Calculator shows</div>
+              <div style="display:flex;flex-direction:column;gap:2px;">
+                <div style="font-size:10px;color:#374151;">• Projected balance over time</div>
+                <div style="font-size:10px;color:#374151;">• Total interest earned</div>
+                <div style="font-size:10px;color:#374151;">• Growth chart</div>
+              </div>
+            </div>
+            <div style="background:#e0f2fe;border-radius:5px;padding:5px 8px;font-size:10px;color:#0369a1;font-weight:600;">→ Routes to: Savings / Deposits marketplace</div>
+            <div style="font-size:9.5px;color:#9ca3af;font-family:monospace;">savings_calculator.js</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PL vs Debt Relief - special treatment -->
+      <div style="margin-top:10px;background:#fff;border:2px solid #7c3aed;border-radius:10px;overflow:hidden;">
+        <div style="background:#ede9fe;padding:7px 12px;display:flex;align-items:center;gap:8px;">
+          <span style="font-size:14px;">⚖️</span>
+          <div style="font-size:11px;font-weight:700;color:#6d28d9;">Personal Loan vs Debt Relief Calculator — Branching flow</div>
+          <div style="margin-left:auto;font-size:10px;color:#7c3aed;background:#f5f3ff;border:1px solid #ddd6fe;padding:2px 8px;border-radius:20px;font-weight:600;">Routes to different verticals based on consumer choice</div>
+        </div>
+        <div style="padding:10px 12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+          <div>
+            <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">Consumer inputs</div>
+            <div style="display:flex;flex-direction:column;gap:2px;">
+              <div style="font-size:10px;color:#374151;">• Up to 3 existing debt balances</div>
+              <div style="font-size:10px;color:#374151;">• Desired loan APR + term</div>
+              <div style="font-size:10px;color:#374151;">• Max total debt: $100K</div>
+            </div>
+            <div style="margin-top:8px;background:#fef9c3;border:1px solid #fbbf24;border-radius:5px;padding:5px 7px;font-size:9.5px;color:#92400e;"><strong>Compliance:</strong> Disclaimer required: "Debt relief will negatively impact your credit score." No APR disclosed for debt relief option.</div>
+          </div>
+          <div>
+            <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">Calculator shows (two tabs)</div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 8px;margin-bottom:5px;">
+              <div style="font-size:10px;font-weight:700;color:#1d4ed8;margin-bottom:2px;">Tab 1 — Personal Loan</div>
+              <div style="font-size:10px;color:#374151;">Consolidated monthly payment, total interest, payoff date</div>
+            </div>
+            <div style="background:#faf5ff;border:1px solid #ddd6fe;border-radius:6px;padding:6px 8px;">
+              <div style="font-size:10px;font-weight:700;color:#7e22ce;margin-bottom:2px;">Tab 2 — Debt Relief</div>
+              <div style="font-size:10px;color:#374151;">Estimated settlement amount, monthly program payment, timeline</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:9.5px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:5px;">Routing fork</div>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:6px 8px;margin-bottom:5px;">
+              <div style="font-size:10px;font-weight:700;color:#1d4ed8;">Consumer picks Personal Loan →</div>
+              <div style="font-size:10px;color:#374151;">Loans marketplace, "debt consolidation" purpose pre-filled, purpose page skipped</div>
+            </div>
+            <div style="background:#faf5ff;border:1px solid #ddd6fe;border-radius:6px;padding:6px 8px;">
+              <div style="font-size:10px;font-weight:700;color:#7e22ce;">Consumer picks Debt Relief →</div>
+              <div style="font-size:10px;color:#374151;">Debt Relief vertical marketplace</div>
+            </div>
+            <div style="font-size:9.5px;color:#9ca3af;font-family:monospace;margin-top:5px;">personal_loan_vs_debt_relief.js</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#9ca3af;margin-bottom:4px;">↓ Consumer clicks CTA ("Check My Rate", "See My Options", etc.) ↓</div>
+
+    <!-- Transition into Engine -->
+    <div style="background:#fff;border:1.5px solid #6ee7b7;border-radius:10px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:12px;font-weight:700;color:#111;margin-bottom:8px;">Step 3 — Consumer enters the full Engine marketplace form</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="font-size:11px;color:#4b5563;line-height:1.6;">The calculator CTA hands the consumer into the standard Engine marketplace form. For calculators that pre-fill data (loan purpose, amount), those fields are skipped. Consumer completes remaining fields, then proceeds through Engine's normal decisioning pipeline → offer wall → Apply Now.</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:6px 9px;font-size:10.5px;color:#166534;">✓ Same Engine decisioning gates (fraud, caps, KO filters, cache, Spark)</div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:6px 9px;font-size:10.5px;color:#166534;">✓ Same offer wall + Rec Score ranking</div>
+          <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:6px 9px;font-size:10.5px;color:#166534;">✓ Same revenue events (CPC / CPA / RevShare)</div>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /diag-26 -->
+
   </div>
 </div>
 
 <div id="diagrams-demand" class="hidden">
   <div class="diag-grid">
-    <div class="diag-card full-width" style="text-align:center;padding:40px 20px;color:#9ca3af;">
-      <div style="font-size:32px;margin-bottom:12px;">📥</div>
-      <div style="font-size:14px;font-weight:600;color:#6b7280;margin-bottom:6px;">Demand integration workflows coming soon</div>
-      <div style="font-size:12px;">Diagrams for 1LM Underwriting API, 2LM / Special Offers, and Co-branded Checkout will appear here.</div>
+
+    <div id="diag-28" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">📥</span>
+      <div>
+        <div class="diag-title">1LM: First Look Marketplace</div>
+        <div class="diag-subtitle">Three integration paths — Native API, Spark Fully Hosted, and Spark Filtering — each with its own flow. Tab between them to compare.</div>
+      </div>
     </div>
+    <div style="margin-top:10px;">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+        <button onclick="d28show('api',this)" id="d28-tab-api"
+          style="padding:9px 20px;border-radius:20px;border:2px solid #1e3a5f;font-size:12px;font-weight:700;cursor:pointer;background:#1e3a5f;color:#ffffff;font-family:inherit;">
+          🔌 Native API
+        </button>
+        <button onclick="d28show('hosted',this)" id="d28-tab-hosted"
+          style="padding:9px 20px;border-radius:20px;border:2px solid #e2e8f0;font-size:12px;font-weight:700;cursor:pointer;background:#ffffff;color:#374151;font-family:inherit;">
+          ⚡ Spark: Fully Hosted
+        </button>
+        <button onclick="d28show('filter',this)" id="d28-tab-filter"
+          style="padding:9px 20px;border-radius:20px;border:2px solid #e2e8f0;font-size:12px;font-weight:700;cursor:pointer;background:#ffffff;color:#374151;font-family:inherit;">
+          ⚡ Spark: Filtering
+        </button>
+      </div>
+      <div id="d28-p-api" style="display:block;">
+        <div style="font-size:11px;color:#4b5563;margin-bottom:8px;line-height:1.5;">Engine POSTs consumer data to the partner's own underwriting endpoint in real time. The partner runs their model and returns an offer or decline. Must respond within 10 seconds.</div>
+        <div style="border-radius:10px;overflow:hidden;border:1.5px solid #e2e8f0;">
+        <svg viewBox="0 0 1040 510" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        <defs><marker id="d28a1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#64748b"/></marker><marker id="d28a1g" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#10b981"/></marker><marker id="d28a1r" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#ef4444"/></marker><marker id="d28a1o" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#f59e0b"/></marker></defs>
+        <rect x="0" y="0" width="1040" height="158" fill="#eff6ff"/><rect x="0" y="158" width="1040" height="170" fill="#f0fdf4"/><rect x="0" y="328" width="1040" height="182" fill="#faf5ff"/>
+        <rect x="0" y="0" width="74" height="158" fill="#dbeafe"/><rect x="0" y="158" width="74" height="170" fill="#dcfce7"/><rect x="0" y="328" width="74" height="182" fill="#ede9fe"/>
+        <text transform="translate(37,79) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">CONSUMER</text>
+        <text transform="translate(37,243) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">ENGINE</text>
+        <text transform="translate(37,419) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#6d28d9">PARTNER</text>
+        <line x1="74" y1="158" x2="1040" y2="158" stroke="#bfdbfe" stroke-width="1.5"/><line x1="74" y1="328" x2="1040" y2="328" stroke="#ddd6fe" stroke-width="1.5"/>
+        <rect x="84" y="47" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="150" y="71" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Submits loan</text><text x="150" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">application form</text><text x="150" y="104" text-anchor="middle" font-size="9.5" fill="#6b7280">Via any supply integration</text>
+        <line x1="150" y1="111" x2="150" y2="180" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <rect x="84" y="182" width="132" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Receives lead and</text><text x="150" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">runs gates</text><text x="150" y="239" text-anchor="middle" font-size="9.5" fill="#6b7280">Fraud, caps, KO filters</text>
+        <line x1="216" y1="214" x2="240" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <polygon points="270,190 306,214 270,238 234,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="270" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Gates</text><text x="270" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">pass?</text>
+        <line x1="270" y1="238" x2="270" y2="272" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28a1r)"/><rect x="222" y="274" width="96" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="270" y="290" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Lead dropped</text><text x="280" y="254" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <line x1="306" y1="214" x2="330" y2="214" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28a1g)"/><text x="317" y="205" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="332" y="182" width="152" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="408" y="205" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Calls ALL 1LM</text><text x="408" y="221" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">lender APIs</text><text x="408" y="239" text-anchor="middle" font-size="9.5" fill="#6b7280">All called in parallel</text>
+        <line x1="408" y1="246" x2="408" y2="336" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <rect x="332" y="338" width="152" height="80" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2.5"/><rect x="332" y="338" width="152" height="26" rx="8" fill="#8b5cf6"/><rect x="332" y="356" width="152" height="8" fill="#8b5cf6"/>
+        <text x="408" y="355" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">NATIVE API</text><text x="408" y="378" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5b21b6">Partner's own endpoint</text><text x="408" y="394" text-anchor="middle" font-size="10.5" fill="#374151">Real-time external call</text><text x="408" y="410" text-anchor="middle" font-size="9.5" fill="#dc2626" font-weight="600">Max 10 second response</text>
+        <line x1="484" y1="378" x2="510" y2="378" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <polygon points="540,356 574,378 540,400 506,378" fill="#fff" stroke="#8b5cf6" stroke-width="2"/><text x="540" y="373" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">Partner</text><text x="540" y="387" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">approves?</text>
+        <line x1="540" y1="400" x2="540" y2="448" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28a1r)"/><rect x="496" y="450" width="88" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="540" y="466" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Lender declined</text><text x="550" y="419" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <polyline points="574,378 618,378 618,214 644,214" fill="none" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28a1g)"/><text x="595" y="368" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="646" y="182" width="130" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="711" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Collects all</text><text x="711" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">lender responses</text><text x="711" y="240" text-anchor="middle" font-size="9.5" fill="#6b7280">Approvals and declines</text>
+        <line x1="776" y1="214" x2="796" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <polygon points="826,190 860,214 826,238 792,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="826" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Any lender</text><text x="826" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">approved?</text>
+        <line x1="826" y1="238" x2="826" y2="272" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28a1o)"/><rect x="780" y="274" width="92" height="42" rx="6" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.5"/><text x="826" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#92400e">2LM kicks in</text><text x="826" y="307" text-anchor="middle" font-size="9.5" fill="#78350f">See 2LM Workflow</text><text x="836" y="256" font-size="10.5" fill="#f59e0b" font-weight="700">N</text>
+        <line x1="826" y1="190" x2="826" y2="120" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28a1g)"/><text x="832" y="157" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="760" y="48" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="826" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees ranked</text><text x="826" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">rate table</text><text x="826" y="106" text-anchor="middle" font-size="9.5" fill="#6b7280">Best match at top</text>
+        <line x1="892" y1="80" x2="916" y2="80" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28a1)"/>
+        <rect x="918" y="60" width="112" height="42" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/><text x="974" y="76" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Apply Now</text><text x="974" y="91" text-anchor="middle" font-size="9" fill="#6b7280">Click, fund, RevShare/CPA</text>
+        </svg></div>
+      </div>
+      <div id="d28-p-hosted" style="display:none;">
+        <div style="font-size:11px;color:#4b5563;margin-bottom:8px;line-height:1.5;">Partner uploads their model to Black Box (spark.engine.com). Engine runs leads through it internally — no external API call is made. The partner never receives individual lead requests.</div>
+        <div style="border-radius:10px;overflow:hidden;border:1.5px solid #e2e8f0;">
+        <svg viewBox="0 0 1040 510" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        <defs><marker id="d28b1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#64748b"/></marker><marker id="d28b1g" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#10b981"/></marker><marker id="d28b1r" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#ef4444"/></marker><marker id="d28b1o" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#f59e0b"/></marker></defs>
+        <rect x="0" y="0" width="1040" height="158" fill="#eff6ff"/><rect x="0" y="158" width="1040" height="170" fill="#f0fdf4"/><rect x="0" y="328" width="1040" height="182" fill="#faf5ff"/>
+        <rect x="0" y="0" width="74" height="158" fill="#dbeafe"/><rect x="0" y="158" width="74" height="170" fill="#dcfce7"/><rect x="0" y="328" width="74" height="182" fill="#ede9fe"/>
+        <text transform="translate(37,79) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">CONSUMER</text><text transform="translate(37,243) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">ENGINE</text><text transform="translate(37,419) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#6d28d9">PARTNER</text>
+        <line x1="74" y1="158" x2="1040" y2="158" stroke="#bfdbfe" stroke-width="1.5"/><line x1="74" y1="328" x2="1040" y2="328" stroke="#ddd6fe" stroke-width="1.5"/>
+        <text x="557" y="405" text-anchor="middle" font-size="11" fill="#6b7280" font-style="italic">Partner lane not involved until consumer clicks Apply Now</text>
+        <rect x="84" y="47" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="150" y="71" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Submits loan</text><text x="150" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">application form</text><text x="150" y="104" text-anchor="middle" font-size="9.5" fill="#6b7280">Via any supply integration</text>
+        <line x1="150" y1="111" x2="150" y2="180" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28b1)"/>
+        <rect x="84" y="182" width="132" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Receives lead and</text><text x="150" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">runs gates</text><text x="150" y="239" text-anchor="middle" font-size="9.5" fill="#6b7280">Fraud, caps, KO filters</text>
+        <line x1="216" y1="214" x2="240" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28b1)"/>
+        <polygon points="270,190 306,214 270,238 234,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="270" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Gates</text><text x="270" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">pass?</text>
+        <line x1="270" y1="238" x2="270" y2="272" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28b1r)"/><rect x="222" y="274" width="96" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="270" y="290" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Lead dropped</text><text x="280" y="254" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <line x1="306" y1="214" x2="330" y2="214" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28b1g)"/><text x="317" y="205" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="332" y="172" width="164" height="94" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2.5"/><rect x="332" y="172" width="164" height="26" rx="8" fill="#8b5cf6"/><rect x="332" y="190" width="164" height="8" fill="#8b5cf6"/>
+        <text x="414" y="189" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">SPARK: FULLY HOSTED</text><text x="414" y="214" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Black Box runs model</text><text x="414" y="230" text-anchor="middle" font-size="11" fill="#374151">Internal — Engine infrastructure</text><text x="414" y="246" text-anchor="middle" font-size="11" fill="#374151">No external API call made</text><text x="414" y="260" text-anchor="middle" font-size="9.5" fill="#6b7280">spark.engine.com</text>
+        <line x1="496" y1="219" x2="520" y2="219" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28b1)"/>
+        <polygon points="552,195 588,219 552,243 516,219" fill="#fff" stroke="#8b5cf6" stroke-width="2"/><text x="552" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">Model</text><text x="552" y="228" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">approves?</text>
+        <line x1="552" y1="243" x2="552" y2="278" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28b1r)"/><rect x="504" y="280" width="96" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="552" y="296" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Offer excluded</text><text x="562" y="261" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <line x1="588" y1="219" x2="612" y2="219" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28b1g)"/><text x="599" y="210" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="614" y="182" width="130" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="679" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Collects all</text><text x="679" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">lender responses</text><text x="679" y="240" text-anchor="middle" font-size="9.5" fill="#6b7280">Approvals and declines</text>
+        <line x1="744" y1="214" x2="764" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28b1)"/>
+        <polygon points="794,190 830,214 794,238 758,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="794" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Any lender</text><text x="794" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">approved?</text>
+        <line x1="794" y1="238" x2="794" y2="272" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28b1o)"/><rect x="748" y="274" width="92" height="42" rx="6" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.5"/><text x="794" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#92400e">2LM kicks in</text><text x="794" y="307" text-anchor="middle" font-size="9.5" fill="#78350f">See 2LM Workflow</text><text x="804" y="256" font-size="10.5" fill="#f59e0b" font-weight="700">N</text>
+        <line x1="794" y1="190" x2="794" y2="120" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28b1g)"/><text x="800" y="157" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="728" y="48" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="794" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees ranked</text><text x="794" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">rate table</text><text x="794" y="106" text-anchor="middle" font-size="9.5" fill="#6b7280">Best match at top</text>
+        <line x1="860" y1="80" x2="884" y2="80" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28b1)"/>
+        <rect x="886" y="60" width="112" height="42" rx="7" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/><text x="942" y="76" text-anchor="middle" font-size="10" font-weight="700" fill="#15803d">Apply Now</text><text x="942" y="91" text-anchor="middle" font-size="9" fill="#6b7280">Click, fund, CPA / CPC</text>
+        </svg></div>
+      </div>
+      <div id="d28-p-filter" style="display:none;">
+        <div style="font-size:11px;color:#4b5563;margin-bottom:8px;line-height:1.5;">Spark pre-screens the lead in Black Box against the partner's criteria. Only leads that pass are forwarded to the partner's own underwriting API — eliminating unnecessary calls for leads that would be declined.</div>
+        <div style="border-radius:10px;overflow:hidden;border:1.5px solid #e2e8f0;">
+        <svg viewBox="0 0 1160 510" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+        <defs><marker id="d28c1" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#64748b"/></marker><marker id="d28c1g" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#10b981"/></marker><marker id="d28c1r" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#ef4444"/></marker><marker id="d28c1p" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#8b5cf6"/></marker><marker id="d28c1o" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#f59e0b"/></marker></defs>
+        <rect x="0" y="0" width="1160" height="158" fill="#eff6ff"/><rect x="0" y="158" width="1160" height="170" fill="#f0fdf4"/><rect x="0" y="328" width="1160" height="182" fill="#faf5ff"/>
+        <rect x="0" y="0" width="74" height="158" fill="#dbeafe"/><rect x="0" y="158" width="74" height="170" fill="#dcfce7"/><rect x="0" y="328" width="74" height="182" fill="#ede9fe"/>
+        <text transform="translate(37,79) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">CONSUMER</text><text transform="translate(37,243) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">ENGINE</text><text transform="translate(37,419) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#6d28d9">PARTNER</text>
+        <line x1="74" y1="158" x2="1160" y2="158" stroke="#bfdbfe" stroke-width="1.5"/><line x1="74" y1="328" x2="1160" y2="328" stroke="#ddd6fe" stroke-width="1.5"/>
+        <rect x="84" y="47" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="150" y="71" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Submits loan</text><text x="150" y="87" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">application form</text><text x="150" y="104" text-anchor="middle" font-size="9.5" fill="#6b7280">Via any supply integration</text>
+        <line x1="150" y1="111" x2="150" y2="180" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <rect x="84" y="182" width="132" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="150" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Receives lead and</text><text x="150" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">runs gates</text><text x="150" y="239" text-anchor="middle" font-size="9.5" fill="#6b7280">Fraud, caps, KO filters</text>
+        <line x1="216" y1="214" x2="240" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <polygon points="270,190 306,214 270,238 234,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="270" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Gates</text><text x="270" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">pass?</text>
+        <line x1="270" y1="238" x2="270" y2="272" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28c1r)"/><rect x="222" y="274" width="96" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="270" y="290" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Lead dropped</text><text x="280" y="254" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <line x1="306" y1="214" x2="330" y2="214" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28c1g)"/><text x="317" y="205" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="332" y="172" width="164" height="94" rx="8" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2.5"/><rect x="332" y="172" width="164" height="26" rx="8" fill="#8b5cf6"/><rect x="332" y="190" width="164" height="8" fill="#8b5cf6"/>
+        <text x="414" y="189" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">SPARK: FILTERING</text><text x="414" y="213" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Black Box pre-screens</text><text x="414" y="229" text-anchor="middle" font-size="11" fill="#374151">Evaluates lead internally</text><text x="414" y="245" text-anchor="middle" font-size="11" fill="#374151">against partner criteria</text><text x="414" y="261" text-anchor="middle" font-size="9.5" fill="#6b7280">spark.engine.com</text>
+        <line x1="496" y1="219" x2="520" y2="219" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <polygon points="552,195 590,219 552,243 514,219" fill="#fff" stroke="#8b5cf6" stroke-width="2"/><text x="552" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">Spark</text><text x="552" y="228" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">approves?</text>
+        <line x1="552" y1="243" x2="552" y2="280" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28c1r)"/><rect x="498" y="282" width="108" height="40" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="552" y="297" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">Lead excluded</text><text x="552" y="313" text-anchor="middle" font-size="9.5" fill="#6b7280">No partner API call made</text><text x="562" y="262" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <line x1="590" y1="219" x2="618" y2="219" stroke="#8b5cf6" stroke-width="1.5"/><line x1="618" y1="219" x2="618" y2="336" stroke="#8b5cf6" stroke-width="1.5" marker-end="url(#d28c1p)"/><text x="603" y="210" font-size="10.5" font-weight="700" fill="#6d28d9">Y</text>
+        <rect x="540" y="338" width="164" height="80" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2.5"/><rect x="540" y="338" width="164" height="26" rx="8" fill="#8b5cf6"/><rect x="540" y="356" width="164" height="8" fill="#8b5cf6"/>
+        <text x="622" y="355" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">PARTNER API CALLED</text><text x="622" y="378" text-anchor="middle" font-size="11.5" font-weight="700" fill="#5b21b6">Spark-approved leads only</text><text x="622" y="394" text-anchor="middle" font-size="10.5" fill="#374151">Real-time external call</text><text x="622" y="410" text-anchor="middle" font-size="9.5" fill="#dc2626" font-weight="600">Max 10 second response</text>
+        <line x1="704" y1="378" x2="730" y2="378" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <polygon points="762,356 798,378 762,400 726,378" fill="#fff" stroke="#8b5cf6" stroke-width="2"/><text x="762" y="373" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">Partner</text><text x="762" y="387" text-anchor="middle" font-size="10.5" font-weight="700" fill="#5b21b6">approves?</text>
+        <line x1="762" y1="400" x2="762" y2="450" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28c1r)"/><rect x="718" y="452" width="88" height="26" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/><text x="762" y="468" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Lender declined</text><text x="772" y="420" font-size="10.5" fill="#ef4444" font-weight="700">N</text>
+        <polyline points="798,378 840,378 840,219 866,219" fill="none" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28c1g)"/><text x="818" y="368" text-anchor="middle" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="868" y="182" width="130" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="933" y="206" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Collects all</text><text x="933" y="222" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">lender responses</text><text x="933" y="240" text-anchor="middle" font-size="9.5" fill="#6b7280">Approvals and declines</text>
+        <line x1="998" y1="214" x2="1018" y2="214" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <polygon points="1048,190 1084,214 1048,238 1012,214" fill="#fff" stroke="#10b981" stroke-width="2"/><text x="1048" y="209" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">Any lender</text><text x="1048" y="222" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">approved?</text>
+        <line x1="1048" y1="238" x2="1048" y2="272" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d28c1o)"/><rect x="1002" y="274" width="92" height="42" rx="6" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.5"/><text x="1048" y="290" text-anchor="middle" font-size="10.5" font-weight="700" fill="#92400e">2LM kicks in</text><text x="1048" y="307" text-anchor="middle" font-size="9.5" fill="#78350f">See 2LM Workflow</text><text x="1058" y="256" font-size="10.5" fill="#f59e0b" font-weight="700">N</text>
+        <line x1="1048" y1="190" x2="1048" y2="120" stroke="#10b981" stroke-width="1.8" marker-end="url(#d28c1g)"/><text x="1054" y="157" font-size="10.5" font-weight="700" fill="#10b981">Y</text>
+        <rect x="982" y="48" width="132" height="64" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/><text x="1048" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees ranked</text><text x="1048" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">rate table</text><text x="1048" y="106" text-anchor="middle" font-size="9.5" fill="#6b7280">Best match at top</text>
+        <line x1="1114" y1="80" x2="1138" y2="80" stroke="#64748b" stroke-width="1.8" marker-end="url(#d28c1)"/>
+        <rect x="1140" y="60" width="12" height="42" rx="4" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+        </svg></div>
+      </div>
+    </div>
+    <script>
+    function d28show(id,btn){
+      ['api','hosted','filter'].forEach(function(t){
+        var p=document.getElementById('d28-p-'+t);
+        var b=document.getElementById('d28-tab-'+t);
+        if(p) p.style.display='none';
+        if(b){b.style.background='#ffffff';b.style.color='#374151';b.style.borderColor='#e2e8f0';}
+      });
+      var show=document.getElementById('d28-p-'+id);
+      if(show) show.style.display='block';
+      btn.style.background='#1e3a5f';btn.style.color='#ffffff';btn.style.borderColor='#1e3a5f';
+    }
+    </script>
+    </div><!-- /diag-28 -->
+
+    <div id="diag-29" class="diag-card full-width">
+    <div class="diag-header">
+      <span class="diag-icon">📥</span>
+      <div>
+        <div class="diag-title">2LM: Second Look Marketplace</div>
+        <div class="diag-subtitle">Triggered when all 1LM lenders decline. 2LM partners bid on a CPC basis for access to the consumer. No real-time underwriting API required. Revenue is captured at the click, not at funding.</div>
+      </div>
+    </div>
+    <div style="border-radius:10px;overflow:hidden;border:1.5px solid #e2e8f0;margin-top:10px;">
+    <svg viewBox="0 0 1160 470" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+    <defs>
+      <marker id="d29a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#64748b"/></marker>
+      <marker id="d29ag" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#10b981"/></marker>
+      <marker id="d29ar" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#ef4444"/></marker>
+      <marker id="d29ao" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#f59e0b"/></marker>
+      <marker id="d29at" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0.5 L0,5.5 L7,3 z" fill="#0d9488"/></marker>
+    </defs>
+    <!-- Lanes -->
+    <rect x="0" y="0" width="1160" height="152" fill="#eff6ff"/>
+    <rect x="0" y="152" width="1160" height="162" fill="#f0fdf4"/>
+    <rect x="0" y="314" width="1160" height="156" fill="#faf5ff"/>
+    <rect x="0" y="0" width="72" height="152" fill="#dbeafe"/>
+    <rect x="0" y="152" width="72" height="162" fill="#dcfce7"/>
+    <rect x="0" y="314" width="72" height="156" fill="#ede9fe"/>
+    <text transform="translate(36,76) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#1d4ed8">CONSUMER</text>
+    <text transform="translate(36,233) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">ENGINE</text>
+    <text transform="translate(36,392) rotate(-90)" text-anchor="middle" font-size="13" font-weight="800" fill="#6d28d9">PARTNER (2LM)</text>
+    <line x1="72" y1="152" x2="1160" y2="152" stroke="#bfdbfe" stroke-width="1.5"/>
+    <line x1="72" y1="314" x2="1160" y2="314" stroke="#ddd6fe" stroke-width="1.5"/>
+    <!-- Entry: amber to signal continuation from 1LM -->
+    <rect x="82" y="46" width="128" height="60" rx="8" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/>
+    <text x="146" y="65" text-anchor="middle" font-size="9.5" font-weight="800" fill="#92400e">FROM 1LM</text>
+    <text x="146" y="81" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">All 1LM lenders</text>
+    <text x="146" y="97" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">declined</text>
+    <line x1="146" y1="106" x2="146" y2="174" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- Engine: 2LM triggered -->
+    <rect x="82" y="176" width="128" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="146" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">2LM triggered</text>
+    <text x="146" y="216" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Checks cache</text>
+    <text x="146" y="233" text-anchor="middle" font-size="9.5" fill="#6b7280">ssn / email match</text>
+    <line x1="210" y1="208" x2="234" y2="208" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- D_CACHE: Prior 2LM offer cached? -->
+    <polygon points="268,184 306,208 268,232 230,208" fill="#fff" stroke="#0d9488" stroke-width="2"/>
+    <text x="268" y="203" text-anchor="middle" font-size="10" font-weight="700" fill="#0f766e">Prior 2LM</text>
+    <text x="268" y="216" text-anchor="middle" font-size="10" font-weight="700" fill="#0f766e">offer cached?</text>
+    <!-- Cache Y: note then continue -->
+    <line x1="306" y1="208" x2="358" y2="208" stroke="#0d9488" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#d29at)"/>
+    <text x="330" y="200" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0d9488">Y</text>
+    <rect x="360" y="192" width="126" height="32" rx="6" fill="#ccfbf1" stroke="#5eead4" stroke-width="1.2"/>
+    <text x="423" y="205" text-anchor="middle" font-size="10" font-weight="700" fill="#0f766e">Exclude cached offer</text>
+    <text x="423" y="219" text-anchor="middle" font-size="9.5" fill="#0d9488">Next bidder gets the spot</text>
+    <line x1="486" y1="208" x2="514" y2="208" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- Cache N: route under -->
+    <line x1="268" y1="232" x2="268" y2="258" stroke="#64748b" stroke-width="1.3"/>
+    <line x1="268" y1="258" x2="544" y2="258" stroke="#64748b" stroke-width="1.3"/>
+    <line x1="544" y1="258" x2="544" y2="234" stroke="#64748b" stroke-width="1.3" marker-end="url(#d29a)"/>
+    <text x="282" y="248" font-size="9.5" fill="#64748b" font-weight="700">N</text>
+    <!-- Engine: CPC Auction -->
+    <rect x="516" y="176" width="152" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="592" y="199" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">2LM CPC auction</text>
+    <text x="592" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Partners bid for access</text>
+    <text x="592" y="233" text-anchor="middle" font-size="9.5" fill="#f59e0b" font-weight="600">No underwriting API required</text>
+    <line x1="592" y1="240" x2="592" y2="322" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- Partner: Bid opportunity -->
+    <rect x="516" y="324" width="152" height="64" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="592" y="347" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Receives bid opportunity</text>
+    <text x="592" y="363" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Places CPC bid</text>
+    <text x="592" y="380" text-anchor="middle" font-size="9.5" fill="#6b7280">Highest bid wins placement</text>
+    <line x1="668" y1="356" x2="700" y2="356" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- D2: Any partner bids? -->
+    <polygon points="734,332 770,356 734,380 698,356" fill="#fff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="734" y="351" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">Any partner</text>
+    <text x="734" y="364" text-anchor="middle" font-size="10" font-weight="700" fill="#5b21b6">bids?</text>
+    <!-- D2 N: no offer -->
+    <line x1="734" y1="380" x2="734" y2="424" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d29ar)"/>
+    <text x="740" y="404" font-size="9.5" fill="#ef4444" font-weight="700">N</text>
+    <rect x="686" y="426" width="96" height="36" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+    <text x="734" y="440" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">No offer available</text>
+    <text x="734" y="454" text-anchor="middle" font-size="9" fill="#6b7280">Consumer sees nothing</text>
+    <!-- D2 Y: elbow to Engine -->
+    <polyline points="770,356 816,356 816,208" fill="none" stroke="#10b981" stroke-width="1.8" marker-end="url(#d29ag)"/>
+    <text x="791" y="347" text-anchor="middle" font-size="9.5" font-weight="700" fill="#10b981">Y</text>
+    <!-- Engine: assembles offer -->
+    <rect x="818" y="176" width="136" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="886" y="199" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Winning bid assembled</text>
+    <text x="886" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">as special offer</text>
+    <text x="886" y="233" text-anchor="middle" font-size="9.5" fill="#6b7280">Ranked below 1LM offers</text>
+    <!-- Engine up to Consumer -->
+    <line x1="886" y1="176" x2="886" y2="114" stroke="#10b981" stroke-width="1.8" marker-end="url(#d29ag)"/>
+    <text x="892" y="147" font-size="9.5" font-weight="700" fill="#10b981">Y</text>
+    <!-- Consumer: sees special offer -->
+    <rect x="820" y="46" width="132" height="60" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="886" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">Sees special offer</text>
+    <text x="886" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">from 2LM partner</text>
+    <text x="886" y="100" text-anchor="middle" font-size="9.5" fill="#6b7280">Shown below rate table</text>
+    <line x1="952" y1="76" x2="976" y2="76" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- D3: Clicks offer? -->
+    <polygon points="1010,52 1046,76 1010,100 974,76" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="1010" y="71" text-anchor="middle" font-size="10" font-weight="700" fill="#1e40af">Clicks</text>
+    <text x="1010" y="84" text-anchor="middle" font-size="10" font-weight="700" fill="#1e40af">offer?</text>
+    <!-- D3 N: right -->
+    <line x1="1046" y1="76" x2="1072" y2="76" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d29ar)"/>
+    <text x="1057" y="68" font-size="9.5" fill="#ef4444" font-weight="700">N</text>
+    <rect x="1074" y="64" width="78" height="24" rx="5" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.2"/>
+    <text x="1113" y="79" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">Session ends</text>
+    <!-- D3 Y: down to Engine -->
+    <line x1="1010" y1="100" x2="1010" y2="174" stroke="#10b981" stroke-width="1.8" marker-end="url(#d29ag)"/>
+    <text x="1016" y="140" font-size="9.5" font-weight="700" fill="#10b981">Y</text>
+    <!-- Engine: Records CPC -->
+    <rect x="952" y="176" width="116" height="64" rx="8" fill="#fff" stroke="#10b981" stroke-width="2"/>
+    <text x="1010" y="199" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Records CPC click</text>
+    <text x="1010" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Redirects consumer</text>
+    <text x="1010" y="233" text-anchor="middle" font-size="9.5" fill="#f59e0b" font-weight="600">Revenue captured at click</text>
+    <line x1="1010" y1="240" x2="1010" y2="322" stroke="#64748b" stroke-width="1.8" marker-end="url(#d29a)"/>
+    <!-- Partner: Consumer arrives -->
+    <rect x="952" y="324" width="116" height="64" rx="8" fill="#fff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="1010" y="347" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">Consumer lands</text>
+    <text x="1010" y="363" text-anchor="middle" font-size="12" font-weight="700" fill="#5b21b6">on partner site</text>
+    <text x="1010" y="380" text-anchor="middle" font-size="9.5" fill="#6b7280">Off-platform</text>
+    <!-- Revenue: CPC amber -->
+    <polyline points="1068,356 1108,356 1108,208" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#d29ao)"/>
+    <text x="1112" y="285" font-size="9.5" fill="#f59e0b" font-weight="600">CPC revenue</text>
+    <text x="1112" y="297" font-size="9.5" fill="#f59e0b" font-weight="600">at click</text>
+    <rect x="1084" y="190" width="68" height="42" rx="6" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5"/>
+    <text x="1118" y="207" text-anchor="middle" font-size="11" font-weight="700" fill="#92400e">CPC</text>
+    <text x="1118" y="221" text-anchor="middle" font-size="9.5" font-weight="700" fill="#92400e">at click</text>
+    <text x="1118" y="233" text-anchor="middle" font-size="9" fill="#6b7280">no EDE</text>
+    <!-- Differences callout in Partner lane -->
+    <rect x="80" y="322" width="420" height="122" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="290" y="342" text-anchor="middle" font-size="11" font-weight="800" fill="#92400e">HOW 2LM DIFFERS FROM 1LM</text>
+    <line x1="92" y1="349" x2="490" y2="349" stroke="#fed7aa" stroke-width="0.8"/>
+    <text x="92"  y="365" font-size="10" fill="#6b7280">Triggered by</text>
+    <text x="92"  y="381" font-size="10" fill="#6b7280">Pricing model</text>
+    <text x="92"  y="397" font-size="10" fill="#6b7280">Partner API</text>
+    <text x="92"  y="413" font-size="10" fill="#6b7280">Cache hit</text>
+    <text x="92"  y="429" font-size="10" fill="#6b7280">Revenue event</text>
+    <text x="178" y="365" font-size="10" font-weight="700" fill="#92400e">All 1LM lenders declining</text>
+    <text x="178" y="381" font-size="10" font-weight="700" fill="#92400e">CPC, paid at click (not at funding)</text>
+    <text x="178" y="397" font-size="10" font-weight="700" fill="#92400e">Not required, CPC bid only</text>
+    <text x="178" y="413" font-size="10" font-weight="700" fill="#92400e">Excludes that offer, re-bids others</text>
+    <text x="178" y="429" font-size="10" font-weight="700" fill="#92400e">No EDE, recorded at click immediately</text>
+    </svg>
+    </div>
+    </div><!-- /diag-29 -->
+
+
   </div>
 </div>
 
@@ -2796,6 +3264,7 @@ const TERMS = [
   { cat:"Process", sub:"Integration Mechanics", term:"CF CRA", full:"Cashflow Credit Reporting Agency", def:"A third-party agency that receives and structures cashflow data for use in lender underwriting decisions. In the Spark/BVE context, Engine can pass BVE attributes to CF CRAs such as Nova or Prism, which format the data for lender consumption as an alternative to standard credit bureau data." },
   { cat:"Process", sub:"Integration Mechanics", term:"Relay Token", def:"A token that passes MoneyLion's pre-verified BVE data to a partner's checkout flow, eliminating the need for the consumer to re-link their bank account. Reduces friction in partner onboarding flows by reusing already-verified data without requiring a second consent or bank-linking step." },
   { cat:"Process", sub:"Commercial & Legal", term:"Clawback", def:"A contractual provision allowing a demand partner to reclaim previously paid revenue if a loan defaults, is fraudulent, or if the partner's underwriting findings differ materially from pre-verified data (e.g. Spark/BVE attributes). Clawback exposure is a key risk when Engine's first-party data is used directly in lender decisioning." },
+  { cat:"Process", sub:"Commercial & Legal", term:"Compliance Review", def:"The Engine Compliance team reviews all partner content to confirm it meets applicable requirements and financial services laws. Reviews cover four areas: (1) Honesty and accuracy — content must be honest, true, and fair; claims must be substantiated; no misleading language; must comply with Engine's Do's and Don'ts. (2) Consents and disclosures — advertising and editorial disclosures must be conspicuous and prominent on each page; consent language must be conspicuous and located directly near the CTA button or checkbox. (3) Integration-specific requirements — for Partner Page and Embed integrations, consents and disclosures are hosted by Engine. (4) Offer display — all required offer fields must be compliantly displayed." },
   { cat:"Process", sub:"Pricing & Economics", term:"CP$1K", full:"Cost per $1,000 Funded", def:"A demand-side pricing metric expressing how much a lender pays Engine per $1,000 of loan principal funded. Useful for normalizing payout comparisons across loan amounts — e.g. a $300 CPA on a $5,000 loan = $60 CP$1K. Helps Engine and lenders benchmark efficiency across different loan sizes and verticals. Note: this definition is inferred — verify the exact usage with your team." },
   { cat:"Process", sub:"Pricing & Economics", term:"Yield Management", def:"The practice of optimizing revenue across the Engine marketplace by tuning offer ordering, pricing controls, and partner mix. Involves adjusting EESO, Price Ceilings/Floors, DAF, and demand sub-account configuration to maximize total earned revenue per lead while maintaining consumer experience quality. In practice: balancing lender bid competitiveness, fill rate, and Engine margin simultaneously." },
   { cat:"Process", sub:"Integration Mechanics", term:"Affiliate Link", def:"A demand-side offer type where a demand partner provides a static redirect URL (rather than a real-time API integration) to be placed on supply partner properties. Instead of Engine calling a lender's underwriting API, the consumer clicks directly through to the demand partner's own landing page. Tracking and attribution flow back via URL parameters (typically subid3) through affiliate networks like Impact Radius. Engine maintains one demand sub-account per partner per product sub-type for all affiliate links, and one supply sub-account per placement type — keeping Looker reporting clean. Common for partners with simpler integrations or specific compliance requirements." },
@@ -2998,7 +3467,7 @@ const TERMS = [
   { cat:"Orgs", sub:"Gen Digital", term:"LifeLock", def:"Gen Digital's identity theft protection brand. A demand partner on Engine — LifeLock surfaces serve Engine-powered credit card and financial product offers to their consumer base. Also referenced in the CardCritics Inventory Extension rollout (CardCritics CC offers now live on LifeLock)." },
   { cat:"Products", sub:"Platform & APIs", term:"Offer Searches API", def:"Engine API that returns structured financial product offer data for enriching LLM/chatbot agent responses. Used by partners like Microsoft Copilot to retrieve real-time offer data without rendering a full embed — the partner's AI agent uses the data to formulate natural language responses, then links out to a compliant Engine embed for the actual application." },
   { cat:"Products", sub:"Platform & APIs", term:"Content Catalogue API", def:"Engine API serving agency-provided creative assets (images, copy, ad templates) to publisher partners. Used in the CardCritics integration to allow rendering of both advertiser-provided and agency-provided creative assets independently of legacy ad platforms." },
-  { cat:"Products", sub:"Platform & APIs", term:"Postback", def:"An HTTP callback Engine sends to a partner's configured URL when a specific event fires — typically a monetization, click, or payout event. Partners use postbacks to sync Engine revenue data back to their own systems, ad platforms (Google, Meta), or BI tools in near real-time. Critical for Trade Desk ROAS optimization." },
+  { cat:"Products", sub:"Platform & APIs", term:"Postback", def:"Webhooks Engine sends to supply partners for downstream revenue reporting. Triggered when a revenue event (conversion) is received from a demand partner — demand partners report revenue to Engine, and Engine pays out supply partners via rev share on both sides. Not always configured: supply partners must request postbacks (default reporting is Partner Solutions running reports in Looker, delivered via SFTP). Postbacks are not truly real-time; demand partners typically report daily. Used when a partner wants data faster or on a per-channel basis — common with publishers and aggregators." },
   { cat:"Products", sub:"Platform & APIs", term:"MCP", full:"Model Context Protocol", def:"An open protocol that allows LLM agents (like Microsoft Copilot) to call external tools and APIs as part of their reasoning. Engine has built an MCP Server on top of the Offer Searches API, enabling AI agents to query Engine's financial marketplace in real time. Understanding MCP is listed as a critical skill for SE working with LLM/Chatbot ICPs." },
   { cat:"Products", sub:"Partnerships & Distribution", term:"Inventory Extension", def:"A model where a partner's own financial product offers are served through Engine's ad-serving infrastructure to Engine's broader publisher network. GBR's Phase 1 Inventory Extension is complete: GBR credit card offers now run on Engine and are served to LifeLock and MoneyLion consumers. Contrasts with the standard model where demand partners are external lenders/issuers — here GBR is simultaneously supply (traffic source) and demand (offer source)." },
   { cat:"Products", sub:"Partnerships & Distribution", term:"Scam Protection SDK", def:"Gen Digital's cybersecurity/fraud protection product being made distributable via Engine's B2B integration platform. The first Gen non-financial product offered through Engine. Represents the beginning of a larger strategic vision: Engine becoming the B2B distribution layer for all Gen Digital products, not just the financial marketplace. Targeted live ~May 2026." },
@@ -3108,11 +3577,15 @@ const DIAGRAM_INDEX = [
   { id:'diag-17', keywords:['copilot','microsoft','llm','chatbot','mcp','model context protocol','offer searches','offer searches api','ai','agent','bing','msn','edge','inform connect act'] },
   { id:'diag-18', keywords:['roadmap','vision','scam protection','sdk','partner hub','engine by gen','gen distribution','strategy','expansion','fy26','rebranding','future'] },
   { id:'diag-19', keywords:['1lm','2lm','first look','second look','decisioning','gate','cookie','spark','fraud','cap','knockout','ko filter','daf','offer cache','decision cache','14 fields','loan application','escalation','2nd look'] },
+  { id:'diag-28', keywords:['1lm','first look marketplace','native api','spark hosted','spark filtering','black box','pre-screen','lender approves','gates pass','all 5 fields','revshare','cpa','cpc'] },
+  { id:'diag-29', keywords:['2lm','second look marketplace','cpc auction','bid','all 1lm declined','cache exclusion','special offer','no partner api','no ede','2lm differs'] },
+  { id:'diag-27', keywords:['landscape','platform','overview','vertical lanes','marketplace','supply demand','personal loans','credit cards','banking','deposits','auto insurance','debt relief','new marketplaces','partner page','embed','mobile sdk','native api','prefill','calculators','tofu','fintech lenders','neobanks','publishers','performance marketers','banks','credit unions','issuers','carriers','upstart','avant','raisin','americor','how engine works','big picture','map'] },
   { id:'diag-20', keywords:['icp','supply','demand','fintech lender','marketplace aggregator','neobank','publisher','performance marketer','ping tree','comparison chart','offer wall','emailer','financial institution','partner type','use case','declines','cross sell','sofi','upstart','bestegg','nerdwallet','credible','chime','brigit','moneylion','citi','truist','forbes','cnbc','lendingclub','refijet','caribou','lendingtree','who we sell to','supply icp','demand icp'] },
   { id:'diag-21', keywords:['prefill','prefilltoken','second party prefill','server-to-server','pii','partner page','embed','linkout','embedsnippet','partnerPageUrl','form prefill','review screen','fcra','tcpa','consent','apply now','offer wall api','missing fields','standard form','graceful fallback','co-branded','integration','ux','user experience','lender redirect'] },
   { id:'diag-22', keywords:['offer wall','partner page','linkout','embed','iframe','embedsnippet','script tag','redirect','co-branded','cta','loan form','rate table','apply now','rec score','supply integration','cpc','revshare','ede','2lm fallback','partnerPageUrl','embedSnippet','cookie check','returning consumer','inline widget','display option'] },
   { id:'diag-24', keywords:['embed','iframe','script tag','marketplace','personal loans','credit cards','banking','deposits','auto insurance','new marketplace','vertical','form fields','offer card','inline','widget','embedsnippet','apy','apr','annual fee','rewards','coverage','monthly premium','supply integration','cross sell','logged in','dashboard'] },
   { id:'diag-25', keywords:['partner page','partner pages','redirect','linkout','marketplace','personal loans','credit cards','banking','deposits','auto insurance','new marketplace','vertical','form fields','offer card','hosted','engine hosted','co-branded','partnerPageUrl','cta','link','no code','no script','supply integration','email','sms','decline redirect'] },
+  { id:'diag-26', keywords:['calculator','top of funnel','tofu','personal loan calculator','debt consolidation calculator','savings calculator','personal loan vs debt relief','debt relief calculator','web component','widget','script tag','prospects-widgets','monthly payment','consolidation','branching','loan purpose','pre-fill','debt relief','credit score disclaimer','warm up','lightweight','no ssn'] },
   { id:'diag-23', keywords:['lead lifecycle','decisioning','offer decisioning','gate','lead api','supply demand pairing','hydration','lead validator','lead importer','fraud','lead quality','cdp','caps','killswitch','enabledDemandSubAccounts','knockout','ko filter','ruleDemandApiFilters','offer cache','decision cache','cache hit','cache miss','spark','partner bidding','rate table','rec score','1lm','2lm','stateExclusions','supplyDemandInclusion','productTypes','observability'] },
 ];
 
@@ -3139,7 +3612,7 @@ function renderMain() {
   if (activeCategory === 'Business') {
     main.innerHTML = ''; hideAll();
     diagBusiness.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '13 diagrams';
+    document.getElementById('resultCount').textContent = '14 diagrams';
     return;
   }
   if (activeCategory === 'Technical') {
@@ -3151,13 +3624,13 @@ function renderMain() {
   if (activeCategory === 'Supply Workflows') {
     main.innerHTML = ''; hideAll();
     diagSupply.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '4 workflows';
+    document.getElementById('resultCount').textContent = '5 workflows';
     return;
   }
   if (activeCategory === 'Demand Workflows') {
     main.innerHTML = ''; hideAll();
     diagDemand.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '0 workflows';
+    document.getElementById('resultCount').textContent = '2 workflows';
     return;
   }
 
