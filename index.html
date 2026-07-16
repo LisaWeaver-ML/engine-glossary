@@ -49,8 +49,8 @@
   .cat-tab[data-cat="Products"].active { background: #ef4444; border-color: #ef4444; }
   .cat-tab[data-cat="Business"].active     { background: #0891b2; border-color: #0891b2; }
   .cat-tab[data-cat="Technical"].active    { background: #7c3aed; border-color: #7c3aed; }
-  .cat-tab[data-cat="Supply Workflows"].active   { background: #0369a1; border-color: #0369a1; }
-  .cat-tab[data-cat="Demand Workflows"].active   { background: #b45309; border-color: #b45309; }
+  .cat-tab[data-cat="Workflows"].active { background: #0369a1; border-color: #0369a1; }
+  .cat-tab[data-cat="Resources"].active { background: #0f766e; border-color: #0f766e; }
 
   /* Collapsible diagrams */
   .diag-header { cursor: pointer; user-select: none; display: flex; align-items: flex-start; gap: 10px; }
@@ -130,7 +130,7 @@
   .related-diag-chip:hover { background: #ede9fe; }
 
   /* ── Diagrams ── */
-  #diagrams-business, #diagrams-technical, #diagrams-supply, #diagrams-demand { padding: 0; background: #dde1e8; }
+  #diagrams-business, #diagrams-technical, #diagrams-workflows { padding: 0; background: #dde1e8; }
   .diag-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
   .related-diags-section { padding: 12px 20px 0; max-width: 1200px; margin: 0 auto; }
   .related-diags-label { font-size: 11px; font-weight: 700; color: #8b5cf6; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
@@ -298,8 +298,8 @@
     <button class="cat-tab active" data-cat="All">Definitions</button>
     <button class="cat-tab" data-cat="Business">📊 Business</button>
     <button class="cat-tab" data-cat="Technical">⚙️ Technical</button>
-    <button class="cat-tab" data-cat="Supply Workflows">📤 Supply Workflows</button>
-    <button class="cat-tab" data-cat="Demand Workflows">📥 Demand Workflows</button>
+    <button class="cat-tab" data-cat="Workflows">🔄 Workflows</button>
+    <button class="cat-tab" data-cat="Resources">🔗 Resources</button>
   </div>
 </header>
 
@@ -1966,8 +1966,10 @@
   </div>
 </div>
 
-<div id="diagrams-supply" class="hidden">
+<div id="diagrams-workflows" class="hidden">
   <div class="diag-grid">
+    <div style="grid-column:1/-1;margin:16px 0 2px;padding:8px 4px 6px;border-bottom:2px solid #e2e5ea;"><span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;">Supply — Integration Types</span></div>
+
 
     <div id="diag-22" class="diag-card full-width">
     <div class="diag-header">
@@ -2605,7 +2607,9 @@
 
     </div><!-- /diag-25 -->
 
-    <div id="diag-26" class="diag-card full-width">
+    
+    <div style="grid-column:1/-1;margin:16px 0 2px;padding:8px 4px 6px;border-bottom:2px solid #e2e5ea;"><span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;">Supply — Top of Funnel</span></div>
+<div id="diag-26" class="diag-card full-width">
     <div class="diag-header">
       <span class="diag-icon">🧮</span>
       <div>
@@ -2778,11 +2782,9 @@
 
     </div><!-- /diag-26 -->
 
-  </div>
-</div>
+  
+    <div style="grid-column:1/-1;margin:16px 0 2px;padding:8px 4px 6px;border-bottom:2px solid #e2e5ea;"><span style="font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;">Demand — Marketplaces</span></div>
 
-<div id="diagrams-demand" class="hidden">
-  <div class="diag-grid">
 
     <div id="diag-28" class="diag-card full-width">
     <div class="diag-header">
@@ -3078,10 +3080,253 @@
     <!-- /diag-30 -->
 
 
-  </div>
+    </div>
 </div>
 
 <main id="main"></main>
+
+<div id="resources-tab" class="hidden" style="max-width:960px;margin:24px auto;padding:0 16px 40px;">
+<style>
+.res-section{margin:0 0 28px}
+.res-section-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#94a3b8;border-bottom:1.5px solid #e2e5ea;padding-bottom:6px;margin-bottom:10px}
+.res-item{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:8px;transition:background .12s}
+.res-item:hover{background:#f1f5f9}
+.res-icon{width:30px;height:30px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px}
+.res-text{flex:1;min-width:0}
+.res-name{font-size:13.5px;font-weight:600;color:#1e293b}
+.res-name a{color:#4f46e5;text-decoration:none}
+.res-name a:hover{text-decoration:underline}
+.res-url{font-size:10.5px;color:#94a3b8;font-family:monospace;margin:1px 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.res-desc{font-size:12.5px;color:#64748b;line-height:1.5}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.res-footer{border-top:1px solid #e2e5ea;padding-top:12px;font-size:12px;color:#94a3b8;margin-top:8px}
+</style>
+
+<div class="res-section">
+  <div class="res-section-label">Partner-facing docs</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#ede9fe">📖</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://engine.tech/developer-center" target="_blank">Engine Dev Center</a></div>
+        <div class="res-url">engine.tech/developer-center</div>
+        <div class="res-desc">Official integration guide for supply partners — embeds, partner pages, APIs, mobile SDKs, and reporting setup.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#ede9fe">⌨️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://engine.tech/docs/api-reference/" target="_blank">API Reference</a></div>
+        <div class="res-url">engine.tech/docs/api-reference/</div>
+        <div class="res-desc">Full spec for Engine's supply and demand API endpoints — schemas, response fields, and example payloads.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">Internal tools</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#dcfce7">⚙️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://controls.engine.tech/" target="_blank">Control Center</a></div>
+        <div class="res-url">controls.engine.tech</div>
+        <div class="res-desc">Admin portal — manage supply/demand partners, subaccounts, offers, affiliate links, and API credentials.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f3e8ff">📊</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://enginebyml.cloud.looker.com/" target="_blank">Looker</a></div>
+        <div class="res-url">enginebyml.cloud.looker.com</div>
+        <div class="res-desc">Primary analytics platform. Revenue, payout, conversion, and funnel metrics across all partners and verticals.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#fef9c3">☁️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://enginebymoneylion.lightning.force.com/" target="_blank">Salesforce</a></div>
+        <div class="res-url">enginebymoneylion.lightning.force.com</div>
+        <div class="res-desc">CRM for tracking supply and demand opportunities, pipeline stages, onboarding cases, and account activity.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">Salesforce — live pipeline views</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🔍</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://enginebymoneylion.lightning.force.com/lightning/r/Report/00OPg000003CkOjMAK/view?queryScope=userFolders" target="_blank">Supply Onboarding CFY, All Statuses</a></div>
+        <div class="res-url">SF Report 00OPg000003CkOjMAK</div>
+        <div class="res-desc">All active supply onboarding cases with status: open, pending, on hold, or will not launch.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">✅</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://enginebymoneylion.lightning.force.com/lightning/r/Report/00O6e000009kQEsEAM/view?queryScope=userFolders" target="_blank">Supply Onboarding Cases by Status</a></div>
+        <div class="res-url">SF Report 00O6e000009kQEsEAM</div>
+        <div class="res-desc">Supply PM onboarding case progression with comments. Used in the weekly onboarding call.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">💼</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://enginebymoneylion.lightning.force.com/lightning/r/Report/00OPg000000P7mHMAS/view" target="_blank">My Opportunities w/ Contact Roles</a></div>
+        <div class="res-url">SF Report 00OPg000000P7mHMAS</div>
+        <div class="res-desc">Pipeline hygiene report — all opportunities with and without contact roles. Used for weekly SF cleanup.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">Onboarding — live docs</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📄</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://docs.google.com/document/d/1BarmmqI5rRfTeQskNqEBlCV7XdBplEY9lt5prdPD_wk/edit?tab=t.0" target="_blank">Weekly Supply Onboarding and Pipeline</a></div>
+        <div class="res-url">Google Doc — updated weekly</div>
+        <div class="res-desc">Running notes from the biweekly supply onboarding call. Tracks active partners and pipeline movement.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📄</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://docs.google.com/document/d/1uSY8Ezp_VN84-rcUj-YjJRVu7rBjAFGZlYgJ55FCE3Y/edit" target="_blank">Top Account Monitoring</a></div>
+        <div class="res-url">Google Doc — updated quarterly</div>
+        <div class="res-desc">Priority partners and their assigned PMs for the current quarter. Updated by PS leadership.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">Onboarding — playbooks and decks</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📋</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/partsol/pages/5016951654/Supply+Onboarding+Playbook+Hosted+Integrations" target="_blank">Supply Onboarding Playbook</a></div>
+        <div class="res-url">Confluence — spaces/partsol</div>
+        <div class="res-desc">Step-by-step onboarding process for hosted (partner page and embed) supply integrations.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🖥️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://docs.google.com/presentation/d/1s1pMM1FmKMKELh_vz70K_6iyO4m_YmD_-AkvGk-dY8w/edit" target="_blank">Supply Onboarding FinOps Training Deck</a></div>
+        <div class="res-url">Google Slides</div>
+        <div class="res-desc">Training deck for the Salesforce-based FinOps onboarding process at partner launch.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🖥️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://docs.google.com/presentation/d/1r0VeZEGPNj3KbnDDezpJtWVpNv_2_od0Ea4V7mKby2E/edit" target="_blank">Control Center Overview Deck</a></div>
+        <div class="res-url">Google Slides</div>
+        <div class="res-desc">Walkthrough of Control Center features and recent updates, shared with the PS team.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📋</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/SOLUTIONS/pages/6220480518/Demand+Partner+Reporting+Revenue+Troubleshooting+Guide" target="_blank">Demand Reporting/Revenue Troubleshooting Guide</a></div>
+        <div class="res-url">Confluence — spaces/SOLUTIONS</div>
+        <div class="res-desc">Internal guide for diagnosing demand partner reporting and revenue issues.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📋</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/SOLUTIONS/pages/6552880265/Postback+Reporting+Integration+Troubleshooting+Guide" target="_blank">Postback Reporting Troubleshooting Guide</a></div>
+        <div class="res-url">Confluence — spaces/SOLUTIONS</div>
+        <div class="res-desc">Integration and troubleshooting reference for postback reporting setup and common failures.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">Confluence spaces</div>
+  <div class="res-grid">
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">📐</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/PE" target="_blank">ENGINE: Product and Engineering</a></div>
+        <div class="res-url">spaces/PE</div>
+        <div class="res-desc">Primary space for Engine product and engineering docs, roadmaps, and technical specs.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🔧</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/SOLUTIONS" target="_blank">Solutions Engineering</a></div>
+        <div class="res-url">spaces/SOLUTIONS</div>
+        <div class="res-desc">Troubleshooting guides, runbooks, and SE-specific documentation.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">👥</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/PS" target="_blank">Partner Solutions</a></div>
+        <div class="res-url">spaces/PS</div>
+        <div class="res-desc">Resources, processes, and collateral for the Partner Solutions team.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🏪</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/EM1" target="_blank">Engine Marketplace</a></div>
+        <div class="res-url">spaces/EM1</div>
+        <div class="res-desc">Marketplace-focused documentation for the Engine network.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">🔌</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/API" target="_blank">Everything API</a></div>
+        <div class="res-url">spaces/API</div>
+        <div class="res-desc">Internal API documentation across MoneyLion/Engine services.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">💻</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/ENG" target="_blank">MoneyLion Engineering</a></div>
+        <div class="res-url">spaces/ENG</div>
+        <div class="res-desc">Org-wide engineering wiki — infrastructure, architecture, and standards.</div>
+      </div>
+    </div>
+    <div class="res-item">
+      <div class="res-icon" style="background:#f1f5f9">⚖️</div>
+      <div class="res-text">
+        <div class="res-name"><a href="https://moneylion.atlassian.net/wiki/spaces/COMPLIANCE" target="_blank">Compliance</a></div>
+        <div class="res-url">spaces/COMPLIANCE</div>
+        <div class="res-desc">Compliance policies, review requirements, and regulatory guidance relevant to Engine partnerships.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="res-section">
+  <div class="res-section-label">JIRA</div>
+  <div class="res-item">
+    <div class="res-icon" style="background:#fee2e2">🗂️</div>
+    <div class="res-text">
+      <div class="res-name"><a href="https://moneylion.atlassian.net/jira/software/projects/SE/boards" target="_blank">SE Board — Solutions Engineering</a></div>
+      <div class="res-url">jira/projects/SE/boards</div>
+      <div class="res-desc">Partner onboarding issues, reporting bugs, integration support, and SE-owned feature work.</div>
+    </div>
+  </div>
+</div>
+
+</div>
 
 <script>
 const TERMS = [
@@ -3131,6 +3376,7 @@ const TERMS = [
   { cat:"Products", sub:"Financial Product Verticals", term:"IC / InstaCash", def:"MoneyLion's cash-advance product." },
   { cat:"Products", sub:"Financial Product Verticals", term:"FDR", full:"Freedom Debt Relief", def:"Debt-relief product or partner." },
   { cat:"Products", sub:"Financial Product Verticals", term:"FEB", full:"First Electronic Bank", def:"Credit Fresh partners with FEB to offer lines of credit in states where Credit Fresh is not licensed." },
+  { cat:"Products", sub:"Financial Product Verticals", term:"BNPL", full:"Buy Now, Pay Later", def:"A short-term financing model that lets consumers split a purchase into installment payments, typically interest-free if paid on time. Distinct from personal loans: BNPL is tied to a specific transaction, has shorter repayment windows (often 4 payments over 6 weeks), and is offered at or near point of sale. The global BNPL market is projected to grow from ~$55B in 2026 to ~$286B by 2034 (23% CAGR); North America holds ~56% of market share. Major players: Klarna (largest globally, ~100M users, ~$25.8B US payment volume), Affirm (largest pure-play US provider, ~$23.3B US payment volume, offers longer 3-36 month terms vs. standard pay-in-4), Afterpay (Block/Square, strong in retail and fashion), PayPal Pay Later (massive distribution via existing merchant network), Zip, and Sezzle (subprime/thin-file focus). Banks are entering fast with their own installment products, blurring the line with traditional credit. On Engine, BNPL is an adjacent demand vertical separate from core personal loans. Affirm and Klarna are the most likely demand partner fits given their API infrastructure and marketplace experience." },
   { cat:"Products", sub:"Offer Types & Structures", term:"Rate Table", def:"The consumer-facing table of offers, typically sorted by recommendation score descending. Created when a consumer submits an application — this is the analytics proxy for 'submitted application'." },
   { cat:"Products", sub:"Offer Types & Structures", term:"Special Offer / SO", full:"Special Offer / Static Offer", def:"An offer that does not go through a financial institution's decisioning APIs; often shown after a decline." },
   { cat:"Products", sub:"Offer Types & Structures", term:"Static Offers", def:"Non-custom offers presented without lender decisioning." },
@@ -3390,7 +3636,7 @@ function highlight(text, query) {
 }
 
 function getSubcats() {
-  const cats = activeCategory === 'All' || activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows'
+  const cats = activeCategory === 'All' || activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Workflows'
     ? TERMS
     : TERMS.filter(t => t.cat === activeCategory);
   return [...new Set(cats.map(t => t.sub))].sort();
@@ -3398,7 +3644,7 @@ function getSubcats() {
 
 function filteredTerms() {
   const filtered = TERMS.filter(t => {
-    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') return false;
+    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Workflows') return false;
     if (activeCategory !== 'All' && t.cat !== activeCategory) return false;
     if (activeSub !== 'All' && t.sub !== activeSub) return false;
     if (searchQuery) {
@@ -3431,7 +3677,7 @@ function filteredTerms() {
 // ── Render ─────────────────────────────────────────────────────────────────
 function renderSubcatBar() {
   const bar = document.getElementById('subcatBar');
-  if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') { bar.innerHTML = ''; return; }
+  if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Workflows') { bar.innerHTML = ''; return; }
   const subs = getSubcats();
   let html = `<button class="subcat-chip ${activeSub==='All'?'active':''}" data-sub="All">All</button>`;
   subs.forEach(s => {
@@ -3483,14 +3729,14 @@ function renderMain() {
   const main = document.getElementById('main');
   const diagBusiness = document.getElementById('diagrams-business');
   const diagTechnical = document.getElementById('diagrams-technical');
-  const diagSupply = document.getElementById('diagrams-supply');
-  const diagDemand = document.getElementById('diagrams-demand');
+  const diagWorkflows = document.getElementById('diagrams-workflows');
 
+  const diagResources = document.getElementById('resources-tab');
   const hideAll = () => {
     diagBusiness.classList.add('hidden');
     diagTechnical.classList.add('hidden');
-    diagSupply.classList.add('hidden');
-    diagDemand.classList.add('hidden');
+    diagWorkflows.classList.add('hidden');
+    diagResources.classList.add('hidden');
   };
 
   if (activeCategory === 'Business') {
@@ -3505,16 +3751,16 @@ function renderMain() {
     document.getElementById('resultCount').textContent = '8 diagrams';
     return;
   }
-  if (activeCategory === 'Supply Workflows') {
+  if (activeCategory === 'Workflows') {
     main.innerHTML = ''; hideAll();
-    diagSupply.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '5 workflows';
+    diagWorkflows.classList.remove('hidden');
+    document.getElementById('resultCount').textContent = '6 workflows';
     return;
   }
-  if (activeCategory === 'Demand Workflows') {
+  if (activeCategory === 'Resources') {
     main.innerHTML = ''; hideAll();
-    diagDemand.classList.remove('hidden');
-    document.getElementById('resultCount').textContent = '2 workflows';
+    diagResources.classList.remove('hidden');
+    document.getElementById('resultCount').textContent = 'resources';
     return;
   }
 
@@ -3646,7 +3892,8 @@ function toggleRelatedInline(card, idx) {
     chip.addEventListener('click', e => {
       e.stopPropagation();
       const technicalIds = ['diag-2','diag-5','diag-10','diag-11','diag-17','diag-19'];
-      activeCategory = technicalIds.includes(chip.dataset.diag) ? 'Technical' : 'Business';
+      const workflowIds = ['diag-22','diag-24','diag-25','diag-26','diag-28','diag-29'];
+      activeCategory = technicalIds.includes(chip.dataset.diag) ? 'Technical' : workflowIds.includes(chip.dataset.diag) ? 'Workflows' : 'Business';
       document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
       document.querySelector(`.cat-tab[data-cat="${activeCategory}"]`).classList.add('active');
       render();
@@ -3680,7 +3927,7 @@ document.querySelectorAll('.cat-tab').forEach(tab => {
     activeCategory = tab.dataset.cat;
     activeSub = 'All';
     const si = document.getElementById('searchInput');
-    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Supply Workflows' || activeCategory === 'Demand Workflows') si.disabled = true;
+    if (activeCategory === 'Business' || activeCategory === 'Technical' || activeCategory === 'Workflows') si.disabled = true;
     else si.disabled = false;
     render();
   });
@@ -3711,7 +3958,7 @@ function jumpToDiag(id) {
 function initCollapsibleDiagrams() {
   const sectionIds = [
     'diagrams-business', 'diagrams-technical',
-    'diagrams-supply', 'diagrams-demand'
+    'diagrams-workflows'
   ];
 
   sectionIds.forEach(sectionId => {
@@ -3763,7 +4010,7 @@ function initCollapsibleDiagrams() {
       const toc = document.createElement('div');
       toc.className = 'diag-toc';
 
-      const isBusiness = sectionId === 'diagrams-business' || sectionId === 'diagrams-technical';
+      const isBusiness = sectionId === 'diagrams-business' || sectionId === 'diagrams-technical' || sectionId === 'diagrams-workflows';
 
       if (isBusiness) {
         // Grouped 2-column TOC: walk grid children to collect sections + items
